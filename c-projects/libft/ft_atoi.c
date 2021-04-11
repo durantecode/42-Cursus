@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@42student.42madrid.c    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:02:27 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/09 10:40:22 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:28:02 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_atoi(const char *str)
 			if (negative > 0)
 				return (-1);
 			else
-				return (0);	
+				return (0);
 		}
 	}
 	return (number * negative);

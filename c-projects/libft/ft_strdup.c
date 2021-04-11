@@ -6,13 +6,13 @@
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 10:51:09 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/09 11:38:49 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:30:09 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*ptr;
 	int		i;
