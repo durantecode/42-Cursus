@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:00:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/08 20:51:52 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/12 19:50:42 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ int		main(void)
 
 	// ****** FT_STRLCAT ******
 
-	// char dest[100] = "";
-    // char src[] = "A";
-	// printf("longitud función original: %lu\n", strlcat(dest, src, 100));
-	// printf("longitud función mía: %lu\n", ft_strlcat(dest, src, 0));
+	// char dest[100] = "HOLA";
+    // char src[] = "ADIOS";
+	// //printf("longitud función original: %lu\n", strlcat(dest, src, 4));
+	// printf("longitud función mía: %lu\n", ft_strlcat(dest, src, 6));
 	// printf("%s\n", dest);
 
 
@@ -125,8 +125,8 @@ int		main(void)
 
 	// ****** FT_ATOI ******
 
-	printf("%d\n", ft_atoi("     99999999999999999999999999"));
-	printf("%d\n", atoi("     99999999999999999999999999"));
+	// printf("%d\n", ft_atoi("     -9223372030000"));
+	// printf("%d\n", atoi("     -92233720300002"));
 	
 	
 	// ***** FT_ISALPHA ******
@@ -169,4 +169,15 @@ int		main(void)
 
 	// printf("%d\n", tolower('Z'));	
 	// printf("%d\n", ft_tolower('Z'));		
+
+
+	
+	// ****** FT_SUBSTR ******
+
+	// printf("%s\n", ft_substr("PEPITOGRRILLO", 3, 8));
+
+
+	// ****** FT_STRJOIN ******
+
+	// printf("%s\n", ft_strjoin("HOLA", "ADIOS"));
 }

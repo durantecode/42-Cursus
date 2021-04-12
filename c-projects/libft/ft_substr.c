@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/07 13:14:53 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 20:00:09 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/12 13:32:03 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/12 20:14:52 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// REVISAR
+/*
+** Create a substring from the "start" with
+** len length more than start
+*/
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ptr;
-	size_t	dst_len;
-	size_t	src_len;
+	unsigned int	i;
+	char			*str;
 
-	ptr = (char *)src;
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(ptr);
-	if (dstsize < dst_len)
-		return (src_len + dstsize);
-	while (*ptr && (dst_len + 1) < dstsize)
+	i = 0;
+	if (!s)
+		return (NULL);
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	while (i < len && start < ft_strlen(s))
 	{
-		dst[dst_len] = *ptr;
-		dst_len++;
-		ptr++;
+		str[i] = s[start + i];
+		i++;
 	}
-	dst[dst_len] = '\0';
-	while (*ptr++)
-		dst_len++;
-	return (dst_len);
+	str[i] = '\0';
+	return (str);
 }
