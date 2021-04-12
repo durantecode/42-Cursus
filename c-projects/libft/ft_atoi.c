@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:02:27 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 00:28:02 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/12 11:19:58 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	unsigned long long	number;
-	int					negative;
+	long	number;
+	int		negative;
 
 	number = 0;
 	negative = 1;
@@ -29,15 +29,12 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
+		if (number * negative > 2147483647)
+			return (-1);
+		if (number * negative < -2147483648)
+			return (0);
 		number = number * 10 + *str - 48;
 		str++;
-		if (number > 9223372036854775807)
-		{
-			if (negative > 0)
-				return (-1);
-			else
-				return (0);
-		}
 	}
 	return (number * negative);
 }
