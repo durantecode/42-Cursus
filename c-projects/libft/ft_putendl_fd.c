@@ -6,13 +6,12 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 19:37:39 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 20:06:13 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:20:58 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Escribe la cadena de caracteres ’s’ sobre el
-descriptor de fichero proporcionado, seguida de
-un salto de línea. */
+/* Outputs the string ’s’ to the given file
+descriptor, followed by a newline. */
 
 #include "libft.h"
 

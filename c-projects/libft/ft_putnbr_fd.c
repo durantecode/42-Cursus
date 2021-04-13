@@ -6,12 +6,12 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:01:48 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 20:09:52 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:21:17 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Escribe el entero ’n’ sobre el descriptor de
-fichero proporcionado. */
+/* Outputs the integer ’n’ to the given file
+descriptor. */
 
 #include "libft.h"
 

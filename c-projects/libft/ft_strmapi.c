@@ -1,44 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 16:49:31 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/13 10:22:42 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/13 12:50:46 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/13 18:17:17 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Allocates (with malloc(3)) and returns a new
-string, which is the result of the concatenation
-of ’s1’ and ’s2’. */
+/* Applies the function ’f’ to each character of the
+** string ’s’ to create a new string (with malloc(3))
+** resulting from successive applications of ’f’.
+*/
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*str;
 	int		i;
-	int		j;
+	char	*str;
 
 	i = 0;
-	j = 0;
-	if (!s1 || !s2)
+	if (!s)
 		return (NULL);
-	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = (char *) malloc(ft_strlen(s) + 1);
 	if (!str)
 		return (NULL);
-	while (s1[i] != '\0')
+	while (s[i] != '\0')
 	{
-		str[i] = s1[i];
+		str[i] = f(i, s[i]);
 		i++;
-	}
-	while (s2[j] != '\0')
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
 	}
 	str[i] = '\0';
 	return (str);

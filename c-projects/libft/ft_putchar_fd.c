@@ -6,12 +6,12 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 19:30:54 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 20:14:39 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:20:25 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Escribe el carácter ’c’ sobre el descriptor de
-fichero proporcionado.*/
+/* Outputs the character ’c’ to the given file
+descriptor.*/
 
 #include "libft.h"
 

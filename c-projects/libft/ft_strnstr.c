@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 10:08:52 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/08 10:44:53 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:14:33 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		while (needle[y] == haystack[x + y] && (x + y) < len)
 		{
 			if (needle[y + 1] == '\0')
-			{
 				return ((char *)haystack + x);
-			}
 			y++;
 		}
 		x++;

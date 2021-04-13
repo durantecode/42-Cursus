@@ -6,14 +6,14 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 19:23:22 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 20:17:51 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:19:42 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Reserva memoria (con malloc(3)) y devuelve una
-** tabla de cadena de caracteres obtenida separando
-** ’s’ con el carácter ’c’, que se utiliza como
-** delimitador. La tabla debe terminar con NULL.
+/* Allocates (with malloc(3)) and returns an array
+** of strings obtained by splitting ’s’ using the
+** character ’c’ as a delimiter. The array must be
+** ended by a NULL pointer.
 */
 
 #include "libft.h"

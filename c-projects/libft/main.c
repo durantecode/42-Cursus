@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:00:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/12 19:50:42 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/13 12:50:16 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,4 +180,9 @@ int		main(void)
 	// ****** FT_STRJOIN ******
 
 	// printf("%s\n", ft_strjoin("HOLA", "ADIOS"));
+
+
+	// ****** FT_ITOA ******
+
+	// printf("%s\n", ft_itoa(48965));
 }
