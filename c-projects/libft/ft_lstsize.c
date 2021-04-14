@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/14 11:19:59 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/14 22:21:39 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/14 21:33:49 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/14 21:57:46 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Allocates (with malloc(3)) and returns a new
-** element. The variable ’content’ is initialized
-** with the value of the parameter ’content’. The
-** variable ’next’ is initialized to NULL. */
+/* Counts the number of elements in a list */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*str;
+	int	i;
 
-	str = malloc(sizeof(str));
-	if (!str)
-		return (NULL);
-	str->content = content;
-	str->next = NULL;
-	return (str);
+	i = 1;
+	if (!lst)
+		return (0);
+	while (lst->next)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

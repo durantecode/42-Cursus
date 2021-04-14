@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/14 11:19:59 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/14 22:21:39 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/14 21:50:53 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/14 22:02:12 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Allocates (with malloc(3)) and returns a new
-** element. The variable ’content’ is initialized
-** with the value of the parameter ’content’. The
-** variable ’next’ is initialized to NULL. */
+/* Returns the last element of the list */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list		*ft_lstlast(t_list *lst)
 {
-	t_list	*str;
-
-	str = malloc(sizeof(str));
-	if (!str)
+	if (lst == NULL)
 		return (NULL);
-	str->content = content;
-	str->next = NULL;
-	return (str);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
