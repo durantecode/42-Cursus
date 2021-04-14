@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 13:32:03 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/13 18:43:03 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/14 12:42:32 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	{
 		if (start + len > ft_strlen(s))
 			len = ft_strlen(s) - start;
-		str = malloc(sizeof(char) * (len + 1));
+		str = malloc(len + 1);
 		if (!str)
 			return (NULL);
 		i = 0;
