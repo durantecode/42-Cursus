@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
+#    By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 16:59:01 by ldurante          #+#    #+#              #
-#    Updated: 2021/04/15 15:37:07 by ldurante         ###   ########.fr        #
+#    Updated: 2021/04/16 13:07:48 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ all: $(NAME)
 
 clean:
 	$(RM) $(OBJS_M) $(OBJS_B)
-	@echo "clean done! :)"
 
 fclean: clean
 	$(RM) $(NAME)

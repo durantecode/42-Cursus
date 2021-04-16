@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:19:59 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/15 13:11:53 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/16 12:28:42 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*str;
 
-	str = malloc(sizeof(str));
+	str = malloc(sizeof(t_list));
 	if (!str)
 		return (NULL);
 	str->content = content;
