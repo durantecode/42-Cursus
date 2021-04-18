@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/14 22:17:29 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/18 23:56:30 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/18 22:35:31 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/19 00:05:05 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Adds the element ’new’ at the end of the list */
+/* Takes as a parameter an element and frees the
+** memory of the element’s content using the function’del’ 
+** given as a parameter and free the element. The memory 
+** of ’next’ must not be freed. */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_list	*aux;
-
-	if (!*lst)
+	if (lst != NULL)
 	{
-		*lst = new;
-		return ;
+		if (del != NULL && lst->content != NULL)
+			(del)(lst->content);
+		free(lst);
+		lst = NULL;
 	}
-	aux = *lst;
-	while (aux->next != NULL)
-		aux = aux->next;
-	aux->next = new;
 }
