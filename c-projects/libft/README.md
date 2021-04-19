@@ -1,14 +1,18 @@
 # LIBFT - your own standard library for C #
 
-## This is my libft project for 42-Cursus ##
+## This is my libft project for 42-Cursus 2021 ##
 
 All functions pass all tests for the following testers:
 
-	✅ libft-unit-test 	 (https://github.com/alelievr/libft-unit-test)
-	✅ libft-war-machine     (https://github.com/ska42/libft-war-machine)
-	✅ libftTester 		 (https://github.com/Tripouille/libftTester)
+	✅ libft-unit-test 	 [a link](https://github.com/alelievr/libft-unit-test)
+	✅ libft-war-machine     [a link](https://github.com/ska42/libft-war-machine)
+	✅ libftTester 		 [a link](https://github.com/Tripouille/libftTester)
 
-Use it only as a reference. Enjoy! ;)
+Status: waiting final evaluation
+Result: -- by moulinette
+
+Use it only as a reference ;)
+Contact: (mailto: ldurante@student.42madrid.com)
 
 ### libft-unit-test ###
 ![libft-unit-test](https://github.com/durantecode/42-Cursus/blob/master/c-projects/libft/test_screenshots/1-libft-unit-test.png)
