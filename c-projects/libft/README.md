@@ -13,7 +13,7 @@ All functions pass all tests for the following testers:
 
 Use it only as a reference ;) \
 \
-Contact: (mailto:ldurante@student.42madrid.com)
+Contact: (ldurante@student.42madrid.com)
 
 ### libft-unit-test ###
 ![libft-unit-test](https://github.com/durantecode/42-Cursus/blob/master/c-projects/libft/test_screenshots/1-libft-unit-test.png)
