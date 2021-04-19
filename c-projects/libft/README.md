@@ -4,14 +4,14 @@
 
 All functions pass all tests for the following testers:
 
-	✅ libft-unit-test 	 [a link](https://github.com/alelievr/libft-unit-test)
-	✅ libft-war-machine     [a link](https://github.com/ska42/libft-war-machine)
-	✅ libftTester 		 [a link](https://github.com/Tripouille/libftTester)
+	✅ libft-unit-test 	 [https://github.com/alelievr/libft-unit-test]
+	✅ libft-war-machine     [https://github.com/ska42/libft-war-machine]
+	✅ libftTester 		 [https://github.com/Tripouille/libftTester]
 
-Status: waiting final evaluation
-Result: -- by moulinette
+- Status: waiting final evaluation
+- Result: -- by moulinette
 
-Use it only as a reference ;)
+Use it only as a reference ;) \
 Contact: (mailto: ldurante@student.42madrid.com)
 
 ### libft-unit-test ###
