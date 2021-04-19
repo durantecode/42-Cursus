@@ -1,6 +1,6 @@
 # LIBFT - your own standard library for C #
 
-## This is my libft project for 42-Cursus 2021 ##
+## This is my libft project for 42-Cursus Madrid 2021 ##
 
 All functions pass all tests for the following testers (Use them only as a reference):
 
