@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:00:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/16 12:50:59 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/20 18:05:31 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,18 +186,18 @@ int		main(void)
 
 	// ****** FT_ITOA ******
 
-	// printf("%s\n", ft_itoa(48965));
+	// printf("%s\n", ft_itoa(-2147483648LL));
 
 
 	// ****** FT_SPLIT ******
 
-	char	**str;
+	// char	**str;
 	
-	str = ft_split("  tripouille  42  ", ' ');
+	// str = ft_split("  tripouille  42  ", ' ');
 	
-	printf("%s\n", str[0]);
-	printf("%s\n", str[1]);
-	printf("%s\n", str[2]);
+	// printf("%s\n", str[0]);
+	// printf("%s\n", str[1]);
+	// printf("%s\n", str[2]);
 	// printf("%s\n", dst[3]);
 	// printf("%d\n", ft_count_string("     ", ' '));
 	// printf("%d\n", ft_count_chars("     ", ' ', 0));
