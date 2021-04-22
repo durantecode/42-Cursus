@@ -4,7 +4,7 @@ Here you can find all my work and projects made for 42 school in Madrid.
 
 **Login:** ldurante
 
-**Student Mail:** ldurante@student.42madrid.com 
+**Contact:** ldurante@student.42madrid.com 
 #
 Started cursus: **05/04/2021**
 
