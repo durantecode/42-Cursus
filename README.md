@@ -16,7 +16,7 @@ Started cursus: **05/04/2021**
 
 ## [C Projects]
 
-|  ##  |			Name				|	Directory	| Files | Mark |
-|:----:|:-----------------------------------:|:------------------:|:--------------:|:--------------:|
-|  00  |libft								|	[libft/](https://github.com/durantecode/42-Cursus/tree/master/c-projects/libft)		| *.c, libft.h, Makefile | 115 |
-|  01  |get_next_line								|	[get_next_line/](https://github.com/durantecode/42-Cursus/tree/master/c-projects/get_next_line)		| get_next_line.c, get_next_line_utils.c, get_next_line.h | Not Graded Yet |
+|  ##  |			Name				| Result |
+|:----:|:-----------------------------------:|
+|  00  |libft							| 115 |
+|  01  |get_next_line			| Not Graded Yet |
