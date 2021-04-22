@@ -9,7 +9,7 @@ All functions pass all tests for the following testers (Use them only as a refer
 ✅ [libftTester](https://github.com/Tripouille/libftTester)
 
 - **Status:** *Finishedn*
-- **Result:** *115✅ by moulinette*
+- **Result:** *115/100 by moulinette*
 
 Contact: ldurante@student.42madrid.com
 
