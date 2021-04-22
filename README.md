@@ -1,6 +1,6 @@
 # 42-Cursus
 
-This is my repo for all my work at 42 school in Madrid.
+Here you can find all my work and projects made for 42 school in Madrid.
 
 **Login:** ldurante
 
@@ -12,5 +12,5 @@ Started cursus: **05/04/2021**
 
 |  ##  |			Name				| Result |
 |:----:|:----------------:|:------:|
-|  00  |libft							| ![ldurante's libft Score](https://badge42.herokuapp.com/api/project/ldurante/Libft) |
+|  00  |libft							| ![ldurante's libft Score](https://badge42.herokuapp.com/api/project/ialvarez/Libft) |
 |  01  |get_next_line			| ![ldurante's libft Score](https://badge42.herokuapp.com/api/project/ldurante/get_next_line) |
