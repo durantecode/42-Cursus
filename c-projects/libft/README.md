@@ -8,8 +8,8 @@ All functions pass all tests for the following testers (Use them only as a refer
 ✅ [libft-war-machine](https://github.com/ska42/libft-war-machine)  
 ✅ [libftTester](https://github.com/Tripouille/libftTester)
 
-- **Status:** *waiting final evaluation*
-- **Result:** *-- by moulinette*
+- **Status:** *Finishedn*
+- **Result:** *115✅ by moulinette*
 
 Contact: ldurante@student.42madrid.com
 
