@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 16:52:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/23 10:18:37 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/23 10:17:25 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/23 10:18:01 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-//# define BUFFER_SIZE 1
+#include "get_next_line.h"
 
-# include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-int		get_next_line(int fd, char **line);
-size_t	ft_strlen(const char *s);
-
-#endif
+	i = 0;
+	while (*s++)
+		i++;
+	return (i);
+}
