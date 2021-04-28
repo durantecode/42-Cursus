@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:51:10 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/28 21:15:27 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/28 23:52:08 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
-{
-	int	x;
-
-	x = 0;
-	while (str[x] != '\0')
-	{
-		ft_putchar(str[x]);
-		x++;
-	}
-}
 
 int		ft_line_len(char *str)
 {
@@ -44,7 +27,6 @@ int		ft_line_len(char *str)
 int	get_next_line(int fd, char **line)
 {
 	size_t	file_size;
-	//static char 	*read_fd[20]; Bonus?
 	static char *saved[4096];
 	char	buff[BUFFER_SIZE + 1];
 	char	*aux;
@@ -58,23 +40,17 @@ int	get_next_line(int fd, char **line)
 	{
 		if (!saved[fd])
 		{
-			//saved[fd] = ft_strdup(buff);
-			ft_strlcpy(*line, buff, ft_line_len(buff) + 1);
-			ft_putstr(*line);
-			//printf("IF 1\n");
-			saved[fd] = ft_strchr(buff, '\n') + 1;
-			//ft_putstr(saved[fd]);
+			tmp = ft_strdup(buff);
+			ft_strlcpy(*line, tmp, ft_line_len(tmp) + 1);
+			saved[fd] = ft_strchr(tmp, '\n') + 1;
 			return (1);
 		}
 		else
 		{
 			saved[fd] = ft_strjoin(saved[fd], buff);
-			ft_putstr(saved[fd]);
-			//aux = ft_strjoin(saved[fd], buff);
-			//ft_putstr(aux);
-			//ft_putstr(saved[fd]);
-			//saved[fd] = ft_strchr(buff, '\n') + 1;
-			//ft_putstr(saved[fd]);
+			ft_strlcpy(*line, saved[fd], ft_line_len(saved[fd]) + 1);
+			free (saved[fd]);
+			saved[fd] = ft_strchr(saved[fd], '\n') + 1;
 			return (1);
 		}
 	}
@@ -93,7 +69,6 @@ int	get_next_line(int fd, char **line)
 		}
 		free(saved[fd]);
 		ft_strlcpy(*line, aux, ft_line_len(aux) + 1);
-		ft_putstr(*line);
 		saved[fd] = ft_strchr(aux, '\n') + 1;
 		return (1);
 	}
@@ -104,21 +79,14 @@ int		main(void)
 {
 	char	*line;
 	int		fd;
+	int		ret;
 
 	fd = open("text.txt", O_RDONLY);
-//	printf("%d\n", get_next_line(fd, &line));
-	get_next_line(fd, &line);
-	ft_putchar('\n');
-	get_next_line(fd, &line);
-	ft_putchar('\n');
-	// get_next_line(fd, &line);
-	// ft_putchar('\n');
-	// get_next_line(fd, &line);
-	// ft_putchar('\n');
-	// get_next_line(fd, &line);
-	// ft_putchar('\n');
-	// get_next_line(fd, &line);
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		printf("%s\n", line);
+	}
 	close(fd);
-//	free(line);
+	free(line);
 	return (0);
 }
