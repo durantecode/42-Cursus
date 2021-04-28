@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:51:10 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/27 21:31:10 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:15:27 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int		ft_line_len(char *str)
 
 	x = 0;
 	while (str[x] != '\n' && str[x] != '\0')
-	{
 		x++;
-	}
 	if (str[x] == '\0')
 		return (0);
 	return (x);
@@ -50,6 +48,7 @@ int	get_next_line(int fd, char **line)
 	static char *saved[4096];
 	char	buff[BUFFER_SIZE + 1];
 	char	*aux;
+	char	*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 1)
 		return (-1);
@@ -57,10 +56,27 @@ int	get_next_line(int fd, char **line)
 	buff[file_size] = '\0';
 	if (ft_strchr(buff, '\n'))
 	{
-		ft_strlcpy(*line, buff, ft_line_len(buff) + 1);
-		ft_putstr(*line);
-		saved[fd] = ft_strchr(buff, '\n') + 1;
-		return (1);
+		if (!saved[fd])
+		{
+			//saved[fd] = ft_strdup(buff);
+			ft_strlcpy(*line, buff, ft_line_len(buff) + 1);
+			ft_putstr(*line);
+			//printf("IF 1\n");
+			saved[fd] = ft_strchr(buff, '\n') + 1;
+			//ft_putstr(saved[fd]);
+			return (1);
+		}
+		else
+		{
+			saved[fd] = ft_strjoin(saved[fd], buff);
+			ft_putstr(saved[fd]);
+			//aux = ft_strjoin(saved[fd], buff);
+			//ft_putstr(aux);
+			//ft_putstr(saved[fd]);
+			//saved[fd] = ft_strchr(buff, '\n') + 1;
+			//ft_putstr(saved[fd]);
+			return (1);
+		}
 	}
 	else
 	{
@@ -76,11 +92,11 @@ int	get_next_line(int fd, char **line)
 			saved[fd] = ft_strdup(aux);
 		}
 		free(saved[fd]);
+		ft_strlcpy(*line, aux, ft_line_len(aux) + 1);
+		ft_putstr(*line);
+		saved[fd] = ft_strchr(aux, '\n') + 1;
 		return (1);
 	}
-	ft_strlcpy(*line, aux, ft_line_len(aux) + 1);
-	ft_putstr(*line);
-	saved[fd] = ft_strchr(aux, '\n') + 1;
 	return (0);
 }
 
