@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 10:17:25 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/27 15:56:34 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/29 14:50:23 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,13 @@ char	*ft_strchr(const char *s, int c)
 		x++;
 	}
 	return (NULL);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (n-- > 0)
+		*ptr++ = '\0';
 }

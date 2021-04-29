@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:52:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/27 20:44:27 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/29 14:51:51 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize);
+void	ft_bzero(void *s, size_t n);
 
 #endif

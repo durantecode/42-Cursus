@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:51:10 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/28 23:52:08 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/29 15:20:56 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_next_line(int fd, char **line)
 	char	*aux;
 	char	*tmp;
 
-	if (fd < 0 || BUFFER_SIZE <= 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (-1);
 	file_size = read(fd, buff, BUFFER_SIZE);
 	buff[file_size] = '\0';
@@ -49,7 +49,6 @@ int	get_next_line(int fd, char **line)
 		{
 			saved[fd] = ft_strjoin(saved[fd], buff);
 			ft_strlcpy(*line, saved[fd], ft_line_len(saved[fd]) + 1);
-			free (saved[fd]);
 			saved[fd] = ft_strchr(saved[fd], '\n') + 1;
 			return (1);
 		}
@@ -59,11 +58,21 @@ int	get_next_line(int fd, char **line)
 		if (!saved[fd])
 			saved[fd] = ft_strdup(buff);
 		else
+		{
 			saved[fd] = ft_strjoin(saved[fd], buff);
+			ft_bzero(buff, BUFFER_SIZE);
+		}
 		while (ft_line_len(saved[fd]) == 0 && file_size > 0)
 		{
 			file_size = read(fd, buff, BUFFER_SIZE);
+			if (file_size == 0)
+			{
+				*line = ft_strdup(saved[fd]);
+				free(saved[fd]);
+				return (0);
+			}
 			aux = ft_strjoin(saved[fd], buff);
+			ft_bzero(buff, BUFFER_SIZE);
 			free (saved[fd]);
 			saved[fd] = ft_strdup(aux);
 		}
@@ -86,6 +95,7 @@ int		main(void)
 	{
 		printf("%s\n", line);
 	}
+	printf("%s\n", line);
 	close(fd);
 	free(line);
 	return (0);
