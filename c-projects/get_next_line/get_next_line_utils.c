@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 10:17:25 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/29 14:50:23 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/30 02:19:20 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,32 @@ void	ft_bzero(void *s, size_t n)
 	ptr = s;
 	while (n-- > 0)
 		*ptr++ = '\0';
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < start)
+	{
+		str = malloc(sizeof(char));
+		str[0] = '\0';
+		return (str);
+	}
+	else
+	{
+		if (start + len > ft_strlen(s))
+			len = ft_strlen(s) - start;
+		str = malloc(len + 1);
+		if (!str)
+			return (NULL);
+		i = 0;
+		while (++i - 1 < len)
+			*(str + i - 1) = *(s + start + i - 1);
+		*(str + i - 1) = '\0';
+		return (str);
+	}
 }

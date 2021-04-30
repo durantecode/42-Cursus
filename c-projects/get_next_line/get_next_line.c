@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:51:10 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/29 15:20:56 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:27:44 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_line_len(char *str)
+void	ft_strdel(char **str)
+{
+	if (str)
+	{
+		free(*str);
+		*str = NULL;
+	}
+}
+
+int		ft_line_length(char *str)
 {
 	int	x;
 
@@ -24,66 +33,54 @@ int		ft_line_len(char *str)
 	return (x);
 }
 
-int	get_next_line(int fd, char **line)
+int ft_copy_line(int fd, char **line, char **saved)
 {
-	size_t	file_size;
-	static char *saved[4096];
-	char	buff[BUFFER_SIZE + 1];
-	char	*aux;
-	char	*tmp;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (-1);
-	file_size = read(fd, buff, BUFFER_SIZE);
-	buff[file_size] = '\0';
-	if (ft_strchr(buff, '\n'))
+	if (ft_strchr(saved[fd], '\n'))
 	{
-		if (!saved[fd])
-		{
-			tmp = ft_strdup(buff);
-			ft_strlcpy(*line, tmp, ft_line_len(tmp) + 1);
-			saved[fd] = ft_strchr(tmp, '\n') + 1;
-			return (1);
-		}
-		else
-		{
-			saved[fd] = ft_strjoin(saved[fd], buff);
-			ft_strlcpy(*line, saved[fd], ft_line_len(saved[fd]) + 1);
-			saved[fd] = ft_strchr(saved[fd], '\n') + 1;
-			return (1);
-		}
-	}
-	else
-	{
-		if (!saved[fd])
-			saved[fd] = ft_strdup(buff);
-		else
-		{
-			saved[fd] = ft_strjoin(saved[fd], buff);
-			ft_bzero(buff, BUFFER_SIZE);
-		}
-		while (ft_line_len(saved[fd]) == 0 && file_size > 0)
-		{
-			file_size = read(fd, buff, BUFFER_SIZE);
-			if (file_size == 0)
-			{
-				*line = ft_strdup(saved[fd]);
-				free(saved[fd]);
-				return (0);
-			}
-			aux = ft_strjoin(saved[fd], buff);
-			ft_bzero(buff, BUFFER_SIZE);
-			free (saved[fd]);
-			saved[fd] = ft_strdup(aux);
-		}
-		free(saved[fd]);
-		ft_strlcpy(*line, aux, ft_line_len(aux) + 1);
-		saved[fd] = ft_strchr(aux, '\n') + 1;
+		*line = ft_substr(saved[fd], 0, ft_line_length(saved[fd]));
+		saved[fd] = ft_strchr(saved[fd], '\n') + 1;
+		//ft_strdel(saved);
 		return (1);
+	}
+	else if (ft_line_length(saved[fd]) == 0)
+	{
+		*line = ft_strdup(saved[fd]);
+		ft_strdel(saved);
 	}
 	return (0);
 }
 
+int	get_next_line(int fd, char **line)
+{
+	int		file_size;
+	static char *saved[4096];
+	char	*buff;
+	char	*aux;
+
+	buff = malloc(BUFFER_SIZE + 1);
+	if (!fd || BUFFER_SIZE <= 0 || !line || !buff)
+		return (-1);
+	while ((file_size = read(fd, buff, BUFFER_SIZE)) > 0)
+	{
+		buff[file_size] = '\0';
+		if (!saved[fd])
+			saved[fd] = ft_strdup("");
+		aux = ft_strjoin(saved[fd], buff);
+		//ft_strdel(&saved[fd]);
+		saved[fd] = ft_strdup(aux);
+		if (ft_strchr(buff, '\n'))
+		{
+			free(buff);
+			break ;
+		}
+	}
+	if (!file_size && !saved[fd])
+		return (0);
+	if (file_size < 0)
+		return (-1);
+	return (ft_copy_line(fd, line, saved));	
+}		
+			
 int		main(void)
 {
 	char	*line;
@@ -96,7 +93,9 @@ int		main(void)
 		printf("%s\n", line);
 	}
 	printf("%s\n", line);
+	//check_leaks();
+	//system("leaks a.out");
 	close(fd);
-	free(line);
+	//free(line);
 	return (0);
 }
