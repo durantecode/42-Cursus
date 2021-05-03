@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 10:17:25 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/30 02:19:20 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/03 23:54:21 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,31 +71,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (!src || !dest)
-		return (0);
-	if (dstsize == 0)
-	{
-		while (src[i])
-			i++;
-		return (i);
-	}
-	while (i < dstsize - 1 && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	if (i < dstsize)
-		dest[i] = '\0';
-	while (src[i] != '\0')
-		i++;
-	return (i);
-}
-
 char	*ft_strchr(const char *s, int c)
 {
 	int		x;
@@ -110,15 +85,6 @@ char	*ft_strchr(const char *s, int c)
 		x++;
 	}
 	return (NULL);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*ptr;
-
-	ptr = s;
-	while (n-- > 0)
-		*ptr++ = '\0';
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
