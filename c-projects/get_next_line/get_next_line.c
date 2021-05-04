@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:51:10 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/04 00:03:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/05 01:45:53 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_strdel(char **str)
 	}
 }
 
-int		ft_line_length(char *str)
+int	ft_line_length(char *str)
 {
 	int	x;
 
@@ -33,18 +33,25 @@ int		ft_line_length(char *str)
 	return (x);
 }
 
-int ft_copy_line(int fd, char **line, char **saved)
+int	ft_copy_line(int fd, char **line, char **saved, int file_size)
 {
 	char	*aux;
 	int		len;
 
+	if (!file_size && !saved[fd])
+	{
+		*line = ft_strdup("");
+		return (0);
+	}
 	len = ft_line_length(saved[fd]);
-	if (ft_strchr(saved[fd], '\n'))
+	if (saved[fd][len] == '\n')
 	{
 		*line = ft_substr(saved[fd], 0, len);
 		aux = ft_strdup(saved[fd] + len + 1);
 		ft_strdel(&saved[fd]);
 		saved[fd] = aux;
+		if (saved[fd][0] == '\0')
+			ft_strdel(&saved[fd]);
 		return (1);
 	}
 	else if (ft_line_length(saved[fd]) == 0)
@@ -57,46 +64,27 @@ int ft_copy_line(int fd, char **line, char **saved)
 
 int	get_next_line(int fd, char **line)
 {
-	int		file_size;
-	static char *saved[4096];
-	char	buff[BUFFER_SIZE + 1];
-	char	*aux;
+	static char	*saved[4096];
+	int			file_size;
+	char		buff[BUFFER_SIZE + 1];
+	char		*aux;
 
-	if (!fd || fd > 4096 || !line)
+	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	while ((file_size = read(fd, buff, BUFFER_SIZE)) > 0)
+	file_size = read(fd, buff, BUFFER_SIZE);
+	while (file_size > 0)
 	{
 		buff[file_size] = '\0';
 		if (!saved[fd])
-			saved[fd] = ft_strdup("\0");
+			saved[fd] = ft_strdup("");
 		aux = ft_strjoin(saved[fd], buff);
 		ft_strdel(&saved[fd]);
 		saved[fd] = aux;
 		if (ft_strchr(buff, '\n'))
 			break ;
+		file_size = read(fd, buff, BUFFER_SIZE);
 	}
-	if (!file_size && !saved[fd])
-		return (0);
 	if (file_size == -1)
 		return (-1);
-	return (ft_copy_line(fd, line, saved));	
+	return (ft_copy_line(fd, line, saved, file_size));
 }		
-			
-// int		main(void)
-// {
-// 	char	*line;
-// 	int		fd;
-// 	int		ret;
-
-// 	fd = open("text.txt", O_RDONLY);
-// 	while ((ret = get_next_line(fd, &line)) > 0)
-// 	{
-// 		printf("%s\n", line);
-// 	}
-// 	printf("%s\n", line);
-// 	//check_leaks();
-// 	system("leaks a.out");
-// 	close(fd);
-// 	free(line);
-// 	return (0);
-// }
