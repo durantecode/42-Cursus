@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:52:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/05 14:27:25 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/05 16:32:39 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
 
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);
