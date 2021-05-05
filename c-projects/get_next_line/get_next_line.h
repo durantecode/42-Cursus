@@ -6,14 +6,13 @@
 /*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:52:43 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/05 01:06:32 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/05 14:27:25 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
