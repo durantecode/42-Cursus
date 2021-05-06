@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 16:30:19 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/06 12:43:39 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/22 16:52:43 by ldurante          #+#    #+#             */
+/*   Updated: 2021/05/06 11:50:57 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-int	main(void)
-{
-	char	*line;
-	int		fd;
-	int		ret;
+# include <unistd.h>
+# include <stdlib.h>
 
-	fd = open("text.txt", O_RDONLY);
-	ret = get_next_line(fd, &line);
-	while (ret >= 0)
-	{
-		printf("%s\n", line);
-		free(line);
-		line = NULL;
-		if (ret == 0)
-			break ;
-		ret = get_next_line(fd, &line);
-	}
-	free(line);
-	system("leaks a.out");
-	close(fd);
-	return (0);
-}
+int		get_next_line(int fd, char **line);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+#endif
