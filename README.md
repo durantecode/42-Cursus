@@ -15,4 +15,4 @@ Started cursus: **05/04/2021**
 |  00  |libft							| ![ldurante's libft Score](https://badge42.herokuapp.com/api/project/ldurante/Libft) |
 |  01  |netwhat     			| ![ldurante's netwhat Score](https://badge42.herokuapp.com/api/project/ldurante/netwhat) |
 |  02  |get_next_line			| ![ldurante's get_next_line Score](https://badge42.herokuapp.com/api/project/ldurante/get_next_line) |
-|  02  |ft_printf   			| ![ldurante's ft_printf Score](https://badge42.herokuapp.com/api/project/ldurante/ft_printf) |
+|  03  |ft_printf   			| ![ldurante's ft_printf Score](https://badge42.herokuapp.com/api/project/ldurante/ft_printf) |
