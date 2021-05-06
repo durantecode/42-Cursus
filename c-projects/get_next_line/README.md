@@ -13,7 +13,7 @@ It passes all tests for the following testers (Use them only as a reference):
 Contact: ldurante@student.42madrid.com
 
 ### gnlTester ###
-![gnlTester](https://github.com/durantecode/42-Cursus/blob/master/c-projects/libft/test_screenshots/test1.png)
+![gnlTester](https://github.com/durantecode/42-Cursus/blob/master/c-projects/get_next_line/test_screenshots/test1.png)
 
 ### 42TESTER-GNL ###
-![42TESTER-GNL](https://github.com/durantecode/42-Cursus/blob/master/c-projects/libft/test_screenshots/test2.png)
+![42TESTER-GNL](https://github.com/durantecode/42-Cursus/blob/master/c-projects/get_next_line/test_screenshots/test2.png)
