@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:00 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/08 11:24:01 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/22 17:21:05 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int		x;
+	int		len;
 
-int		ft_printf(const char *format, ...);
-
-#endif
+	x = 0;
+	len = ft_strlen(s);
+	while (len >= 0)
+	{
+		if (s[len] == (char)c)
+			return ((char *)s + len);
+		len--;
+	}
+	return (NULL);
+}

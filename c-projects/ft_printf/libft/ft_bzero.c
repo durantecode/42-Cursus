@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:00 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/06 19:35:34 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/07 10:53:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*ptr;
 
-int		ft_printf(const char *format, ...);
-
-#endif
+	ptr = s;
+	while (n-- > 0)
+		*ptr++ = '\0';
+}

@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:00 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/08 09:43:47 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/08 09:49:15 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
-
-int		ft_printf(const char *format, ...);
-
-#endif
+int	ft_toupper(int c)
+{
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	else
+		return (c);
+}

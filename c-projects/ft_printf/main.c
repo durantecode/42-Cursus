@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:00 by ldurante         ###   ########.fr       */
+/*   Created: 2021/05/11 16:42:11 by ldurante          #+#    #+#             */
+/*   Updated: 2021/05/11 16:46:26 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "includes/ft_printf.h"
 
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
-
-int		ft_printf(const char *format, ...);
-
-#endif
+int main(void)
+{
+	int x;
+	
+	x = ft_printf("hola", "adios", "42");
+	printf("%d\n", x);
+	
+	return (0);
+}

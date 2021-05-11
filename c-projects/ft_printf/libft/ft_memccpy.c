@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:00 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/08 12:44:10 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/08 15:00:45 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	char	*ptr;
+	size_t	i;
 
-int		ft_printf(const char *format, ...);
-
-#endif
+	i = 0;
+	ptr = dst;
+	while (i < n)
+	{
+		ptr[i] = *((unsigned char *)src + i);
+		if (*((unsigned char *)src + i) == (unsigned char)c)
+			return (dst + i + 1);
+		i++;
+	}
+	return (NULL);
+}

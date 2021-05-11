@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 13:45:00 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/12 19:34:32 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/13 17:30:53 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+/* Outputs the string ’s’ to the given file
+descriptor. */
 
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
+#include "libft.h"
 
-int		ft_printf(const char *format, ...);
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (s != NULL)
+		write(fd, s, ft_strlen(s));
+}
