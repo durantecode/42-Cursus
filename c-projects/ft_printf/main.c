@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:42:11 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 16:46:26 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:55:36 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 int main(void)
 {
 	int x;
+	int y;
 	
-	x = ft_printf("hola", "adios", "42");
+	ft_printf("**** FUNCION MIA ****\n");
+	x = ft_printf("hola %d, %i, %s, %c, adios\n", 234, 678, "string", 'G');
 	printf("%d\n", x);
+	
+	printf("**** FUNCION ORIGINAL ****\n");
+	y = printf("hola %d, %i, %s, %c, adios\n", 234, 678, "string", 'G');
+	printf("%d\n", y);
 	
 	return (0);
 }

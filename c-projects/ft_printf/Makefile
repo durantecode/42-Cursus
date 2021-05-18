@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
+#    By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/05/11 20:27:28 by ldurante         ###   ########.fr        #
+#    Updated: 2021/05/18 15:27:43 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SOURCES = ft_printf.c
+SOURCES = ft_printf.c ft_check_format.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -73,4 +73,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean test

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 20:27:27 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:55:16 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <stdarg.h>
 # include <stdio.h>
 
+# define SPECIFIERS "cspdiuxX%"
+
 typedef struct s_print
-{         
-      va_list	args;    		// arg to print out                    
-      int		width;      	// width                
+{
+      va_list     args;    		// arg to print out                    
+      int         width;      	// width                
       int		preci;        	// precision              
       int		zero;       	// zero padding               
       int		point;      	// .     
@@ -28,10 +30,11 @@ typedef struct s_print
       int		length;      	// total_length (return value)              
       int		sign;       	// positive or negative number               
       int		is_zero;      	// is number zero                 
-      int		percen;   	// %               
+      int		percen;   	      // %               
       int		space;         	// space flag ' '            
 }    t_print;
 
 int		ft_printf(const char *format, ...);
+int         ft_check_format(t_print *tab, const char *format, int pos);
 
 #endif

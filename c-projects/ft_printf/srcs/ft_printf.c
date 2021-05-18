@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:49:07 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/11 20:28:31 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/18 21:30:37 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,24 @@ t_print	*ft_init_tab(t_print *tab)
 int	ft_printf(const char *format, ...)
 {
 	t_print		tab;
+	int			i;
+	int			len;
 
+	ft_init_tab(&tab);
 	va_start(tab.args, format);
-	ft_init_tab(&tab)
-	while (format)
+	i = -1;
+	len = 0;
+	while (format[++i])
 	{
-		if (*format == %)
+		if (format[i] == '%')
+			i = ft_check_format(&tab, format, i + 1);
+		else
+		{
+			write(1, &format[i], 1);
+			len++;
+		}
 	}
+	va_end(tab.args);
+	len = len + tab.length;
+	return (len);
 }
