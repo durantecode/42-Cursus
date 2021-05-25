@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/18 23:01:37 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/26 01:20:11 by durante          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+void	ft_put_space(int spaces)
+{
+	while (spaces-- > 0)
+		write(1, " ", 1);
+}
 
 void	ft_print_char(t_print *tab)
 {
@@ -28,8 +34,18 @@ void	ft_print_str(t_print *tab)
 
 	str = va_arg(tab->args, char *);
 	len = ft_strlen(str);
-	ft_putstr_fd(str, 1);
-	tab->length += len;
+	if (len >= tab->width)
+	{
+		ft_putstr_fd(str, 1);
+		tab->length += len;
+	}
+	else
+	{
+		ft_put_space(tab->width - len);
+		ft_putstr_fd(str, 1);
+		tab->length += tab->width;
+	}
+
 }
 
 void	ft_print_int(t_print *tab)
@@ -58,6 +74,9 @@ int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 
 int	ft_check_format(t_print *tab, const char *format, int pos)
 {
+	char	*str;
+	
+	str = "";
 	while (!ft_strchr(SPECIFIERS, format[pos]))
 	{
 		if (format[pos] == '-')
@@ -66,6 +85,11 @@ int	ft_check_format(t_print *tab, const char *format, int pos)
 			tab->zero = 1;
 		if (format[pos] == '.')
 			tab->point = 1;
+		if (ft_isdigit(format[pos]))
+		{
+			str = ft_strjoin(str, &format[pos]);
+			tab->width = ft_atoi(str);
+		}
 		pos++;
 	}
 	ft_check_specifiers(tab, format, pos);
