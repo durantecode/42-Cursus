@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:42:11 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/26 01:17:37 by durante          ###   ########.fr       */
+/*   Updated: 2021/05/26 18:52:16 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int main(void)
 	int y;
 	
 	ft_printf("**** FUNCION MIA ****\n");
-	x = ft_printf("%120s\n", "ab");
+	x = ft_printf(" %*.s %.1s ", 10, "123", "4567");
 	printf("Length: %d\n", x);
 	
 	printf("**** FUNCION ORIGINAL ****\n");
-	y = printf("%120s\n", "ab");
+	y = printf(" %*.s %.1s ", 10, "123", "4567");
 	printf("Length: %d\n", y);
 	
 	return (0);

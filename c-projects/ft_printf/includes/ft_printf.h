@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/18 22:55:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/26 11:42:07 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_print
       int		preci;        	// precision              
       int		zero;       	// zero padding               
       int		point;      	// .     
-      int		dash;       	// -               
+      int		dash;       	// -           
       int		length;      	// total_length (return value)              
       int		sign;       	// positive or negative number               
       int		is_zero;      	// is number zero                 

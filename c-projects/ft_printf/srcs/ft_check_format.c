@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/26 01:20:11 by durante          ###   ########.fr       */
+/*   Updated: 2021/05/26 19:02:23 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_put_space(int spaces)
+void	ft_fill_space(int spaces, t_print *tab)
 {
-	while (spaces-- > 0)
-		write(1, " ", 1);
+	if (tab->zero == 1)
+	{
+		while (spaces-- > 0)
+			write(1, "0", 1);
+	}
+	else
+	{
+		while (spaces-- > 0)
+			write(1, " ", 1);
+	}
 }
 
 void	ft_print_char(t_print *tab)
@@ -23,8 +31,31 @@ void	ft_print_char(t_print *tab)
 	char	c;
 
 	c = va_arg(tab->args, int);
-	tab->length++;
-	write(1, &c, 1);
+	if (tab->width < 0)
+	{
+		tab->dash = 1;
+		tab->width = -tab->width;
+	}	
+	if (tab->dash == 1)
+	{
+		write(1, &c, 1);
+		ft_fill_space(tab->width - 1, tab);
+		if (tab->width)
+			tab->length += tab->width;
+		else
+			tab->length++;
+	}
+	else
+	{
+		ft_fill_space(tab->width - 1, tab);
+		write(1, &c, 1);
+		if (tab->width)
+			tab->length += tab->width;
+		else
+			tab->length++;
+	}
+	tab->dash = 0;
+	tab->width = 0;
 }
 
 void	ft_print_str(t_print *tab)
@@ -39,13 +70,20 @@ void	ft_print_str(t_print *tab)
 		ft_putstr_fd(str, 1);
 		tab->length += len;
 	}
+	else if (tab->dash == 1)
+	{
+		ft_putstr_fd(str, 1);
+		ft_fill_space(tab->width - len, tab);
+		tab->length += tab->width;
+	}
 	else
 	{
-		ft_put_space(tab->width - len);
+		ft_fill_space(tab->width - len, tab);
 		ft_putstr_fd(str, 1);
 		tab->length += tab->width;
 	}
-
+	tab->dash = 0;
+	tab->width = 0;
 }
 
 void	ft_print_int(t_print *tab)
@@ -57,8 +95,24 @@ void	ft_print_int(t_print *tab)
 	digit = va_arg(tab->args, int);
 	str = ft_itoa(digit);
 	len = ft_strlen(str);
-	ft_putnbr_fd(digit, 1);
-	tab->length += len;
+	if (len >= tab->width)
+	{
+		ft_putnbr_fd(digit, 1);
+		tab->length += len;
+	}
+	else if (tab->dash == 1)
+	{
+		ft_putnbr_fd(digit, 1);
+		ft_fill_space(tab->width - len, tab);
+		tab->length += tab->width;
+	}
+	else
+	{
+		write(1, "-", 1);
+		ft_fill_space(tab->width - len, tab);
+		ft_putnbr_fd(-digit, 1);
+		tab->length += tab->width;
+	}
 }
 
 int	ft_check_specifiers(t_print *tab, const char *format, int pos)
@@ -75,23 +129,29 @@ int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 int	ft_check_format(t_print *tab, const char *format, int pos)
 {
 	char	*str;
-	
-	str = "";
+	char	*aux;
+
+	str = ft_strdup("");
 	while (!ft_strchr(SPECIFIERS, format[pos]))
 	{
 		if (format[pos] == '-')
 			tab->dash = 1;
-		if (format[pos] == '0')
+		else if (format[pos] == '0' && format[pos - 1] == '%')
 			tab->zero = 1;
-		if (format[pos] == '.')
+		else if (format[pos] == '.')
 			tab->point = 1;
-		if (ft_isdigit(format[pos]))
+		else if (ft_isdigit(format[pos]))
 		{
-			str = ft_strjoin(str, &format[pos]);
+			aux = ft_strjoin(str, &format[pos]);
+			free(str);
+			str = aux;
 			tab->width = ft_atoi(str);
 		}
+		else if (format[pos] == '*')
+			tab->width = va_arg(tab->args, int);
 		pos++;
 	}
+	free(str);
 	ft_check_specifiers(tab, format, pos);
 	return (pos);
 }
