@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:49:07 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/26 19:00:42 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/27 17:36:51 by durante          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ t_print	*ft_init_tab(t_print *tab)
 	tab->dash = 0;
 	tab->percen = 0;
 	tab->space = 0;
+	return (tab);
+}
+
+t_print *ft_reset_tab(t_print *tab)
+{
+	tab->width = 0;
+	tab->dash = 0;
+	tab->preci = 0;
+	tab->point = 0;
 	return (tab);
 }
 

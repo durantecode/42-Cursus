@@ -1,76 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_format.c                                  :+:      :+:    :+:   */
+/*   check_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/05/26 19:02:23 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/05/27 18:26:54 by durante          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_fill_space(int spaces, t_print *tab)
+void	ft_print_str(t_print *tab)
 {
-	if (tab->zero == 1)
-	{
-		while (spaces-- > 0)
-			write(1, "0", 1);
-	}
-	else
-	{
-		while (spaces-- > 0)
-			write(1, " ", 1);
-	}
-}
-
-void	ft_print_char(t_print *tab)
-{
-	char	c;
-
-	c = va_arg(tab->args, int);
+	int		len;
+	char	*str;
+	char	*aux;
+	
+	str = va_arg(tab->args, char *);
+	len = ft_strlen(str);
+	printf("PRECI: %d", tab->preci);
 	if (tab->width < 0)
 	{
 		tab->dash = 1;
 		tab->width = -tab->width;
 	}	
-	if (tab->dash == 1)
-	{
-		write(1, &c, 1);
-		ft_fill_space(tab->width - 1, tab);
-		if (tab->width)
-			tab->length += tab->width;
-		else
-			tab->length++;
-	}
-	else
-	{
-		ft_fill_space(tab->width - 1, tab);
-		write(1, &c, 1);
-		if (tab->width)
-			tab->length += tab->width;
-		else
-			tab->length++;
-	}
-	tab->dash = 0;
-	tab->width = 0;
-}
-
-void	ft_print_str(t_print *tab)
-{
-	int		len;
-	char	*str;
-
-	str = va_arg(tab->args, char *);
-	len = ft_strlen(str);
-	if (len >= tab->width)
+	if (len >= tab->width && !tab->point)
 	{
 		ft_putstr_fd(str, 1);
 		tab->length += len;
 	}
-	else if (tab->dash == 1)
+	else if (tab->dash && !tab->point)
 	{
 		ft_putstr_fd(str, 1);
 		ft_fill_space(tab->width - len, tab);
@@ -78,12 +39,28 @@ void	ft_print_str(t_print *tab)
 	}
 	else
 	{
-		ft_fill_space(tab->width - len, tab);
-		ft_putstr_fd(str, 1);
+		if (!tab->point || tab->preci)
+			ft_fill_space(tab->width - len, tab);
+		else
+			ft_fill_space(tab->width, tab);
 		tab->length += tab->width;
+		aux = ft_substr(str, 0, tab->preci);
+		if (tab->point)
+		{
+			ft_putstr_fd(aux, 1);
+			if (!tab->width && tab->preci > len) 
+				tab->length += len;
+			else if (!tab->width && tab->preci)
+				tab->length += tab->preci;
+		}
+		else
+			ft_putstr_fd(str, 1);
+		free(aux);
 	}
 	tab->dash = 0;
 	tab->width = 0;
+	tab->point = 0;
+	tab->preci = 0;
 }
 
 void	ft_print_int(t_print *tab)
@@ -145,7 +122,10 @@ int	ft_check_format(t_print *tab, const char *format, int pos)
 			aux = ft_strjoin(str, &format[pos]);
 			free(str);
 			str = aux;
-			tab->width = ft_atoi(str);
+			if (tab->point)
+				tab->preci = ft_atoi(str);
+			else
+				tab->width = ft_atoi(str);
 		}
 		else if (format[pos] == '*')
 			tab->width = va_arg(tab->args, int);
