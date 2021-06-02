@@ -6,7 +6,7 @@
 /*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 15:46:48 by durante           #+#    #+#             */
-/*   Updated: 2021/05/27 15:50:14 by durante          ###   ########.fr       */
+/*   Updated: 2021/06/03 00:44:42 by durante          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void	ft_print_char(t_print *tab)
 		tab->length += tab->width;
 	else
 		tab->length++;
-	ft_reset_tab(tab);
 }

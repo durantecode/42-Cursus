@@ -6,7 +6,7 @@
 #    By: durante <durante@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/05/27 15:48:15 by durante          ###   ########.fr        #
+#    Updated: 2021/06/03 01:14:25 by durante          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SOURCES = ft_printf.c check_format.c width_precission.c print_char.c
+SOURCES = ft_printf.c check_format.c print_string.c print_char.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
