@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 15:46:48 by durante           #+#    #+#             */
-/*   Updated: 2021/06/03 00:44:42 by durante          ###   ########.fr       */
+/*   Updated: 2021/06/03 16:55:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_fill_space(int spaces, t_print *tab)
 {
-	if (tab->zero == 1)
+	if (tab->zero)
 	{
 		while (spaces-- > 0)
 			write(1, "0", 1);
 	}
-	else
+	else 
 	{
 		while (spaces-- > 0)
 			write(1, " ", 1);
@@ -31,11 +31,6 @@ void	ft_print_char(t_print *tab)
 	char	c;
 
 	c = va_arg(tab->args, int);
-	if (tab->width < 0)
-	{
-		tab->dash = 1;
-		tab->width = -tab->width;
-	}	
 	if (tab->dash)
 	{
 		write(1, &c, 1);

@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/03 01:13:33 by durante          ###   ########.fr       */
+/*   Updated: 2021/06/03 16:11:14 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-void	ft_print_int(t_print *tab)
-{
-	int		len;
-	int		digit;
-	char	*str;
-
-	digit = va_arg(tab->args, int);
-	str = ft_itoa(digit);
-	len = ft_strlen(str);
-	if (len >= tab->width)
-	{
-		ft_putnbr_fd(digit, 1);
-		tab->length += len;
-	}
-	else if (tab->dash == 1)
-	{
-		ft_putnbr_fd(digit, 1);
-		ft_fill_space(tab->width - len, tab);
-		tab->length += tab->width;
-	}
-	else
-	{
-		write(1, "-", 1);
-		ft_fill_space(tab->width - len, tab);
-		ft_putnbr_fd(-digit, 1);
-		tab->length += tab->width;
-	}
-}
 
 int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 {
@@ -47,8 +18,10 @@ int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 		ft_print_char(tab);
 	if (format[pos] == 's')
 		ft_print_str(tab);
+	if (format[pos] == 'p')
+		ft_print_diu(tab);
 	if (format[pos] == 'd' || format[pos] == 'i')
-		ft_print_int(tab);
+		ft_print_diu(tab);
 	ft_reset_tab(tab);
 	return (pos);
 }
@@ -96,7 +69,14 @@ int	ft_check_format(t_print *tab, const char *format, int pos)
 				ft_width(tab, format, pos, str);
 		}
 		else if (format[pos] == '*')
+		{
 			tab->width = va_arg(tab->args, int);
+			if (tab->width < 0)
+			{
+				tab->dash = 1;
+				tab->width = -tab->width;
+			}
+		}	
 		pos++;
 	}
 	free(str);

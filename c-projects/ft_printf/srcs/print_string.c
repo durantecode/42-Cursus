@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durante <durante@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:34:34 by durante           #+#    #+#             */
-/*   Updated: 2021/06/03 01:15:26 by durante          ###   ########.fr       */
+/*   Updated: 2021/06/03 13:28:27 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,6 @@ void	ft_print_str(t_print *tab)
 	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
-	if (tab->width < 0)
-	{
-		tab->dash = 1;
-		tab->width = -tab->width;
-	}	
 	if (len >= tab->width && !tab->point)
 	{
 		ft_putstr_fd(str, 1);
