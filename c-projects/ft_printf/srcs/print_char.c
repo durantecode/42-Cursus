@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 15:46:48 by durante           #+#    #+#             */
-/*   Updated: 2021/06/03 16:55:35 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/10 12:30:30 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,24 @@ void	ft_fill_space(int spaces, t_print *tab)
 	}
 }
 
-void	ft_print_char(t_print *tab)
+void	ft_print_char(t_print *tab, int i)
 {
 	char	c;
 
-	c = va_arg(tab->args, int);
+	if (i == 0)
+		c = va_arg(tab->args, int);
+	else
+		c = '%';
 	if (tab->dash)
 	{
-		write(1, &c, 1);
+		tab->length += write(1, &c, 1);
 		ft_fill_space(tab->width - 1, tab);
 	}
 	else
 	{
 		ft_fill_space(tab->width - 1, tab);
-		write(1, &c, 1);
+		tab->length += write(1, &c, 1);
 	}
 	if (tab->width)
-		tab->length += tab->width;
-	else
-		tab->length++;
+		tab->length += tab->width - 1;
 }
