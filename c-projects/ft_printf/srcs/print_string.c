@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:34:34 by durante           #+#    #+#             */
-/*   Updated: 2021/06/10 12:30:39 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/17 14:44:44 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	ft_print_str(t_print *tab)
 	char	*str;
 	char	*aux;
 
+	if (tab->preci == -1)
+		tab->preci = 0;
 	str = va_arg(tab->args, char *);
 	if (!str)
 		str = "(null)";
