@@ -6,62 +6,41 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:52:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/17 18:55:32 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/18 16:26:53 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_numlen_base(unsigned long n, int base)
+char	*check_number(unsigned long nb)
 {
-	int		i;
-
-	i = 0;
-	if (n == 0)
+	if ((nb >= -2147483648 && nb <= 2147483647)
+		|| (nb >= 0 && nb <= 4294967295))
 	{
-		i += 1;
-		return (i);
+		nb = (unsigned int) nb;
+		return (ft_itoa_base(nb, 16));
 	}
-	while (n > 0)
-	{
-		i++;
-		n /= base;
-	}
-	return (i);
-}
-
-char	*ft_itoa_base(unsigned int nb, unsigned int base)
-{
-	char	*ret;
-	char	*numbers;
-	int		size;
-
-	numbers = ft_strdup("0123456789abcdef");
-	ret = NULL;
-	size = ft_numlen_base(nb, base);
-	if (!(ret = (char*)malloc(sizeof(char) * size + 1)))
-		return (NULL);
-	ret[size--] = '\0';
-	while (size >= 0)
-	{
-		ret[size--] = numbers[nb % base];
-		nb /= base;
-	}
-	free(numbers);
-	return (ret);
+	return (ft_uitoa_base(nb, 16));
 }
 
 void	ft_print_pointer(t_print *tab)
 {
-	int digit;
-	char *str;
-	
-	digit = (unsigned int) va_arg(tab->args, char *);
-	str = ft_itoa_base(digit, 16);
-	if (!ft_isascii(digit) && digit > 0)
-		tab->length += write(1, "0x10", 4);
+	long	digit;
+	char	*str;
+	char	*aux;
+	int		len;
+
+	digit = (long) va_arg(tab->args, void *);
+	aux = check_number(digit);
+	if (!ft_isascii(digit) && digit > 0 && digit < 2147483647)
+		str = ft_strjoin("0x10", aux);
 	else
-		tab->length += write(1, "0x", 2);
-	tab->length += write(1, str, ft_strlen(str));
+		str = ft_strjoin("0x", aux);
+	len = ft_strlen(str);
+	if (tab->width >= len)
+		basic_width(tab, str, len);
+	else
+		tab->length += write(1, str, len);
 	free(str);
+	free(aux);
 }

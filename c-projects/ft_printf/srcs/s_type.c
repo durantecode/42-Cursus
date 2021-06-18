@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:34:34 by durante           #+#    #+#             */
-/*   Updated: 2021/06/17 14:44:44 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/18 16:27:43 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_isdash(t_print *tab, char *aux, char *str, int len)
 {
 	if (tab->preci && tab->width)
 	{
-		ft_putstr_fd(aux, 1);
+		tab->length += write(1, aux, ft_strlen(aux));
 		if (tab->preci < len)
 			ft_fill_space(tab->width - tab->preci, tab);
 		else
@@ -26,10 +26,9 @@ void	ft_isdash(t_print *tab, char *aux, char *str, int len)
 		ft_fill_space(tab->width, tab);
 	else
 	{
-		ft_putstr_fd(str, 1);
+		tab->length += write(1, str, len);
 		ft_fill_space(tab->width - len, tab);
 	}
-	tab->length += tab->width;
 }
 
 void	ft_notdash(t_print *tab, char *aux, char *str, int len)
@@ -40,10 +39,9 @@ void	ft_notdash(t_print *tab, char *aux, char *str, int len)
 		ft_fill_space(tab->width - tab->preci, tab);
 	else
 		ft_fill_space(tab->width, tab);
-	tab->length += tab->width;
 	if (tab->point)
 	{
-		ft_putstr_fd(aux, 1);
+		tab->length += write(1, aux, ft_strlen(aux));
 		if (len >= tab->width)
 		{
 			if (tab->preci <= tab->width && tab->width != 1
@@ -52,13 +50,9 @@ void	ft_notdash(t_print *tab, char *aux, char *str, int len)
 			else
 				ft_fill_space(tab->width - len, tab);
 		}
-		if (!tab->width && tab->preci > len)
-			tab->length += len;
-		else if (!tab->width && tab->preci)
-			tab->length += tab->preci;
 	}
 	else
-		ft_putstr_fd(str, 1);
+		tab->length += write(1, str, len);
 }
 
 void	ft_print_str(t_print *tab)

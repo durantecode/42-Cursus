@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/06/17 15:58:44 by ldurante         ###   ########.fr        #
+#    Updated: 2021/06/18 17:08:18 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SOURCES = ft_printf.c check_format.c check_flags.c print_string.c print_char.c print_diu.c \
-		p_type.c
+SOURCES = ft_printf.c check_format.c check_flags.c s_type.c c_type.c di_type.c \
+		p_type.c base_hex_functions.c width_no_preci.c width_precission.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
