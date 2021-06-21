@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/17 15:59:41 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/21 15:38:33 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 	else if (format[pos] == 'p')
 		ft_print_pointer(tab);
 	else if (format[pos] == 'd' || format[pos] == 'i')
-		ft_print_diu(tab);
+		ft_print_di(tab);
 	else if (format[pos] == 'u')
-		ft_print_diu(tab);
+		ft_print_u(tab);
+	else if (format[pos] == 'x')
+		ft_print_x(tab, 0);
+	else if (format[pos] == 'X')
+		ft_print_x(tab, 1);
 	else if (format[pos] == '%')
 		ft_print_char(tab, 1);
 	ft_reset_tab(tab);

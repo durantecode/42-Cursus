@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_hex_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:01:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/18 16:33:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/21 15:38:42 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ int	ft_numlen_base(unsigned long n, int base)
 	return (i);
 }
 
-char	*ft_itoa_base(unsigned int nb, unsigned int base)
+char	*ft_itoa_base(unsigned int nb, unsigned int base, int i)
 {
 	char	*ret;
 	char	*numbers;
 	int		size;
 
-	numbers = ft_strdup("0123456789abcdef");
+	if (i == 0)
+		numbers = ft_strdup("0123456789abcdef");
+	else
+		numbers = ft_strdup("0123456789ABCDEF");
 	ret = NULL;
 	size = ft_numlen_base(nb, base);
 	ret = (char *)malloc(sizeof(char) * size + 1);
@@ -52,13 +55,16 @@ char	*ft_itoa_base(unsigned int nb, unsigned int base)
 	return (ret);
 }
 
-char	*ft_uitoa_base(unsigned long nb, unsigned int base)
+char	*ft_uitoa_base(unsigned long nb, unsigned int base, int i)
 {
 	char	*ret;
 	char	*numbers;
 	int		size;
 
-	numbers = ft_strdup("0123456789abcdef");
+	if (i == 0)
+		numbers = ft_strdup("0123456789abcdef");
+	else
+		numbers = ft_strdup("0123456789ABCDEF");
 	ret = NULL;
 	size = ft_numlen_base(nb, base);
 	ret = (char *)malloc(sizeof(char) * size + 1);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   width_no_preci.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:40:16 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/18 17:44:02 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/21 13:47:12 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	basic_width(t_print *tab, char *str, int len)
+void	basic_width(t_print *tab, char *str, long len)
 {
 	if (tab->dash)
 	{
@@ -26,7 +26,7 @@ void	basic_width(t_print *tab, char *str, int len)
 	}
 }
 
-void	len_width_nopreci(t_print *tab, char *str, int len, int digit)
+void	len_width_nopreci(t_print *tab, char *str, int len, long digit)
 {
 	if (len > tab->width && tab->preci == -1)
 	{
@@ -40,7 +40,7 @@ void	len_width_nopreci(t_print *tab, char *str, int len, int digit)
 	}
 }
 
-void	sign_digit(t_print*tab, char *str, int len, int digit)
+void	sign_digit(t_print*tab, char *str, int len, long digit)
 {
 	if (tab->sign)
 		ft_fill_space(tab->width - len - 1, tab);
@@ -58,7 +58,7 @@ void	sign_digit(t_print*tab, char *str, int len, int digit)
 	}	
 }
 
-void	width_len_nopreci(t_print *tab, char *str, int len, int digit)
+void	width_len_nopreci(t_print *tab, char *str, int len, long digit)
 {
 	if (len <= tab->width && tab->preci == -1)
 	{

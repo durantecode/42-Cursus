@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 22:35:01 by durante           #+#    #+#             */
-/*   Updated: 2021/06/18 17:32:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/21 16:07:23 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,19 @@ void	ft_point(t_print *tab, const char *format, int pos)
 {
 	if (format[pos + 1] != '*')
 		tab->point = 1;
-	else if (format[pos] == '.' && format[pos + 1] == '*'
-		  && format[pos + 2] == 'd')
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'c')
 		tab->point = 1;
-	else if (format[pos] == '.' && format[pos + 1] == '*'
-		  && format[pos + 2] == 'i')
+	else if (format[pos + 1] == '*' && format[pos + 2] == 's')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'd')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'i')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'u')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'x')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'X')
 		tab->point = 1;
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
+#    By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/06/18 17:08:18 by ldurante         ###   ########.fr        #
+#    Updated: 2021/06/21 14:23:11 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,9 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SOURCES = ft_printf.c check_format.c check_flags.c s_type.c c_type.c di_type.c \
-		p_type.c base_hex_functions.c width_no_preci.c width_precission.c
+SOURCES = ft_printf.c check_format.c check_flags.c s_type.c c_type.c diu_type.c \
+		p_type.c x_type.c base_hex_functions.c width_no_preci.c width_precission.c \
+		ft_uitoa.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
