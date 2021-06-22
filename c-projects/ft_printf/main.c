@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:42:11 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/21 16:06:09 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 01:54:19 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int main(void)
 	static char *s_hidden = "hi low\0don't print me lol\0";
 	
 	ft_printf("**** FUNCION MIA ****\n");
-	x = ft_printf("ultimate3 %*.*d %*.*s\n", 1, 50, 5000, 1, 0, "hey");
+	x = ft_printf("%0*.%" ,-125);
 	printf("Length: %d\n", x);
 	
 	printf("**** FUNCION ORIGINAL ****\n");
-	y = printf("ultimate3 %*.*d %*.*s\n", 1, 50, 5000, 1, 0, "hey");
+	y = printf("%0*.%" ,-125);
 	printf("Length: %d\n", y);
 
 	//system("leaks a.out");

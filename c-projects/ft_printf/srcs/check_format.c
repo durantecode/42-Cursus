@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/21 15:38:33 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 01:54:21 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,24 @@ int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 	return (pos);
 }
 
+// void	ft_check_digit(t_print *tab, const char *format, int pos)
+// {
+// 	if (tab->point && tab->preci == -1)
+// 	{
+// 		tab->preci = ft_atoi(&format[pos]);
+// 		while(ft_isdigit(format[pos]))
+// 			pos++;
+// 		pos--;
+// 	}
+// 	else if (!tab->width)
+// 	{
+// 		tab->width = ft_atoi(&format[pos]);
+// 		while(ft_isdigit(format[pos]))
+// 			pos++;
+// 		pos--;
+// 	}
+// }
+
 int	ft_check_format(t_print *tab, const char *format, int pos)
 {
 	while (!ft_strchr(SPECIFIERS, format[pos]))
@@ -48,10 +66,21 @@ int	ft_check_format(t_print *tab, const char *format, int pos)
 			ft_star(tab, format, pos);
 		else if (ft_isdigit(format[pos]))
 		{
+	//		ft_check_digit(tab, format, pos);
 			if (tab->point && tab->preci == -1)
+			{
 				tab->preci = ft_atoi(&format[pos]);
+				while(ft_isdigit(format[pos]))
+					pos++;
+				pos--;
+			}
 			else if (!tab->width)
+			{
 				tab->width = ft_atoi(&format[pos]);
+				while(ft_isdigit(format[pos]))
+					pos++;
+				pos--;
+			}	
 		}
 		pos++;
 	}

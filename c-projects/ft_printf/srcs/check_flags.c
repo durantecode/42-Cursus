@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 22:35:01 by durante           #+#    #+#             */
-/*   Updated: 2021/06/21 16:07:23 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 01:54:20 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_dash(t_print *tab, const char *format, int pos)
 void	ft_zero(t_print *tab, const char *format, int pos)
 {
 	if (format[pos - 1] == '%' && format[pos + 1] != '-')
+		//&& format[pos + 1] != '*')
 		tab->zero = 1;
 	if (format[pos - 1] == '.' && tab->preci == -1
 		&& !ft_isdigit(format[pos + 1]))
@@ -30,9 +31,13 @@ void	ft_point(t_print *tab, const char *format, int pos)
 {
 	if (format[pos + 1] != '*')
 		tab->point = 1;
+	// else if (format[pos - 1] == '*' && format[pos - 2] == '0')
+	// 	tab->zero = 0;
 	else if (format[pos + 1] == '*' && format[pos + 2] == 'c')
 		tab->point = 1;
 	else if (format[pos + 1] == '*' && format[pos + 2] == 's')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == 'p')
 		tab->point = 1;
 	else if (format[pos + 1] == '*' && format[pos + 2] == 'd')
 		tab->point = 1;
@@ -43,6 +48,8 @@ void	ft_point(t_print *tab, const char *format, int pos)
 	else if (format[pos + 1] == '*' && format[pos + 2] == 'x')
 		tab->point = 1;
 	else if (format[pos + 1] == '*' && format[pos + 2] == 'X')
+		tab->point = 1;
+	else if (format[pos + 1] == '*' && format[pos + 2] == '%')
 		tab->point = 1;
 }
 
@@ -62,5 +69,9 @@ void	ft_star(t_print *tab, const char *format, int pos)
 		tab->width = -tab->width;
 	}
 	if (tab->preci < -1)
+	{
+		if (format[pos + 1] == 's' && format[pos - 1] == '.')
+			tab->sign = 1;
 		tab->preci = -1;
+	}
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+         #
+#    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/06/21 14:23:11 by ldurante         ###   ########.fr        #
+#    Updated: 2021/06/23 01:29:11 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   width_precission.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 17:04:47 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/21 13:55:52 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 00:00:08 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	preci_and_width_nodash(t_print *tab, char *str, int len, long digit)
 
 void	width_print(t_print *tab, char *str, int len, long digit)
 {
+	if (tab->preci < len)
+		tab->zero = 1;
 	ft_fill_space(tab->preci - len, tab);
 	tab->length += write(1, str, len);
 }

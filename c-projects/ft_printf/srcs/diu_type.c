@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   diu_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 12:04:16 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/21 16:01:41 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 01:33:21 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	update_tab_diu(t_print *tab, int len)
 void	ft_print_di(t_print *tab)
 {
 	int		len;
-	long		digit;
+	long	digit;
 	char	*str;
 
 	digit = va_arg(tab->args, int);

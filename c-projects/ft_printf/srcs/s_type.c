@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   s_type.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:34:34 by durante           #+#    #+#             */
-/*   Updated: 2021/06/18 16:27:43 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 01:32:13 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,18 @@ void	ft_notdash(t_print *tab, char *aux, char *str, int len)
 	if (tab->point)
 	{
 		tab->length += write(1, aux, ft_strlen(aux));
-		if (len >= tab->width)
+		if (len >= tab->width && tab->preci > 0)
 		{
 			if (tab->preci <= tab->width && tab->width != 1
 				&& len <= tab->width)
 				ft_fill_space(tab->width - tab->preci, tab);
+			if (tab->sign && tab->preci == 0)
+				tab->length += write(1, str, len);
 			else
 				ft_fill_space(tab->width - len, tab);
 		}
+		else if (tab->sign)
+			tab->length += write(1, str, len);
 	}
 	else
 		tab->length += write(1, str, len);
