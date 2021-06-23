@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   width_no_preci.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:40:16 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/21 13:47:12 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 21:21:59 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,15 @@ void	width_len_nopreci(t_print *tab, char *str, int len, long digit)
 		}
 		else
 			sign_digit(tab, str, len, digit);
+	}
+	// REVISAR
+	else if (len == 1 && tab->width == 1 && tab->preci == 0)
+	{
+		if (digit == 0)
+		{
+			tab->zero = 0;
+			if (tab->point)
+				ft_fill_space(tab->width, tab);
+		}
 	}
 }

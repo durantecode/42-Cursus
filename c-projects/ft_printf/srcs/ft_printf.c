@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:49:07 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/17 14:33:00 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 21:25:42 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_print	*ft_init_tab(t_print *tab)
 	tab->percen = 0;
 	tab->sign = 0;
 	tab->p_star = 0;
+	tab->space = 0;
 	return (tab);
 }
 
@@ -35,6 +36,7 @@ t_print	*ft_reset_tab(t_print *tab)
 	tab->zero = 0;
 	tab->sign = 0;
 	tab->p_star = 0;
+	tab->space = 0;
 	return (tab);
 }
 
@@ -54,12 +56,9 @@ int	ft_printf(const char *format, ...)
 	while (format[++i])
 	{
 		if (format[i] == '%')
-			i = ft_check_format(tab, format, i + 1);
+			i = ft_check_format(tab, format, i);
 		else
-		{
-			write(1, &format[i], 1);
-			len++;
-		}
+			len += write(1, &format[i], 1);
 	}
 	va_end(tab->args);
 	len += tab->length;

@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 17:04:47 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 00:00:08 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 19:55:34 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	preci_no_width(t_print *tab, char *str, int len, long digit)
 
 void	preci_and_width_nodash(t_print *tab, char *str, int len, long digit)
 {
-	if (digit < 0)
-		tab->sign = 0;
 	tab->zero = 0;
 	if (tab->sign && tab->preci == 0)
 		ft_fill_space(tab->width - tab->preci - len - 1, tab);
@@ -54,6 +52,8 @@ void	preci_and_width_nodash(t_print *tab, char *str, int len, long digit)
 	else
 	{
 		if (tab->preci == 0 && len > 1)
+			ft_fill_space(tab->width - len, tab);
+		else if (tab->preci == 0 && len == tab->width)
 			ft_fill_space(tab->width - len, tab);
 		else
 			ft_fill_space(tab->width - tab->preci, tab);

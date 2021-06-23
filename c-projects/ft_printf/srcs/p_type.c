@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_type.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldurante <ldurante@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:52:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/21 16:04:43 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 17:03:39 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	ft_print_pointer(t_print *tab)
 	int		len;
 
 	digit = (long) va_arg(tab->args, void *);
-	aux = check_number(digit, 0);
-	if (!ft_isascii(digit) && digit > 0 && digit < 2147483647)
-		str = ft_strjoin("0x10", aux);
+	if (digit == 0 && tab->point && !tab->p_star)
+		aux = ft_strdup("");
 	else
-		str = ft_strjoin("0x", aux);
+		aux = check_number(digit, 0);
+	str = ft_strjoin("0x", aux);
 	len = ft_strlen(str);
 	if (tab->width >= len)
 		basic_width(tab, str, len);

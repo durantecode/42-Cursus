@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 15:46:48 by durante           #+#    #+#             */
-/*   Updated: 2021/06/23 01:44:42 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 19:53:57 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_fill_space(int spaces, t_print *tab)
 {
 	if (tab->sign && tab->zero)
 		tab->length += write(1, "-", 1);
-	// if(tab->percen)
-	// 	tab->zero = 0;
 	if (tab->zero)
 	{
 		while (spaces-- > 0)

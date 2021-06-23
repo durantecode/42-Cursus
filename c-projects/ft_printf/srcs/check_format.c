@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 10:18:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 01:54:21 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/23 20:16:49 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 {
+	if (tab->space)
+		tab->length += write(1, " ", 1);
 	if (format[pos] == 'c')
 		ft_print_char(tab, 0);
 	else if (format[pos] == 's')
@@ -34,30 +36,14 @@ int	ft_check_specifiers(t_print *tab, const char *format, int pos)
 	return (pos);
 }
 
-// void	ft_check_digit(t_print *tab, const char *format, int pos)
-// {
-// 	if (tab->point && tab->preci == -1)
-// 	{
-// 		tab->preci = ft_atoi(&format[pos]);
-// 		while(ft_isdigit(format[pos]))
-// 			pos++;
-// 		pos--;
-// 	}
-// 	else if (!tab->width)
-// 	{
-// 		tab->width = ft_atoi(&format[pos]);
-// 		while(ft_isdigit(format[pos]))
-// 			pos++;
-// 		pos--;
-// 	}
-// }
-
 int	ft_check_format(t_print *tab, const char *format, int pos)
 {
-	while (!ft_strchr(SPECIFIERS, format[pos]))
+	while (!ft_strchr(SPECIFIERS, format[++pos]))
 	{
-		if (format[pos] == '-')
-			ft_dash(tab, format, pos);
+		if (format[pos] == ' ')
+			tab->space = 1;
+		else if (format[pos] == '-')
+			tab->dash = 1;
 		else if (format[pos] == '0')
 			ft_zero(tab, format, pos);
 		else if (format[pos] == '.')
@@ -66,23 +52,14 @@ int	ft_check_format(t_print *tab, const char *format, int pos)
 			ft_star(tab, format, pos);
 		else if (ft_isdigit(format[pos]))
 		{
-	//		ft_check_digit(tab, format, pos);
 			if (tab->point && tab->preci == -1)
-			{
 				tab->preci = ft_atoi(&format[pos]);
-				while(ft_isdigit(format[pos]))
-					pos++;
-				pos--;
-			}
 			else if (!tab->width)
-			{
 				tab->width = ft_atoi(&format[pos]);
-				while(ft_isdigit(format[pos]))
-					pos++;
-				pos--;
-			}	
+			while (ft_isdigit(format[pos]))
+				pos++;
+			pos--;
 		}
-		pos++;
 	}
 	ft_check_specifiers(tab, format, pos);
 	return (pos);
