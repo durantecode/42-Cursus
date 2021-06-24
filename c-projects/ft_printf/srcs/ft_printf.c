@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:49:07 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 21:25:42 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 17:04:28 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_print	*ft_init_tab(t_print *tab)
 	tab->dash = 0;
 	tab->zero = 0;
 	tab->length = 0;
-	tab->percen = 0;
 	tab->sign = 0;
 	tab->p_star = 0;
 	tab->space = 0;

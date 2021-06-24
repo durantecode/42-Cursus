@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 17:04:47 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 19:55:34 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 17:23:50 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	preci_no_width(t_print *tab, char *str, int len, long digit)
 	if (!tab->width && tab->preci >= 0)
 	{
 		if (tab->preci == 0 && digit == 0)
-		{
 			return ;
-		}
 		if (tab->dash)
 		{
 			tab->length += write(1, str, len);
@@ -32,6 +30,21 @@ void	preci_no_width(t_print *tab, char *str, int len, long digit)
 			ft_fill_space(tab->preci - len, tab);
 			tab->length += write(1, str, len);
 		}
+	}
+}
+
+void	nopreci_len(t_print *tab, char *str, int len, long digit)
+{
+	if (tab->preci == 0 && len > 1)
+		ft_fill_space(tab->width - len, tab);
+	else if (tab->preci == 0 && len == tab->width)
+		ft_fill_space(tab->width - len, tab);
+	else
+	{
+		if (tab->p_star && digit != 0)
+			ft_fill_space(tab->width - len, tab);
+		else
+			ft_fill_space(tab->width - tab->preci, tab);
 	}
 }
 
@@ -50,14 +63,7 @@ void	preci_and_width_nodash(t_print *tab, char *str, int len, long digit)
 	else if (tab->preci < len && tab->preci > 0)
 		ft_fill_space(tab->width - len, tab);
 	else
-	{
-		if (tab->preci == 0 && len > 1)
-			ft_fill_space(tab->width - len, tab);
-		else if (tab->preci == 0 && len == tab->width)
-			ft_fill_space(tab->width - len, tab);
-		else
-			ft_fill_space(tab->width - tab->preci, tab);
-	}
+		nopreci_len(tab, str, len, digit);
 	tab->zero = 1;
 	ft_fill_space(tab->preci - len, tab);
 	if (!(tab->preci == 0 && digit == 0))

@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 15:46:48 by durante           #+#    #+#             */
-/*   Updated: 2021/06/23 19:53:57 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 17:05:48 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	ft_print_char(t_print *tab, int i)
 	if (i == 0)
 		c = va_arg(tab->args, int);
 	else
-	{
 		c = '%';
-		tab->percen = 1;
-	}
 	str = &c;
 	basic_width(tab, str, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:34:34 by durante           #+#    #+#             */
-/*   Updated: 2021/06/23 18:24:36 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 16:08:44 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	ft_isdash(t_print *tab, char *aux, char *str, int len)
 		ft_fill_space(tab->width, tab);
 	else
 	{
-		tab->length += write(1, str, len);
+		if (!tab->width && tab->preci)
+			tab->length += write(1, aux, ft_strlen(aux));
+		else
+			tab->length += write(1, str, len);
 		ft_fill_space(tab->width - len, tab);
 	}
 }
@@ -45,7 +48,7 @@ void	ft_notdash(t_print *tab, char *aux, char *str, int len)
 		if (len >= tab->width && tab->preci > 0)
 		{
 			if (tab->preci <= tab->width && tab->width != 1
-				&& len <= tab->width)
+				&& len < tab->width)
 				ft_fill_space(tab->width - tab->preci, tab);
 			if (tab->sign && tab->preci == 0)
 				tab->length += write(1, str, len);

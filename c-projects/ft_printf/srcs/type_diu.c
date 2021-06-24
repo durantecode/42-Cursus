@@ -6,13 +6,13 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 12:04:16 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 01:33:21 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 16:27:41 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	update_tab_diu(t_print *tab, int len)
+void	update_tab_diux(t_print *tab, int len, int digit)
 {
 	if (tab->point)
 	{
@@ -42,7 +42,9 @@ void	ft_print_di(t_print *tab)
 	}
 	str = ft_itoa(digit);
 	len = ft_strlen(str);
-	update_tab_diu(tab, len);
+	if (digit == 0 && tab->preci == 0 && tab->width == 1)
+		len = 0;
+	update_tab_diux(tab, len, digit);
 	len_width_nopreci(tab, str, len, digit);
 	width_len_nopreci(tab, str, len, digit);
 	preci_no_width(tab, str, len, digit);
@@ -56,10 +58,12 @@ void	ft_print_u(t_print *tab)
 	unsigned int	digit;
 	char			*str;
 
-	digit = va_arg(tab->args, int);
+	digit = va_arg(tab->args, unsigned int);
 	str = ft_uitoa(digit);
 	len = ft_strlen(str);
-	update_tab_diu(tab, len);
+	if (digit == 0 && tab->preci == 0 && tab->width == 1)
+		len = 0;
+	update_tab_diux(tab, len, digit);
 	len_width_nopreci(tab, str, len, digit);
 	width_len_nopreci(tab, str, len, digit);
 	preci_no_width(tab, str, len, digit);

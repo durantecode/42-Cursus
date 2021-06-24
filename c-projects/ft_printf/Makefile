@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/06/23 01:29:11 by ldurante         ###   ########.fr        #
+#    Updated: 2021/06/24 17:35:25 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,18 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SOURCES = ft_printf.c check_format.c check_flags.c s_type.c c_type.c diu_type.c \
-		p_type.c x_type.c base_hex_functions.c width_no_preci.c width_precission.c \
-		ft_uitoa.c
+SOURCES = ft_printf.c \
+		  check_format.c \
+		  check_flags.c \
+		  type_c.c \
+		  type_s.c \
+		  type_p.c \
+		  type_diu.c \
+		  type_x.c \
+		  width_no_precision.c \
+		  width_precision.c \
+		  base_hex_functions.c \
+		  ft_uitoa.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -57,7 +66,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)/ft_printf.h
 				 
 test: 	all
 		$(CC) -c main.c
-		$(CC) main.o $(NAME)
+		$(CC) $(FLAGS) main.o $(NAME)
 		@echo "$(YELLOW) **** RUN TEST MAIN **** $(NO_COLOR)"
 		./a.out | cat -e
 		$(RM) main.o a.out

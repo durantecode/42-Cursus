@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:42:11 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 21:20:46 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 20:18:45 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ int main(void)
 	int y;
 	
 	ft_printf("**** FUNCION MIA ****\n");
-	x = ft_printf("%-1.0d", 0);
+	x = ft_printf("HOLA: %-*.*s", 1, -1, "HOLA");
 	printf("Length: %d\n", x);
 	
 	printf("**** FUNCION ORIGINAL ****\n");
-	y = printf("%-1.0d", 0);
+	y = printf("HOLA: %-*.*s", 1, -1, "HOLA");
 	printf("Length: %d\n", y);
 
 	//system("leaks a.out");
+	//printf("FF");
 	return (0);
 } 

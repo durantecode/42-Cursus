@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 14:21:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 19:53:39 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 16:29:45 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	ft_print_x(t_print *tab, int i)
 	digit = va_arg(tab->args, int);
 	str = check_number(digit, i);
 	len = ft_strlen(str);
-	update_tab_diu(tab, len);
+	if (digit == 0 && tab->preci == 0 && tab->width == 1)
+		len = 0;
+	update_tab_diux(tab, len, digit);
 	len_width_nopreci(tab, str, len, digit);
 	width_len_nopreci(tab, str, len, digit);
 	preci_no_width(tab, str, len, digit);

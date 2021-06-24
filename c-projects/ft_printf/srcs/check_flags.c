@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 22:35:01 by durante           #+#    #+#             */
-/*   Updated: 2021/06/23 21:23:01 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/24 16:57:14 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	ft_zero(t_print *tab, const char *format, int pos)
 	if (format[pos - 1] == '.' && tab->preci == -1
 		&& !ft_isdigit(format[pos + 1]))
 		tab->preci = 0;
-	if (format[pos + 1] == '*' && format[pos + 2] == '.')
-		tab->zero = 0;
 }
 
 void	ft_point(t_print *tab, const char *format, int pos)
@@ -50,8 +48,14 @@ void	ft_star(t_print *tab, const char *format, int pos)
 	if (tab->width || tab->point)
 	{
 		tab->preci = va_arg(tab->args, int);
-		if (tab->preci == -1)
+		if (tab->preci <= 0)
 			tab->p_star = 1;
+		if (tab->preci < -1)
+		{
+			if (ft_strchr(PRECISTAR, format[pos + 1]) && format[pos - 1] == '.')
+				tab->p_star = 1;
+			tab->preci = -1;
+		}
 	}
 	else
 		tab->width = va_arg(tab->args, int);
@@ -59,13 +63,7 @@ void	ft_star(t_print *tab, const char *format, int pos)
 	{
 		tab->dash = 1;
 		tab->width = -tab->width;
-	}
-	if (tab->preci < -1)
-	{
-		if (format[pos + 1] == 's' && format[pos - 1] == '.')
-			tab->sign = 1;
-		if (format[pos + 1] == 'p' && format[pos - 1] == '.')
-			tab->p_star = 1;
-		tab->preci = -1;
+		if (tab->zero)
+			tab->zero = 0;
 	}
 }
