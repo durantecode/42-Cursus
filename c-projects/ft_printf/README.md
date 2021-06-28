@@ -6,9 +6,9 @@ No bonuses, just the mandatory part: *specifiers* **"cspdiuxX%"** and *flags* **
 
 It passes all tests for the following testers (Use them only as a reference):
  
-✅ [printfTester](https://github.com/Tripouille/printfTester) \
-✅ [PFT](https://github.com/gavinfielder/pft) \
-✅ [ft_printf_test](https://github.com/cacharle/ft_printf_test) 
+✅  [printfTester](https://github.com/Tripouille/printfTester) \
+✅  [PFT](https://github.com/gavinfielder/pft) \
+✅  [ft_printf_test](https://github.com/cacharle/ft_printf_test) 
 
 - **Status:** *Finished*
 - **Result:** *100/100 by moulinette*
