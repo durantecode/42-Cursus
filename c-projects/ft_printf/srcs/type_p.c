@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_type.c                                           :+:      :+:    :+:   */
+/*   type_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:52:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/23 17:03:39 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/29 22:30:24 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 char	*check_number(unsigned long nb, int i)
 {
-	if ((nb >= -2147483648 && nb <= 2147483647)
-		|| (nb >= 0 && nb <= 4294967295))
+	long	n;
+
+	n = (long)nb;
+	if ((n >= -2147483648 && nb <= 4294967295))
 	{
-		nb = (unsigned int) nb;
-		return (ft_itoa_base(nb, 16, i));
+		n = (unsigned int) n;
+		return (ft_itoa_base(n, 16, i));
 	}
 	return (ft_uitoa_base(nb, 16, i));
 }

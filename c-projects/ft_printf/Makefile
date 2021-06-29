@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/06/24 17:35:25 by ldurante         ###   ########.fr        #
+#    Updated: 2021/06/29 22:30:22 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 HEADER = includes
 LIBFT = libft
 RM = rm -f

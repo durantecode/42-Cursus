@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width_no_preci.c                                   :+:      :+:    :+:   */
+/*   width_no_precision.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:40:16 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/24 17:27:46 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/29 22:30:31 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	sign_digit(t_print*tab, char *str, int len, long digit)
 	}	
 }
 
-void	width_len_nopreci_dash(t_print *tab, char *str, int len, long digit)
+void	width_len_nopreci_dash(t_print *tab, char *str, int len)
 {
 	if (tab->sign)
 	{
@@ -84,7 +84,7 @@ void	width_len_nopreci(t_print *tab, char *str, int len, long digit)
 				basic_width(tab, str, len);
 		}
 		else if (tab->dash)
-			width_len_nopreci_dash(tab, str, len, digit);
+			width_len_nopreci_dash(tab, str, len);
 		else
 			sign_digit(tab, str, len, digit);
 	}

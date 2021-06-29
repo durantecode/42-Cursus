@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width_precission.c                                 :+:      :+:    :+:   */
+/*   width_precision.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 17:04:47 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/24 17:23:50 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/29 22:30:33 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	preci_no_width(t_print *tab, char *str, int len, long digit)
 	}
 }
 
-void	nopreci_len(t_print *tab, char *str, int len, long digit)
+void	nopreci_len(t_print *tab, int len, long digit)
 {
 	if (tab->preci == 0 && len > 1)
 		ft_fill_space(tab->width - len, tab);
@@ -63,14 +63,14 @@ void	preci_and_width_nodash(t_print *tab, char *str, int len, long digit)
 	else if (tab->preci < len && tab->preci > 0)
 		ft_fill_space(tab->width - len, tab);
 	else
-		nopreci_len(tab, str, len, digit);
+		nopreci_len(tab, len, digit);
 	tab->zero = 1;
 	ft_fill_space(tab->preci - len, tab);
 	if (!(tab->preci == 0 && digit == 0))
 		tab->length += write(1, str, len);
 }
 
-void	width_print(t_print *tab, char *str, int len, long digit)
+void	width_print(t_print *tab, char *str, int len)
 {
 	if (tab->preci < len)
 		tab->zero = 1;
@@ -83,7 +83,7 @@ void	preci_and_width(t_print *tab, char *str, int len, long digit)
 	if (tab->width && tab->preci >= 0)
 	{
 		if (tab->preci >= tab->width)
-			width_print(tab, str, len, digit);
+			width_print(tab, str, len);
 		else if (tab->preci < tab->width)
 		{
 			if (tab->dash)

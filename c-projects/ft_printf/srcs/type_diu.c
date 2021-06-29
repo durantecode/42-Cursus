@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diu_type.c                                         :+:      :+:    :+:   */
+/*   type_diu.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 12:04:16 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/24 16:27:41 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/29 22:30:27 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	update_tab_diux(t_print *tab, int len, int digit)
+void	update_tab_diux(t_print *tab, int len)
 {
 	if (tab->point)
 	{
@@ -44,7 +44,7 @@ void	ft_print_di(t_print *tab)
 	len = ft_strlen(str);
 	if (digit == 0 && tab->preci == 0 && tab->width == 1)
 		len = 0;
-	update_tab_diux(tab, len, digit);
+	update_tab_diux(tab, len);
 	len_width_nopreci(tab, str, len, digit);
 	width_len_nopreci(tab, str, len, digit);
 	preci_no_width(tab, str, len, digit);
@@ -63,7 +63,7 @@ void	ft_print_u(t_print *tab)
 	len = ft_strlen(str);
 	if (digit == 0 && tab->preci == 0 && tab->width == 1)
 		len = 0;
-	update_tab_diux(tab, len, digit);
+	update_tab_diux(tab, len);
 	len_width_nopreci(tab, str, len, digit);
 	width_len_nopreci(tab, str, len, digit);
 	preci_no_width(tab, str, len, digit);

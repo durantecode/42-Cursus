@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:06:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/06/24 17:52:41 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/06/29 22:12:53 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_star(t_print *tab, const char *format, int pos);
 
 t_print	*ft_reset_tab(t_print *tab);
 void	ft_fill_space(int spaces, t_print *tab);
-void	update_tab_diux(t_print *tab, int len, int digit);
+void	update_tab_diux(t_print *tab, int len);
 
 void	basic_width(t_print *tab, char *str, long len);
 void	len_width_nopreci(t_print *tab, char *str, int len, long digit);
