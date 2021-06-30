@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#Broadcast Message
-#echo -e "Broadcast message from $(whoami)@$(hostname) $(tty | cut -c '6-10') ($(date)): \n"
-
 #Arquitecture
 echo -e "\t#Architecture:" $(uname -a)
 
@@ -25,7 +22,7 @@ top -bn1 | grep load | awk '{printf "\t#CPU Load: %.2f%s\n", $(NF-2), "%"}'
 echo -e "\t#Last boot:" $(who -b | awk ' {print $3,$4}')
 
 #LVM
-echo -e "\t#LVM use:" $(sudo lvm pvdisplay | grep Allocatable | awk '{print $2}')
+echo -e "\t#LVM use:" $(/usr/sbin/lvm pvdisplay | grep Allocatable | awk '{print $2}')
 
 #Connections TCP
 echo -e "\t#Connetions TCP:" $(ss -s | grep TCP | awk 'NR==2 {printf "%d ESTABLISHED\n", $3}')
