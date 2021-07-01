@@ -16,7 +16,7 @@ free --mega | awk 'NR==2{printf "\t#Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*
 df -h | awk '$NF=="/"{printf "\t#Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'
 
 #CPU Load
-top -bn1 | grep load | awk '{printf "\t#CPU Load: %.2f%s\n", $(NF-2), "%"}'
+top -bn1 | awk 'NR==3 {printf "\t#CPU Load: %.2f%s\n", $2 + $4, "%"}'
 
 #Last Boot
 echo -e "\t#Last boot:" $(who -b | awk ' {print $3,$4}')
