@@ -46,7 +46,9 @@ groupadd (crear grupo)
 usermod (usuario) -aG (grupo) -> (añadir usuario a grupo)
 useradd
 
-ufw status/allow/deny/delete
+ufw status/allow/deny/delete verbose
+ufw default deny outgoing
+
 uname -a (check OS)
 sudo systemctl status ssh (check ssh status)
 useradd / groupadd (usuario new o grupo new)
@@ -54,6 +56,10 @@ crontab -e (abrir crontab, comando Wall para todos los terminas)
 
 hostnamectl (check host)
 hostnamectl set-hostname (new host name)
+sudo vim /etc/hostname
+sudo vim /etc/hosts (reboot)
 
 lsblk (particiones)
-sudo sudoreplay -d /var/log/sudo -l (inputs y outputs del comando)
+sudoreplay -d /var/log/sudo (codigo) (inputs y outputs del comando)
+
+force CPU LOAD ---> cat /dev/zero > /dev/null
