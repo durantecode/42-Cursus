@@ -8,7 +8,7 @@ Here you can find all my work and projects made for 42 school in Madrid.
 #
 Started cursus: **05/04/2021**
 
-## [C Projects]
+## [Projects]
 
 |Circle|			Project			| Language | Score | 
 |:----:|:----------------:|:--------:|:-----:|
