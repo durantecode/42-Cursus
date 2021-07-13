@@ -18,6 +18,7 @@ Started cursus: **05/04/2021**
 |      |[ft_printf](https://github.com/durantecode/42-Cursus/tree/master/c-projects/ft_printf)   			|    C     | ![ldurante's ft_printf Score](https://badge42.herokuapp.com/api/project/ldurante/ft_printf) |
 |      |[Born2beRoot](https://github.com/durantecode/42-Cursus/tree/master/other-projects/Born2beRoot)   			|    n/a     | ![ldurante's B2bR Score](https://badge42.herokuapp.com/api/project/ldurante/Born2beroot) |
 |  02  |[Exam-Rank-02](https://github.com/durantecode/42-Cursus/tree/master/exams/exam-rank-02)   			|    C    | ![ldurante's exam-rank-02's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2002) |
+|  02  |[pipex](https://github.com/durantecode/42-Cursus/tree/master/c-projects/pipex)   			|    C    | ![ldurante's pipex's Score](https://badge42.herokuapp.com/api/project/ldurante/pipex) |
 
 
 ## 🗣️ About 42
