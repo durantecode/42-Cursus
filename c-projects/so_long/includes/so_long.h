@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:16:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/01 00:58:01 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/01 17:36:45 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,24 @@
 
 # define BUFFER_SIZE 10
 
+# define KEY_UP 13
+# define KEY_DOWN 1
+# define KEY_LEFT 0
+# define KEY_RIGHT 2
+# define KEY_ESC 53
+
 typedef struct s_vector
 {
 	int x;
 	int y;
 	
 }	t_vector;
+
+typedef struct s_map
+{
+	int wall_length;
+	int wall_heigth;
+}	t_map;
 
 typedef struct s_game
 {
@@ -36,6 +48,7 @@ typedef struct s_game
 	void	*image;
 	char	*pixels;
 	t_vector size;
+	t_map	map;
 }	t_game;
 
 // typedef struct	s_image
@@ -49,7 +62,8 @@ typedef struct s_game
 // }   t_image;
 
 
-int		main(void);
+int		main(int argc, char **argv);
 int		get_next_line(int fd, char **line);
+int		ft_read_map(int fd, t_game *mlx);
 
 #endif

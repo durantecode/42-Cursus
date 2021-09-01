@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/01 00:58:03 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/01 16:47:07 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS = srcs/main.c srcs/get_next_line.c
+SRCS = srcs/main.c srcs/get_next_line.c srcs/map.c
 OBJS = $(SRCS:.c=.o)
 
 # RULES #
@@ -48,7 +48,7 @@ $(NAME): $(OBJS)
 		
 test: 	all
 		@echo "$(YELLOW) **** RUN TEST SO_LONG **** $(NO_COLOR)"
-		./so_long
+		./so_long maps/map01.ber
 
 normi:  
 		norminette -R CheckForbiddenSourceHeaders $(SRCS) $(HEADER)
