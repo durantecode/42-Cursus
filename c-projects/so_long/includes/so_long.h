@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:16:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/01 17:36:45 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/02 22:55:52 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,31 @@
 
 typedef struct s_vector
 {
-	int x;
-	int y;
+	int 	x;
+	int		y;
 	
 }	t_vector;
 
 typedef struct s_map
 {
-	int wall_length;
-	int wall_heigth;
+	char 	**map;
+	int 	map_x;
+	int 	map_y;
 }	t_map;
 
 typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*window;
-	void	*image;
+	void	*wall;
+	void	*collect;
+	void	*player;
+	void	*exit;
 	char	*pixels;
+	char	*pixels2;
+	char	*pixels3;
 	t_vector size;
-	t_map	map;
+//	t_map	map;
 }	t_game;
 
 // typedef struct	s_image
@@ -64,6 +70,8 @@ typedef struct s_game
 
 int		main(int argc, char **argv);
 int		get_next_line(int fd, char **line);
-int		ft_read_map(int fd, t_game *mlx);
+void	ft_map(int fd, t_game *mlx, t_map *map, char *argv);
+void	ft_draw_map(t_game *mlx, t_map *m);
+int		ft_error(int n);
 
 #endif

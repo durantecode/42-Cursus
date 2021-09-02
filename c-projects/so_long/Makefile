@@ -6,19 +6,20 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/01 16:47:07 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/02 20:24:24 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLE DECLARATIONS #
 
-NAME = so_long.a
+NAME = so_long
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 HEADER = includes
 LIBFT = libft
 RM = rm -rf
 MAKE = make
+DEBUG = -g3 -fsanitize=address
 
 MLX = mlx
 MLX_LINK = -Imlx -framework OpenGL -framework AppKit
@@ -32,10 +33,10 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS = srcs/main.c srcs/get_next_line.c srcs/map.c
+SRCS = srcs/main.c srcs/get_next_line.c srcs/map.c srcs/error.c
 OBJS = $(SRCS:.c=.o)
 
-# RULES #
+# RULES # $(DEBUG)
 
 all: $(NAME)
 	
@@ -43,7 +44,7 @@ $(NAME): $(OBJS)
 		 $(MAKE) all -C $(LIBFT)
 		 $(MAKE) all -C $(MLX)
 		 mv mlx/libmlx.dylib .
-		 $(CC) $(FLAGS) $(OBJS) libft/libft.a libmlx.dylib $(MLX_LINK) -o so_long
+		 $(CC) $(FLAGS) $(OBJS) libft/libft.a libmlx.dylib $(MLX_LINK) -o $(NAME)
 	 	 @echo "$(GREEN) **** SO_LONG COMPILED **** $(NO_COLOR)"
 		
 test: 	all
