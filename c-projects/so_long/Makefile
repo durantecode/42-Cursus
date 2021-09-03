@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/02 20:24:24 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/03 02:21:13 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS = srcs/main.c srcs/get_next_line.c srcs/map.c srcs/error.c
+SRCS = srcs/main.c srcs/get_next_line.c srcs/map.c srcs/error.c srcs/image.c
 OBJS = $(SRCS:.c=.o)
 
 # RULES # $(DEBUG)

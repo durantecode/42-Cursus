@@ -6,19 +6,44 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:36:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/02 22:58:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/03 02:37:08 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_draw_map(t_game *mlx, t_map *m)
+void	ft_draw_floor(t_game *mlx, t_map *m, t_image *img)
 {
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	int		x;
 	int		y;
-	
+
+	i = 0;
+	y = 0;
+	while (i < m->map_y)
+	{
+		j = 0;
+		x = 0;
+		while (j < m->map_x)
+		{
+			mlx_put_image_to_window(mlx->ptr, mlx->win, img->f, x, y);
+			x += 64;
+			j++;
+		}
+		y += 64;
+		i++;
+	}
+}
+
+void	ft_draw_map(t_game *mlx, t_map *m, t_image *img)
+{
+	int		i;
+	int		j;
+	int		x;
+	int		y;
+
+	ft_draw_floor(mlx, m, img);
 	i = 0;
 	y = 0;
 	while (i < m->map_y)
@@ -28,18 +53,23 @@ void	ft_draw_map(t_game *mlx, t_map *m)
 		while (j < m->map_x)
 		{
 			if ((ft_strchr("1", m->map[i][j])))
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, mlx->wall, x, y);
+				mlx_put_image_to_window(mlx->ptr, mlx->win, img->w, x, y);
 			if ((ft_strchr("C", m->map[i][j])))
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, mlx->collect, x, y);
+				mlx_put_image_to_window(mlx->ptr, mlx->win, img->c, x, y);
 			if ((ft_strchr("P", m->map[i][j])))
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, mlx->player, x, y);
+			{
+			//	mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, x, y);
+				mlx->start_x = x;
+				mlx->start_y = y;
+			}	
+			if ((ft_strchr("E", m->map[i][j])))
+				mlx_put_image_to_window(mlx->ptr, mlx->win, img->e, x, y);
 			x += 64;
 			j++;
 		}
 		y += 64;
 		i++;
 	}
-	
 }
 
 void	ft_check_map_interior(t_map *m)

@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:16:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/02 22:55:52 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/03 02:12:54 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,40 @@ typedef struct s_map
 	int 	map_y;
 }	t_map;
 
+typedef struct	s_image
+{
+	int		bpp;
+	int		line;
+	int		endian;
+	void	*w;
+	void	*c;
+	void	*p;
+	void	*e;
+	void	*f;
+	char	*w_add;
+	char	*c_add;
+	char	*p_add;
+	char	*e_add;
+	char	*f_add;
+}   t_image;
+
 typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*window;
-	void	*wall;
-	void	*collect;
-	void	*player;
-	void	*exit;
-	char	*pixels;
-	char	*pixels2;
-	char	*pixels3;
+	void	*ptr;
+	void	*win;
+	int		start_x;
+	int		start_y;
 	t_vector size;
-//	t_map	map;
 }	t_game;
 
-// typedef struct	s_image
-// {
-// 	void      *pointer;
-// 	t_vector  size;
-// 	char      *pixels;
-// 	int       bits_per_pixel;
-// 	int       line_size;
-// 	int       endian;
-// }   t_image;
+
 
 
 int		main(int argc, char **argv);
 int		get_next_line(int fd, char **line);
 void	ft_map(int fd, t_game *mlx, t_map *map, char *argv);
-void	ft_draw_map(t_game *mlx, t_map *m);
+void	ft_draw_map(t_game *mlx, t_map *m, t_image *img);
+void	ft_load_files(t_game *mlx, t_image *img);
 int		ft_error(int n);
 
 #endif
