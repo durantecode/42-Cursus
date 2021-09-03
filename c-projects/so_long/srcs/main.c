@@ -6,13 +6,13 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:12:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/03 02:36:46 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/03 13:41:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	ft_key_hook(int key, t_game *mlx, t_image *img)
+int	ft_key_hook(int key, t_game *mlx, t_image *img, t_map *m)
 {
 	if (key == KEY_ESC)
 		exit(0);
@@ -20,26 +20,26 @@ int	ft_key_hook(int key, t_game *mlx, t_image *img)
 	{
 		//printf("R");
 		//mlx_put_image_to_window(mlx->ptr, mlx->win, img->f, mlx->start_x, mlx->start_y);
-		mlx->start_x += 64;
+		mlx->start_x += 32;
 		mlx_clear_window(mlx->ptr, mlx->win);
-		
-		mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, mlx->start_x, mlx->start_y);
+	//	ft_draw_map(&mlx, &m, &img);
+	//	mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, mlx->start_x, mlx->start_y);
 	}
 	if (key == KEY_LEFT)
 	{
-		mlx->size.x -= 64;
+		mlx->size.x -= 32;
 		mlx_clear_window(mlx->ptr, mlx->win);
 		mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, mlx->size.x, mlx->size.y);
 	}
 	if (key == KEY_DOWN)
 	{
-		mlx->size.y += 64;
+		mlx->size.y += 32;
 		mlx_clear_window(mlx->ptr, mlx->win);
 		mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, mlx->size.x, mlx->size.y);
 	}
 	if (key == KEY_UP)
 	{
-		mlx->size.y -= 64;
+		mlx->size.y -= 32;
 		mlx_clear_window(mlx->ptr, mlx->win);
 		mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, mlx->size.x, mlx->size.y);
 	}
@@ -74,7 +74,7 @@ int	main(int argc, char **argv)
 		mlx.win = mlx_new_window(mlx.ptr, mlx.size.x, mlx.size.y, "so_long");
 		ft_load_files(&mlx, &img);
 		ft_draw_map(&mlx, &m, &img);
-		mlx_put_image_to_window(mlx.ptr, mlx.win, img.p, mlx.start_x, mlx.start_y);
+	//	mlx_put_image_to_window(mlx.ptr, mlx.win, img.p, mlx.start_x, mlx.start_y);
 		mlx_loop_hook(mlx.ptr, ft_spare, (void *) &mlx);
 		mlx_hook(mlx.win, 17, 0, ft_exit, (void *) &mlx);
 		mlx_key_hook(mlx.win, ft_key_hook, (void *) &mlx);

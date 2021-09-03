@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:36:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/03 02:37:08 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/03 13:37:13 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	ft_draw_floor(t_game *mlx, t_map *m, t_image *img)
 		while (j < m->map_x)
 		{
 			mlx_put_image_to_window(mlx->ptr, mlx->win, img->f, x, y);
-			x += 64;
+			x += 32;
 			j++;
 		}
-		y += 64;
+		y += 32;
 		i++;
 	}
 }
@@ -58,16 +58,16 @@ void	ft_draw_map(t_game *mlx, t_map *m, t_image *img)
 				mlx_put_image_to_window(mlx->ptr, mlx->win, img->c, x, y);
 			if ((ft_strchr("P", m->map[i][j])))
 			{
-			//	mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, x, y);
+				mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, x, y);
 				mlx->start_x = x;
 				mlx->start_y = y;
 			}	
 			if ((ft_strchr("E", m->map[i][j])))
 				mlx_put_image_to_window(mlx->ptr, mlx->win, img->e, x, y);
-			x += 64;
+			x += 32;
 			j++;
 		}
-		y += 64;
+		y += 32;
 		i++;
 	}
 }
@@ -177,8 +177,8 @@ void	ft_map(int fd, t_game *mlx, t_map *m, char *argv)
 	}
 	if (m->map_x == m->map_y)
 		ft_error(3);
-	mlx->size.x = m->map_x * 64;
-	mlx->size.y = m->map_y * 64;
+	mlx->size.x = m->map_x * 32;
+	mlx->size.y = m->map_y * 32;
 	close(fd);
 	ft_read_map(fd, m, argv);
 }
