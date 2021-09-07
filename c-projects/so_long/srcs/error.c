@@ -6,30 +6,64 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 12:40:27 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/02 19:59:05 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/07 20:49:22 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int		ft_error(int n)
+/* Finishes de program, the e variable uses different values
+for different messages when quitting */
+
+int	ft_exit(int e, t_game *g)
+{
+	if (e == 1 || e == 2)
+	{
+		mlx_destroy_image(g->ptr, g->img.w);
+		mlx_destroy_image(g->ptr, g->img.c);
+		mlx_destroy_image(g->ptr, g->img.c2);
+		mlx_destroy_image(g->ptr, g->img.p);
+		mlx_destroy_image(g->ptr, g->img.e);
+		mlx_destroy_image(g->ptr, g->img.e2);
+		mlx_destroy_image(g->ptr, g->img.f);
+		mlx_destroy_window(g->ptr, g->win);
+		if (e == 1)
+			printf("YOU WON! THANKS FOR PLAYING :)\n");
+		if (e == 2)
+			printf("YOU QUIT THE GAME WITHOUTH FINISHING :(\n");
+	}
+	if (g->m.map)
+		free(g->m.map);
+	else
+		g->m.map = NULL;
+	exit(0);
+	return (0);
+}
+
+/* All the errors listed depending on what error was encountered */
+
+int	ft_error(int n, t_game *g)
 {
 	if (n == 0)
-		ft_putstr_fd("Error 0: Wrong argument count\n", 1);
+		printf("Error\nWrong argument count\n");
 	if (n == 1)
-		ft_putstr_fd("Error 1: Could not open map file, please write the path to the .ber map file\n", 1);
+		printf("Error\nCould not open map file, must be a .ber file\n");
 	if (n == 2)
-		ft_putstr_fd("Error 2: An error ocurred while reading the map, check your map and try again\n", 1);
+		printf("Error\nEvery line of the map must have the same length\n");
 	if (n == 3)
-		ft_putstr_fd("Error 3: The map must be a rectangle\n", 1);
+		printf("Error\nThe map must be a rectangle\n");
 	if (n == 4)
-		ft_putstr_fd("Error 4: Map must be surrounded by walls (1)\n", 1);
+		printf("Error\nMap must be surrounded by walls (1)\n");
 	if (n == 5)
-		ft_putstr_fd("Error 5: Map must only contain correct characters (PCE01)\n", 1);
+		printf("Error\nMap must only contain correct characters (PCE01)\n");
 	if (n == 6)
-		ft_putstr_fd("Error 6: There must be only one player\n", 1);
+		printf("Error\nThere must be only one player\n");
 	if (n == 7)
-		ft_putstr_fd("Error 7:", 1);
-	exit(0);
+		printf("Error\nThere must be at least 1 player, 1 exit and 1 collect\n");
+	if (n == 8)
+		printf("Error\nThere was an error allocating memory\n");
+	if (n == 9)
+		printf("Error\nThe map is not a .ber file\n");
+	ft_exit(3, g);
 	return (0);
 }

@@ -6,113 +6,46 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:36:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/07 01:53:53 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/07 20:36:15 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_draw_floor(t_game *g)
+/* Iterates again the map array checking the interior part
+counting each Wall, Collectible and Player, that we will use
+later. Also checks for errors on the number of players... etc */
+
+void	ft_check_map_interior(int i, int j, t_game *g)
 {
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-
-	i = 0;
-	y = 0;
-	while (i < g->m.map_y)
-	{
-		j = 0;
-		x = 0;
-		while (j < g->m.map_x)
-		{
-			mlx_put_image_to_window(g->ptr, g->win, g->img.f, x, y);
-			x += 32;
-			j++;
-		}
-		y += 32;
-		i++;
-	}
-}
-
-void	ft_draw_map(t_game *g)
-{
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-	g->c_count = 0;
-
-	ft_draw_floor(g);
-	i = 0;
-	y = 0;
-	while (i < g->m.map_y)
-	{
-		j = 0;
-		x = 0;
-		while (j < g->m.map_x)
-		{
-			if ((ft_strchr("1", g->m.map[i][j])))
-				mlx_put_image_to_window(g->ptr, g->win, g->img.w, x, y);
-			if ((ft_strchr("C", g->m.map[i][j])))
-			{
-				mlx_put_image_to_window(g->ptr, g->win, g->img.c, x, y);
-				g->c_count++;
-			}
-			if ((ft_strchr("P", g->m.map[i][j])))
-			{
-				mlx_put_image_to_window(g->ptr, g->win, g->img.p, x, y);
-				g->start_x = j;
-				g->start_y = i;
-			}	
-			if ((ft_strchr("E", g->m.map[i][j])))
-			{
-				if (g->c_count > 0)
-					mlx_put_image_to_window(g->ptr, g->win, g->img.e, x, y);
-				else
-					mlx_put_image_to_window(g->ptr, g->win, g->img.e2, x, y);
-			}
-			x += 32;
-			j++;
-		}
-		y += 32;
-		i++;
-	}
-	// printf("%d", g->c_count);
-}
-
-void	ft_check_map_interior(t_game *g)
-{
-	int		i;
-	int		j;
-	int		count;
-
 	i = 1;
 	j = 1;
-	count = 0;
 	while (i < g->m.map_y)
 	{
 		j = 0;
 		while (j < g->m.map_x)
 		{
 			if (!(ft_strchr("PCE01", g->m.map[i][j])))
-			{
-				free(g->m.map);
-				ft_error(5);
-			}
+				ft_error(5, g);
+			if (g->m.map[i][j] == 'E')
+				g->m.e_count++;
 			if (g->m.map[i][j] == 'P')
-				count++;
+				g->m.p_count++;
+			if (g->m.map[i][j] == 'C')
+				g->m.c_count++;
 			j++;
 		}
 		i++;
 	}
-	if (count > 1)
-	{
-		free(g->m.map);
-		ft_error(6);
-	}
+	if (g->m.e_count < 1 || g->m.p_count < 1 || g->m.c_count < 1)
+		ft_error(7, g);
+	if (g->m.p_count > 1)
+		ft_error(6, g);
 }
+
+/* Iterates the map array on the top/bottom line and the first
+and last character of each line. They must be '1'. If not calls 
+the error function and quits the program */
 
 void	ft_check_map_surrounding(t_game *g)
 {
@@ -124,23 +57,20 @@ void	ft_check_map_surrounding(t_game *g)
 	while (j < g->m.map_x)
 	{
 		if (g->m.map[0][j] != '1' || g->m.map[g->m.map_y - 1][j] != '1')
-		{
-			free(g->m.map);
-			ft_error(4);
-		}
+			ft_error(4, g);
 		j++;
 	}
 	while (i < g->m.map_y)
 	{
 		if (g->m.map[i][0] != '1' || g->m.map[i][g->m.map_x - 1] != '1')
-		{
-			free(g->m.map);
-			ft_error(4);
-		}
+			ft_error(4, g);
 		i++;
 	}
-	ft_check_map_interior(g);
+	ft_check_map_interior(i, j, g);
 }
+
+/* Reads the map a second time using GNL again, but this time
+copying each line to a 2 dimension array called "map" */
 
 void	ft_read_map(int fd, char *argv, t_game *g)
 {
@@ -151,6 +81,8 @@ void	ft_read_map(int fd, char *argv, t_game *g)
 	i = 0;
 	fd = open(argv, O_RDONLY);
 	g->m.map = malloc(sizeof(char *) * (g->m.map_y + 1));
+	if (!g->m.map)
+		ft_error(8, g);
 	ret = get_next_line(fd, &line);
 	while (ret >= 0)
 	{
@@ -162,9 +94,14 @@ void	ft_read_map(int fd, char *argv, t_game *g)
 		ret = get_next_line(fd, &line);
 		i++;
 	}
+	g->m.map[++i] = NULL;
 	ft_check_map_surrounding(g);
 	close(fd);
 }
+
+/* Reads the map the first time using GNL to get the full size
+And checks for errors if there's a line shorter than other or
+the map is a square */
 
 void	ft_map(int fd, char *argv, t_game *g)
 {
@@ -183,10 +120,10 @@ void	ft_map(int fd, char *argv, t_game *g)
 			break ;
 		ret = get_next_line(fd, &line);
 		if (g->m.map_x != ft_strlen(line))
-			ft_error(2);
+			ft_error(2, g);
 	}
 	if (g->m.map_x == g->m.map_y)
-		ft_error(3);
+		ft_error(3, g);
 	g->size_x = g->m.map_x * 32;
 	g->size_y = g->m.map_y * 32;
 	close(fd);
