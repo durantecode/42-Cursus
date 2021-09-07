@@ -6,13 +6,13 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:36:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/03 13:37:13 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/07 01:53:53 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_draw_floor(t_game *mlx, t_map *m, t_image *img)
+void	ft_draw_floor(t_game *g)
 {
 	int		i;
 	int		j;
@@ -21,13 +21,13 @@ void	ft_draw_floor(t_game *mlx, t_map *m, t_image *img)
 
 	i = 0;
 	y = 0;
-	while (i < m->map_y)
+	while (i < g->m.map_y)
 	{
 		j = 0;
 		x = 0;
-		while (j < m->map_x)
+		while (j < g->m.map_x)
 		{
-			mlx_put_image_to_window(mlx->ptr, mlx->win, img->f, x, y);
+			mlx_put_image_to_window(g->ptr, g->win, g->img.f, x, y);
 			x += 32;
 			j++;
 		}
@@ -36,43 +36,53 @@ void	ft_draw_floor(t_game *mlx, t_map *m, t_image *img)
 	}
 }
 
-void	ft_draw_map(t_game *mlx, t_map *m, t_image *img)
+void	ft_draw_map(t_game *g)
 {
 	int		i;
 	int		j;
 	int		x;
 	int		y;
+	g->c_count = 0;
 
-	ft_draw_floor(mlx, m, img);
+	ft_draw_floor(g);
 	i = 0;
 	y = 0;
-	while (i < m->map_y)
+	while (i < g->m.map_y)
 	{
 		j = 0;
 		x = 0;
-		while (j < m->map_x)
+		while (j < g->m.map_x)
 		{
-			if ((ft_strchr("1", m->map[i][j])))
-				mlx_put_image_to_window(mlx->ptr, mlx->win, img->w, x, y);
-			if ((ft_strchr("C", m->map[i][j])))
-				mlx_put_image_to_window(mlx->ptr, mlx->win, img->c, x, y);
-			if ((ft_strchr("P", m->map[i][j])))
+			if ((ft_strchr("1", g->m.map[i][j])))
+				mlx_put_image_to_window(g->ptr, g->win, g->img.w, x, y);
+			if ((ft_strchr("C", g->m.map[i][j])))
 			{
-				mlx_put_image_to_window(mlx->ptr, mlx->win, img->p, x, y);
-				mlx->start_x = x;
-				mlx->start_y = y;
+				mlx_put_image_to_window(g->ptr, g->win, g->img.c, x, y);
+				g->c_count++;
+			}
+			if ((ft_strchr("P", g->m.map[i][j])))
+			{
+				mlx_put_image_to_window(g->ptr, g->win, g->img.p, x, y);
+				g->start_x = j;
+				g->start_y = i;
 			}	
-			if ((ft_strchr("E", m->map[i][j])))
-				mlx_put_image_to_window(mlx->ptr, mlx->win, img->e, x, y);
+			if ((ft_strchr("E", g->m.map[i][j])))
+			{
+				if (g->c_count > 0)
+					mlx_put_image_to_window(g->ptr, g->win, g->img.e, x, y);
+				else
+					mlx_put_image_to_window(g->ptr, g->win, g->img.e2, x, y);
+			}
 			x += 32;
 			j++;
 		}
 		y += 32;
 		i++;
 	}
+	// printf("%d", g->c_count);
 }
 
-void	ft_check_map_interior(t_map *m)
+void	ft_check_map_interior(t_game *g)
 {
 	int		i;
 	int		j;
@@ -81,17 +91,17 @@ void	ft_check_map_interior(t_map *m)
 	i = 1;
 	j = 1;
 	count = 0;
-	while (i < m->map_y)
+	while (i < g->m.map_y)
 	{
 		j = 0;
-		while (j < m->map_x)
+		while (j < g->m.map_x)
 		{
-			if (!(ft_strchr("PCE01", m->map[i][j])))
+			if (!(ft_strchr("PCE01", g->m.map[i][j])))
 			{
-				free(m->map);
+				free(g->m.map);
 				ft_error(5);
 			}
-			if (m->map[i][j] == 'P')
+			if (g->m.map[i][j] == 'P')
 				count++;
 			j++;
 		}
@@ -99,40 +109,40 @@ void	ft_check_map_interior(t_map *m)
 	}
 	if (count > 1)
 	{
-		free(m->map);
+		free(g->m.map);
 		ft_error(6);
 	}
 }
 
-void	ft_check_map_surrounding(t_map *m)
+void	ft_check_map_surrounding(t_game *g)
 {
 	int		i;
 	int		j;
 
 	i = 1;
 	j = 0;
-	while (j < m->map_x)
+	while (j < g->m.map_x)
 	{
-		if (m->map[0][j] != '1' || m->map[m->map_y - 1][j] != '1')
+		if (g->m.map[0][j] != '1' || g->m.map[g->m.map_y - 1][j] != '1')
 		{
-			free(m->map);
+			free(g->m.map);
 			ft_error(4);
 		}
 		j++;
 	}
-	while (i < m->map_y)
+	while (i < g->m.map_y)
 	{
-		if (m->map[i][0] != '1' || m->map[i][m->map_x - 1] != '1')
+		if (g->m.map[i][0] != '1' || g->m.map[i][g->m.map_x - 1] != '1')
 		{
-			free(m->map);
+			free(g->m.map);
 			ft_error(4);
 		}
 		i++;
 	}
-	ft_check_map_interior(m);
+	ft_check_map_interior(g);
 }
 
-void	ft_read_map(int fd, t_map *m, char *argv)
+void	ft_read_map(int fd, char *argv, t_game *g)
 {
 	int		ret;
 	char	*line;
@@ -140,11 +150,11 @@ void	ft_read_map(int fd, t_map *m, char *argv)
 
 	i = 0;
 	fd = open(argv, O_RDONLY);
-	m->map = malloc(sizeof(char *) * (m->map_y + 1));
+	g->m.map = malloc(sizeof(char *) * (g->m.map_y + 1));
 	ret = get_next_line(fd, &line);
 	while (ret >= 0)
 	{
-		m->map[i] = ft_strdup(line);
+		g->m.map[i] = ft_strdup(line);
 		free(line);
 		line = NULL;
 		if (ret == 0)
@@ -152,33 +162,33 @@ void	ft_read_map(int fd, t_map *m, char *argv)
 		ret = get_next_line(fd, &line);
 		i++;
 	}
-	ft_check_map_surrounding(m);
+	ft_check_map_surrounding(g);
 	close(fd);
 }
 
-void	ft_map(int fd, t_game *mlx, t_map *m, char *argv)
+void	ft_map(int fd, char *argv, t_game *g)
 {
 	char	*line;
 	int		ret;
 
 	ret = get_next_line(fd, &line);
-	m->map_x = ft_strlen(line);
-	m->map_y = 0;
+	g->m.map_x = ft_strlen(line);
+	g->m.map_y = 0;
 	while (ret >= 0)
 	{
 		free(line);
 		line = NULL;
-		m->map_y++;
+		g->m.map_y++;
 		if (ret == 0)
 			break ;
 		ret = get_next_line(fd, &line);
-		if (m->map_x != ft_strlen(line))
+		if (g->m.map_x != ft_strlen(line))
 			ft_error(2);
 	}
-	if (m->map_x == m->map_y)
+	if (g->m.map_x == g->m.map_y)
 		ft_error(3);
-	mlx->size.x = m->map_x * 32;
-	mlx->size.y = m->map_y * 32;
+	g->size_x = g->m.map_x * 32;
+	g->size_y = g->m.map_y * 32;
 	close(fd);
-	ft_read_map(fd, m, argv);
+	ft_read_map(fd, argv, g);
 }

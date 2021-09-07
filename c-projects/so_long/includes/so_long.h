@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:16:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/03 02:12:54 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/07 01:25:54 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@
 # define KEY_RIGHT 2
 # define KEY_ESC 53
 
-typedef struct s_vector
-{
-	int 	x;
-	int		y;
-	
-}	t_vector;
-
 typedef struct s_map
 {
 	char 	**map;
@@ -49,13 +42,17 @@ typedef struct	s_image
 	int		endian;
 	void	*w;
 	void	*c;
+	void	*c2;
 	void	*p;
 	void	*e;
+	void	*e2;
 	void	*f;
 	char	*w_add;
 	char	*c_add;
+	char	*c2_add;
 	char	*p_add;
 	char	*e_add;
+	char	*e2_add;
 	char	*f_add;
 }   t_image;
 
@@ -63,19 +60,21 @@ typedef struct s_game
 {
 	void	*ptr;
 	void	*win;
+	int		size_x;
+	int		size_y;
 	int		start_x;
 	int		start_y;
-	t_vector size;
+	int		c_count;
+	int		frames;
+	t_image	img;
+	t_map	m;
 }	t_game;
-
-
-
 
 int		main(int argc, char **argv);
 int		get_next_line(int fd, char **line);
-void	ft_map(int fd, t_game *mlx, t_map *map, char *argv);
-void	ft_draw_map(t_game *mlx, t_map *m, t_image *img);
-void	ft_load_files(t_game *mlx, t_image *img);
+void	ft_map(int fd, char *argv, t_game *g);
+void	ft_draw_map(t_game *g);
+void	ft_load_files(t_game *g);
 int		ft_error(int n);
 
 #endif
