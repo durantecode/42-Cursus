@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/07 21:34:31 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/13 15:28:06 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,16 +57,13 @@ normi:
 clean:
 		 $(RM) $(OBJS)
 		 $(MAKE) clean -C $(LIBFT)
-		 $(MAKE) clean -C $(MLX)
 		 @echo "$(RED) **** CLEAN DONE **** $(NO_COLOR)"
 
 fclean: clean
 		 $(RM) $(LIBFT)/$(LIBFT).a
 		 $(RM) $(NAME)
-		 $(RM) libmlx.dylib
-		 $(RM) so_long
 		 @echo "$(RED) **** FCLEAN DONE **** $(NO_COLOR)"
 
 re: fclean all
 
-.PHONY: all re clean fclean test
+.PHONY: all re clean fclean test normi

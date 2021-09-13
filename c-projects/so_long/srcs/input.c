@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:16:32 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/07 21:28:46 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/13 19:10:01 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	move_up(t_game *g)
 	}
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y - 1][g->start_x] = 'P';
+	g->key_count++;
 	return (0);
 }
 
@@ -45,6 +46,7 @@ int	move_down(t_game *g)
 	}
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y + 1][g->start_x] = 'P';
+	g->key_count++;
 	return (0);
 }
 
@@ -63,6 +65,7 @@ int	move_left(t_game *g)
 	}
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y][g->start_x - 1] = 'P';
+	g->key_count++;
 	return (0);
 }
 
@@ -81,22 +84,32 @@ int	move_right(t_game *g)
 	}
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y][g->start_x + 1] = 'P';
+	g->key_count++;
 	return (0);
 }
 
 int	ft_key_input(int key, t_game *g)
 {
-	if (key == KEY_ESC)
-		ft_exit(2, g);
-	if (key == KEY_RIGHT)
-		move_right(g);
-	if (key == KEY_LEFT)
-		move_left(g);
-	if (key == KEY_DOWN)
-		move_down(g);
-	if (key == KEY_UP)
-		move_up(g);
-	g->coun = ft_itoa(g->key_count);
-	g->key_count++;
-	return (0);
+	if (key == KEY_ESC || key == KEY_RIGHT || key == KEY_LEFT
+		|| key == KEY_UP || key == KEY_DOWN)
+	{		
+		if (key == KEY_ESC)
+		{
+			ft_close(g);
+			return (0);
+		}
+		if (key == KEY_RIGHT)
+			move_right(g);
+		if (key == KEY_LEFT)
+			move_left(g);
+		if (key == KEY_DOWN)
+			move_down(g);
+		if (key == KEY_UP)
+			move_up(g);
+		free(g->coun);
+		g->coun = ft_itoa(g->key_count);
+		return (1);
+	}
+	else
+		return (0);
 }

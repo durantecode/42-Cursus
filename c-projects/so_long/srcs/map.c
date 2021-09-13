@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:36:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/07 20:36:15 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:27:15 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_check_map_interior(int i, int j, t_game *g)
 	}
 	if (g->m.e_count < 1 || g->m.p_count < 1 || g->m.c_count < 1)
 		ft_error(7, g);
-	if (g->m.p_count > 1)
+	if (g->m.p_count > 1 || g->m.e_count > 1)
 		ft_error(6, g);
 }
 
@@ -124,8 +124,8 @@ void	ft_map(int fd, char *argv, t_game *g)
 	}
 	if (g->m.map_x == g->m.map_y)
 		ft_error(3, g);
-	g->size_x = g->m.map_x * 32;
-	g->size_y = g->m.map_y * 32;
+	g->size_x = g->m.map_x * 48;
+	g->size_y = g->m.map_y * 48;
 	close(fd);
 	ft_read_map(fd, argv, g);
 }
