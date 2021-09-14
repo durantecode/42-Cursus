@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:16:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/13 19:44:07 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/14 03:06:19 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,20 @@ typedef struct s_image
 	void	*f;
 	void	*f2;
 	void	*f3;
-	void	*stars;
+	void	*sp;
+	void	*foe;
+	void	*foe2;
+	void	*sprite2;
+	void	*no;
+	void	*won;
 }	t_image;
+
+typedef struct s_foe
+{
+	int		foe_x;
+	int		foe_y;
+	int		foe_dir;
+}	t_foe;
 
 typedef struct s_game
 {
@@ -63,12 +75,13 @@ typedef struct s_game
 	int		size_y;
 	int		start_x;
 	int		start_y;
-	int		frames;
+	int		time;
 	int		key_count;
 	char	*coun;
 	char	*move;
 	t_image	img;
 	t_map	m;
+	t_foe	foe;
 }	t_game;
 
 int		main(int argc, char **argv);
@@ -76,7 +89,11 @@ int		get_next_line(int fd, char **line);
 void	ft_map(int fd, char *argv, t_game *g);
 void	ft_load_files(t_game *g);
 void	ft_draw_map(t_game *g);
+void	ft_move_enemy_left(t_game *g);
+void	ft_move_enemy_right(t_game *g);
 int		ft_key_input(int key, t_game *g);
+void	check_file_extension(char *argv, t_game *g);
+int		ft_status(t_game *g);
 int		ft_error(int n, t_game *g);
 int		ft_exit(int e, t_game *g);
 int		ft_close(t_game *g);

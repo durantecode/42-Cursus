@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:36:56 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/13 17:27:15 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/14 02:19:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_check_map_interior(int i, int j, t_game *g)
 		j = 0;
 		while (j < g->m.map_x)
 		{
-			if (!(ft_strchr("PCE01", g->m.map[i][j])))
+			if (!(ft_strchr("PCE01F", g->m.map[i][j])))
 				ft_error(5, g);
 			if (g->m.map[i][j] == 'E')
 				g->m.e_count++;

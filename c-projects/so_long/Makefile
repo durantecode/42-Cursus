@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/13 15:28:06 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/14 02:31:55 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,7 @@ LIBFT = libft
 RM = rm -rf
 MAKE = make
 DEBUG = -g3 -fsanitize=address
-MAP = map
 
-MLX = mlx
 MLX_LINK = -lmlx -framework OpenGL -framework AppKit
 
 # COLORS #
@@ -34,14 +32,16 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS = srcs/main.c srcs/get_next_line.c srcs/map.c srcs/draw_map.c srcs/error.c srcs/image.c srcs/input.c
+SRCS =  srcs/main.c srcs/get_next_line.c srcs/map.c srcs/draw_map.c srcs/error.c srcs/image.c \
+		srcs/input.c srcs/enemy.c srcs/status.c
+		
 OBJS = $(SRCS:.c=.o)
 
 # RULES # $(DEBUG)
 
 all: $(NAME)
 	
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS)
 		 $(MAKE) all -C $(LIBFT)
 		 $(CC) $(FLAGS) $(OBJS) libft/libft.a $(MLX_LINK) -o $(NAME)
 	 	 @echo "$(GREEN) **** SO_LONG COMPILED **** $(NO_COLOR)"

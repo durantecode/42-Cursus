@@ -6,11 +6,35 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 00:52:09 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/13 19:43:04 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/14 03:06:59 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+/* Loads all the files needed and sabes theme on the different
+variables that we will access later */
+
+void	ft_load_files2(t_game *g)
+{
+	g->img.f2 = mlx_xpm_file_to_image(g->ptr, "xpm/F_REV.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.f3 = mlx_xpm_file_to_image(g->ptr, "xpm/F_REV2.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.f3 = mlx_xpm_file_to_image(g->ptr, "xpm/F_REV2.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.foe = mlx_xpm_file_to_image(g->ptr, "xpm/FOE1.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.foe2 = mlx_xpm_file_to_image(g->ptr, "xpm/FOE2.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.no = mlx_xpm_file_to_image(g->ptr, "xpm/NO.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.won = mlx_xpm_file_to_image(g->ptr, "xpm/WON.xpm",
+			&g->img.tile_x, &g->img.tile_y);
+	g->img.sprite = g->img.c;
+	g->img.sprite2 = g->img.foe;
+	g->img.sp = g->img.f;
+}
 
 void	ft_load_files(t_game *g)
 {
@@ -20,7 +44,6 @@ void	ft_load_files(t_game *g)
 			&g->img.tile_x, &g->img.tile_y);
 	g->img.c2 = mlx_xpm_file_to_image(g->ptr, "xpm/C_REV.xpm",
 			&g->img.tile_x, &g->img.tile_y);
-	g->img.sprite = g->img.c;
 	g->img.p = mlx_xpm_file_to_image(g->ptr, "xpm/P.xpm",
 			&g->img.tile_x, &g->img.tile_y);
 	g->img.e = mlx_xpm_file_to_image(g->ptr, "xpm/E1.xpm",
@@ -29,9 +52,5 @@ void	ft_load_files(t_game *g)
 			&g->img.tile_x, &g->img.tile_y);
 	g->img.f = mlx_xpm_file_to_image(g->ptr, "xpm/F.xpm",
 			&g->img.tile_x, &g->img.tile_y);
-	g->img.f2 = mlx_xpm_file_to_image(g->ptr, "xpm/F_REV.xpm",
-			&g->img.tile_x, &g->img.tile_y);
-	g->img.f3 = mlx_xpm_file_to_image(g->ptr, "xpm/F_REV2.xpm",
-			&g->img.tile_x, &g->img.tile_y);
-	g->img.stars = g->img.f;
+	ft_load_files2(g);
 }

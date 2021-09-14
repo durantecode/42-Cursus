@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:16:32 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/13 19:10:01 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/14 03:13:03 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	move_up(t_game *g)
 		if (g->m.c_count == 0)
 			ft_exit(1, g);
 	}
+	if (g->m.map[g->start_y - 1][g->start_x] == 'F')
+		ft_exit(3, g);
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y - 1][g->start_x] = 'P';
 	g->key_count++;
@@ -44,6 +46,8 @@ int	move_down(t_game *g)
 		if (g->m.c_count == 0)
 			ft_exit(1, g);
 	}
+	if (g->m.map[g->start_y + 1][g->start_x] == 'F')
+		ft_exit(3, g);
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y + 1][g->start_x] = 'P';
 	g->key_count++;
@@ -63,6 +67,8 @@ int	move_left(t_game *g)
 		if (g->m.c_count == 0)
 			ft_exit(1, g);
 	}
+	if (g->m.map[g->start_y][g->start_x - 1] == 'F')
+		ft_exit(3, g);
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y][g->start_x - 1] = 'P';
 	g->key_count++;
@@ -82,6 +88,8 @@ int	move_right(t_game *g)
 		if (g->m.c_count == 0)
 			ft_exit(1, g);
 	}
+	if (g->m.map[g->start_y][g->start_x + 1] == 'F')
+		ft_exit(3, g);
 	g->m.map[g->start_y][g->start_x] = '0';
 	g->m.map[g->start_y][g->start_x + 1] = 'P';
 	g->key_count++;
