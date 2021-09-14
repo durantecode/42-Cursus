@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 00:16:00 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/14 03:06:19 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:03:36 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,20 @@
 # include <sys/types.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 10
+/* Define BUFF size for GNL, Key values & colors */
 
+# define BUFFER_SIZE 10
 # define KEY_UP 13
 # define KEY_DOWN 1
 # define KEY_LEFT 0
 # define KEY_RIGHT 2
 # define KEY_ESC 53
+# define R "\033[0;31m"
+# define G "\033[0;32m"
+# define Y "\033[0;33m"
+# define NC "\033[0m"
+
+/* Declare structs */
 
 typedef struct s_map
 {
@@ -56,8 +63,6 @@ typedef struct s_image
 	void	*foe;
 	void	*foe2;
 	void	*sprite2;
-	void	*no;
-	void	*won;
 }	t_image;
 
 typedef struct s_foe
@@ -84,18 +89,39 @@ typedef struct s_game
 	t_foe	foe;
 }	t_game;
 
+/* Main & auxiliary functions */
+
 int		main(int argc, char **argv);
 int		get_next_line(int fd, char **line);
-void	ft_map(int fd, char *argv, t_game *g);
 void	ft_load_files(t_game *g);
+int		ft_status(t_game *g);
+void	ft_animation(t_game *g);
+
+/* Map reading & image drawing */
+
+void	ft_map(int fd, char *argv, t_game *g);
+void	ft_read_map(int fd, char *argv, t_game *g);
+void	ft_check_map_surrounding(t_game *g);
+void	ft_check_map_interior(int i, int j, t_game *g);
 void	ft_draw_map(t_game *g);
+void	ft_put_map_to_window(int i, int j, t_game *g);
+
+/* Keyboard input & player movement */
+
+int		ft_key_input(int key, t_game *g);
+int		move_up(t_game *g);
+int		move_down(t_game *g);
+int		move_left(t_game *g);
+int		move_right(t_game *g);
 void	ft_move_enemy_left(t_game *g);
 void	ft_move_enemy_right(t_game *g);
-int		ft_key_input(int key, t_game *g);
+
+/* Error control & output */
+
 void	check_file_extension(char *argv, t_game *g);
-int		ft_status(t_game *g);
 int		ft_error(int n, t_game *g);
 int		ft_exit(int e, t_game *g);
 int		ft_close(t_game *g);
+void	ft_destroy(t_game *g);
 
 #endif

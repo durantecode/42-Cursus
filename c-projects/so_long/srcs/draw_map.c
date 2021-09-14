@@ -6,11 +6,34 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:01:58 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/14 02:20:05 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/14 12:15:22 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+/* This function iterates the map and draws the whole window
+with the space/floor image, then calls another function for
+each position to draw the differente images */
+
+void	ft_draw_map(t_game *g)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (g->m.map[i] != NULL)
+	{
+		j = 0;
+		while (g->m.map[i][j] != '\0')
+		{
+			mlx_put_image_to_window(g->ptr, g->win, g->img.sp, 48 * j, 48 * i);
+			ft_put_map_to_window(i, j, g);
+			j++;
+		}
+		i++;
+	}
+}
 
 /* As the program iterates the previous function, it draws
 every image depending on what character it encounters, also
@@ -42,28 +65,5 @@ void	ft_put_map_to_window(int i, int j, t_game *g)
 			mlx_put_image_to_window(g->ptr, g->win, g->img.e, 48 * j, 48 * i);
 		else
 			mlx_put_image_to_window(g->ptr, g->win, g->img.e2, 48 * j, 48 * i);
-	}
-}
-
-/* This function iterates the map and draws the whole window
-with the space/floor image, then calls another function for
-each position to draw the differente images */
-
-void	ft_draw_map(t_game *g)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (g->m.map[i] != NULL)
-	{
-		j = 0;
-		while (g->m.map[i][j] != '\0')
-		{
-			mlx_put_image_to_window(g->ptr, g->win, g->img.sp, 48 * j, 48 * i);
-			ft_put_map_to_window(i, j, g);
-			j++;
-		}
-		i++;
 	}
 }

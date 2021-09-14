@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/14 02:31:55 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/14 16:26:19 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS =  srcs/main.c srcs/get_next_line.c srcs/map.c srcs/draw_map.c srcs/error.c
 		
 OBJS = $(SRCS:.c=.o)
 
-# RULES # $(DEBUG)
+# RULES #
 
 all: $(NAME)
 	
@@ -50,9 +50,14 @@ test: all
 		@echo "$(YELLOW) **** RUN TEST SO_LONG **** $(NO_COLOR)"
 		@read -p "Select map number: " map; \
 		./so_long maps/map0$${map}.ber
+
+test_fail: all
+		@echo "$(YELLOW) **** RUN TEST_FAIL SO_LONG **** $(NO_COLOR)"
+		@read -p "Select map number: " map; \
+		./so_long maps/maps_error/map0$${map}.ber
 		
 normi:  
-		norminette -R CheckForbiddenSourceHeaders srcs/*.c includes/*.h
+		norminette -R CheckForbiddenSourceHeaders libft/*.c libft/*.h srcs/*.c includes/*.h 
 
 clean:
 		 $(RM) $(OBJS)
@@ -66,4 +71,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean fclean test normi
+.PHONY: all re clean fclean test test_fail normi
