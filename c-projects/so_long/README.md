@@ -6,7 +6,7 @@ The aim of this project is to introduce you in the use of the Minilibx and (fina
 I strongly recommend to learn the basic functions of the mlx library first.
 If you need help with this, here are some tutorials made by fellow students that will definetly help you on this task:
 
-  [MiniLibX sample guide](https://github.com/S-LucasSerrano/miniLibX_sample)
+  [MiniLibX sample guide](https://github.com/S-LucasSerrano/miniLibX_sample) \
   [madebypixel's pacman](https://github.com/madebypixel02/so_long)
 
 They both did an amazing job explaining how it works, and also in their personal so_long projects. Go check them out! ;)
