@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 00:52:09 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/14 16:22:36 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/16 12:49:22 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	ft_load_files2(t_game *g)
 			&g->img.tile_x, &g->img.tile_y);
 	g->img.f3 = mlx_xpm_file_to_image(g->ptr, "xpm/F_REV2.xpm",
 			&g->img.tile_x, &g->img.tile_y);
-	g->img.foe = mlx_xpm_file_to_image(g->ptr, "xpm/FOE1.xpm",
+	g->img.foe = mlx_xpm_file_to_image(g->ptr, "xpm/FOE3.xpm",
 			&g->img.tile_x, &g->img.tile_y);
-	g->img.foe2 = mlx_xpm_file_to_image(g->ptr, "xpm/FOE2.xpm",
+	g->img.foe2 = mlx_xpm_file_to_image(g->ptr, "xpm/FOE4.xpm",
 			&g->img.tile_x, &g->img.tile_y);
 	g->img.sprite = g->img.c;
 	g->img.sprite2 = g->img.foe;
