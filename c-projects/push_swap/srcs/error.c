@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 13:33:13 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/20 17:36:49 by ldurante         ###   ########.fr       */
+/*   Created: 2021/09/20 17:35:33 by ldurante          #+#    #+#             */
+/*   Updated: 2021/09/20 17:36:39 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <fcntl.h>
-
-int	main(int argc, char **argv);
-int	ft_error();
-
-#endif
+int	ft_error()
+{
+	write(1, "Error\n", 6);
+	exit (0);
+}

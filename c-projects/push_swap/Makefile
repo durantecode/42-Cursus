@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 13:06:54 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/17 15:57:19 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/20 17:37:09 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,13 @@ NO_COLOR = \033[0m
 
 # TESTS #
 
-1 = 5 7 8 2 1 4
-2 = 68 39 1 0 104 56
+1 = 5 12 8 -2 1 -4
+2 = 68 39 1 0 104 56 9 188
+3 = 123 23 45 73 23 78 1 79 90 56 789 654 342
 
 # SOURCES & OBJECTS #
 
-SRCS =  srcs/main.c
+SRCS =  srcs/main.c srcs/error.c
 		
 OBJS = $(SRCS:.c=.o)
 
