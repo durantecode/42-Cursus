@@ -6,13 +6,15 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:02:27 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/20 17:59:05 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:49:58 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+/* Changed to atoi_long for this project */
+
+long	ft_atoi(const char *str)
 {
 	long	number;
 	int		negative;
@@ -29,10 +31,6 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (number * negative > 2147483647)
-			return (-1);
-		if (number * negative < -2147483648)
-			return (0);
 		number = number * 10 + *str - 48;
 		str++;
 	}

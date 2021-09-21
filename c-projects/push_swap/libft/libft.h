@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:06:51 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/20 17:59:05 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/20 21:20:48 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 /**** AUXILIARY FUNCTIONS */
 
-int		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 char	*ft_itoa(int n);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

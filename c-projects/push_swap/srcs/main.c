@@ -6,58 +6,91 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 13:31:36 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/20 18:03:43 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/22 01:21:25 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void print_stack(t_list *a)
+void	print_stack(t_list *a, t_list *b)
 {
-    while (a != NULL)
-    {
-        printf("%d\n", *(int *)a->content);
-        a = a->next;
-    }
+	write(1, "------\n", 7);
+	while (a || b)
+	{
+		if (a && b)
+		{
+			ft_putnbr_fd(*(int *)a->content, 1);
+			write(1, "   ", 3);
+			ft_putnbr_fd(*(int *)b->content, 1);
+			write(1, "   \n", 4);
+		}
+		else
+		{
+			if (!b)
+			{
+				ft_putnbr_fd(*(int *)a->content, 1);
+				write(1, "\n", 1);
+			}	
+			if (!a)
+			{
+				write(1, "    ", 4);
+				ft_putnbr_fd(*(int *)b->content, 1);
+				write(1, "   \n", 4);
+			}
+		}
+		if (a)
+			a = a->next;
+		if (b)
+			b = b->next;
+	}
+	write(1, "--- ---\n", 8);
+	write(1, " a   b \n\n", 9);
 }
 
 t_list	*ft_new_stack(void *content, size_t size)
 {
-	t_list	*str;
+	t_list	*stack;
 	void	*aux;
 
-	str = malloc(sizeof(t_list));
-	if (!str)
+	stack = malloc(sizeof(t_list));
+	if (!stack)
 		return (NULL);
 	aux = malloc(size);
 	if (!aux)
 	{
-		free(str);
-		str = NULL;
+		free(stack);
+		stack = NULL;
 	}
 	ft_memcpy(aux, content, size);
-	str->content = aux;
-	str->next = NULL;
-	return (str);
+	stack->content = aux;
+	stack->next = NULL;
+	return (stack);
 }
 
 int	ft_check_num(char *argv)
 {
-	int n;
-	
-	if (!ft_atoi(argv))
+	long	n;
+	int		i;
+
+	i = 0;
+	while(argv[i] != '\0')
+	{
+		if (!ft_isdigit(argv[i]) && argv[i] != '-')
+			ft_error();
+		i++;
+	}
+	n = ft_atoi(argv);
+	if (n > 2147483647 || n < -2147483648)
 		ft_error();
-	else
-		n = ft_atoi(argv);
 	return (n);
 }
 
 int	main(int argc, char **argv)
 {
-	t_list *a;
-	t_list *b;
-	int	i;
-	int	n;
+	t_list	*a;
+	t_list	*b;
+	int		i;
+	long	n;
 
 	i = 1;
 	if (argc > 2)
@@ -68,10 +101,21 @@ int	main(int argc, char **argv)
 			ft_lstadd_back(&a, ft_new_stack((void *) &n, sizeof(int)));
 			i++;
 		}
-		print_stack(a);
+		print_stack(a, b);
+		ft_swap(a, b, 'a');
+		ft_push(&a, &b, 'b');
+		ft_push(&a, &b, 'b');
+		ft_push(&a, &b, 'b');
+		ft_rotate(&a, &b, 'r');
+		ft_rev_rotate(&a, &b, 'r');
+		ft_swap(a, b, 'a');
+		ft_push(&a, &b, 'a');
+		ft_push(&a, &b, 'a');
+		ft_push(&a, &b, 'a');
+		print_stack(a, b);
+
 	}
 	else
 		ft_error();
-	//printf("LIST SIZE: %d \n", ft_lstsize(a));
-	//system("leaks push_swap");
+	// system("leaks push_swap");
 }
