@@ -6,46 +6,11 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 13:31:36 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 01:21:25 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/22 23:47:20 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	print_stack(t_list *a, t_list *b)
-{
-	write(1, "------\n", 7);
-	while (a || b)
-	{
-		if (a && b)
-		{
-			ft_putnbr_fd(*(int *)a->content, 1);
-			write(1, "   ", 3);
-			ft_putnbr_fd(*(int *)b->content, 1);
-			write(1, "   \n", 4);
-		}
-		else
-		{
-			if (!b)
-			{
-				ft_putnbr_fd(*(int *)a->content, 1);
-				write(1, "\n", 1);
-			}	
-			if (!a)
-			{
-				write(1, "    ", 4);
-				ft_putnbr_fd(*(int *)b->content, 1);
-				write(1, "   \n", 4);
-			}
-		}
-		if (a)
-			a = a->next;
-		if (b)
-			b = b->next;
-	}
-	write(1, "--- ---\n", 8);
-	write(1, " a   b \n\n", 9);
-}
 
 t_list	*ft_new_stack(void *content, size_t size)
 {
@@ -67,21 +32,36 @@ t_list	*ft_new_stack(void *content, size_t size)
 	return (stack);
 }
 
-int	ft_check_num(char *argv)
+void	init_stack(t_list **a, long n)
+{
+	t_list	*aux;
+
+	aux = *a;
+	while (aux)
+	{
+		if (n == *(int *)aux->content)
+			ft_error(4, a);
+		aux = aux->next;
+	}
+	ft_lstadd_back(a, ft_new_stack((void *) &n, sizeof(int)));
+}
+
+int	ft_check_num(t_list **a, char *argv)
 {
 	long	n;
-	int		i;
 
-	i = 0;
-	while(argv[i] != '\0')
+	if (!ft_atoi(argv) && argv[0] != '0')
 	{
-		if (!ft_isdigit(argv[i]) && argv[i] != '-')
-			ft_error();
-		i++;
+		if ((argv[0] == '+' || argv[0] == '-')
+			&& argv[1] == '0')
+			ft_error(2, a);
+		else
+			ft_error(1, a);
 	}
-	n = ft_atoi(argv);
-	if (n > 2147483647 || n < -2147483648)
-		ft_error();
+	else
+		n = ft_atoi(argv);
+	if (n > MAX_INT || n < MIN_INT)
+		ft_error(3, a);
 	return (n);
 }
 
@@ -97,25 +77,15 @@ int	main(int argc, char **argv)
 	{
 		while (i < argc)
 		{
-			n = ft_check_num(argv[i]);
-			ft_lstadd_back(&a, ft_new_stack((void *) &n, sizeof(int)));
+			n = ft_check_num(&a, argv[i]);
+			init_stack(&a, n);
 			i++;
 		}
 		print_stack(a, b);
-		ft_swap(a, b, 'a');
-		ft_push(&a, &b, 'b');
-		ft_push(&a, &b, 'b');
-		ft_push(&a, &b, 'b');
-		ft_rotate(&a, &b, 'r');
-		ft_rev_rotate(&a, &b, 'r');
-		ft_swap(a, b, 'a');
-		ft_push(&a, &b, 'a');
-		ft_push(&a, &b, 'a');
-		ft_push(&a, &b, 'a');
+		push_swap(&a, &b);
 		print_stack(a, b);
-
 	}
 	else
-		ft_error();
-	// system("leaks push_swap");
+		ft_error(0, &a);
+	ft_exit(&a);
 }

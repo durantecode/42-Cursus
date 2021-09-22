@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 13:06:54 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/21 22:04:17 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/23 00:34:58 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ NO_COLOR = \033[0m
 
 1 = 2 1 3 6 5 8
 2 = 68 39 1 0 104 56 9 188
-3 = 123 23 45 73 23 78 1 79 90 56 789 654 342
+3 = 123 23 45 73 78 1 79 90 56 789 654 342
 
 # SOURCES & OBJECTS #
 
-SRCS =  srcs/main.c srcs/push.c srcs/swap.c srcs/rotate.c srcs/rev_rotate.c srcs/error.c
+SRCS =  srcs/main.c srcs/push_swap.c srcs/push.c srcs/swap.c srcs/rotate.c srcs/rev_rotate.c srcs/error.c srcs/print_stack.c
 		
 OBJS = $(SRCS:.c=.o)
 
