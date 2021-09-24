@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 13:31:36 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 23:47:20 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:39:19 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int	main(int argc, char **argv)
 			init_stack(&a, n);
 			i++;
 		}
-		print_stack(a, b);
+		// print_stack(a, b);
 		push_swap(&a, &b);
-		print_stack(a, b);
+		// print_stack(a, b);
 	}
 	else
 		ft_error(0, &a);
