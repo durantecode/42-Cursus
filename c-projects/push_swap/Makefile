@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 13:06:54 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/24 18:17:38 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/27 20:37:28 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER = includes
 LIBFT = libft
 RM = rm -rf
 MAKE = make
-DEBUG = -g3 -fsanitize=address
+DEBUG = -g -fsanitize=address
 
 # COLORS #
 
@@ -36,7 +36,8 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS =  srcs/main.c srcs/push_swap.c srcs/push.c srcs/swap.c srcs/rotate.c srcs/rev_rotate.c srcs/error.c srcs/print_stack.c
+SRCS =  srcs/main.c srcs/push_swap.c srcs/push.c srcs/swap.c srcs/rotate.c srcs/rev_rotate.c \
+		srcs/sort_big.c srcs/sort_small.c srcs/error.c srcs/print_stack.c 
 		
 OBJS = $(SRCS:.c=.o)
 

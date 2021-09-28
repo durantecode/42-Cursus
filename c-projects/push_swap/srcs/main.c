@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 13:31:36 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/24 18:39:19 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/28 03:24:33 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_list	*ft_new_stack(void *content, size_t size)
 	return (stack);
 }
 
-void	init_stack(t_list **a, long n)
+void	init_stack(t_list **a, t_list **aux_stack, long n)
 {
 	t_list	*aux;
 
@@ -44,6 +44,7 @@ void	init_stack(t_list **a, long n)
 		aux = aux->next;
 	}
 	ft_lstadd_back(a, ft_new_stack((void *) &n, sizeof(int)));
+	ft_lstadd_back(aux_stack, ft_new_stack((void *) &n, sizeof(int)));
 }
 
 int	ft_check_num(t_list **a, char *argv)
@@ -65,27 +66,62 @@ int	ft_check_num(t_list **a, char *argv)
 	return (n);
 }
 
+int	check_argument(char *argv)
+{
+	char	**test;
+	int i;
+
+	test = ft_split(argv, ' ');
+	i = 0;
+	while (test[i] != '\0')
+		i++;
+	if (i > 1)
+		return (1);
+	// else
+	// 	write(1, "Error\n", 6);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
+	t_list	*aux_stack;
+	char	**arg;
 	int		i;
+	int		j;
 	long	n;
 
 	i = 1;
-	if (argc > 2)
+	a = NULL;
+	b = NULL;
+	aux_stack = NULL;
+	if (argc >= 2)
 	{
 		while (i < argc)
 		{
-			n = ft_check_num(&a, argv[i]);
-			init_stack(&a, n);
+			if (check_argument(argv[i]))
+			{
+				arg = ft_split(argv[i], ' ');
+				j = 0;
+				while (arg[j] != '\0')
+				{
+					n = ft_check_num(&a, arg[j]);
+					init_stack(&a, &aux_stack, n);
+					j++;
+				}
+			}
+			else
+			{
+				n = ft_check_num(&a, argv[i]);
+				init_stack(&a, &aux_stack, n);
+			}
 			i++;
 		}
 		// print_stack(a, b);
-		push_swap(&a, &b);
-		// print_stack(a, b);
+		push_swap(&a, &b, &aux_stack);
 	}
 	else
 		ft_error(0, &a);
-	ft_exit(&a);
+	ft_exit(&a, &b, &aux_stack);
 }

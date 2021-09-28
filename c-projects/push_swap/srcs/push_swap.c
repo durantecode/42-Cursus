@@ -6,125 +6,43 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 21:57:04 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/24 19:07:06 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/28 01:41:56 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	*sort_array(int *array, int length, t_list **a)
+int	is_sorted(t_list **aux_stack, int length)
 {
-	int i;
-	int j;
-	int aux;
+	int	i;
+	int	n1;
+	int	n2;
 
 	i = -1;
-	while (++i < length)
+	while (++i < length - 1)
 	{
-		j = i + 1;
-		while (j < length)
-		{
-			if (array[i] > array[j])
-			{
-				aux = array[i];
-				array[i] = array[j];
-				array[j] = aux;
-			}
-			j++;
-		}
+		n1 = *(int *)(*aux_stack)->content;
+		n2 = *(int *)(*aux_stack)->next->content;
+		if (n1 > n2)
+			return (0);
+		free((*aux_stack)->content);
+		free((*aux_stack));
+		*aux_stack = (*aux_stack)->next;
 	}
-	return (array);
+	return (1);
 }
 
-t_list	**copy_simple_stack(t_list **a, int *not_sorted, int *array, int length)
+int	push_swap(t_list **a, t_list **b, t_list **aux_stack)
 {
-	int i;
-	int j;
-	int n;
+	int	length;
 
-	i = -1;
-	while (++i < length)
-	{
-		j = -1;
-		while (++j < length)
-		{
-			if (not_sorted[i] == array[j])
-			{
-				not_sorted[i] = j;
-				break ;
-			}	
-		}
-	}
-	ft_lstclear(a, free);
-	i = -1;
-	while (++i < length)
-	{
-		n = not_sorted[i];
-		ft_lstadd_back(a, ft_new_stack((void *) &n, sizeof(int)));
-	}
-	return (a);
-}
-
-int	simplify_list(t_list **a)
-{
-	t_list **aux;
-	int	*array;
-	int	*not_sorted;
-	int length;
-	int i;
-	
 	length = ft_lstsize(*a);
-	array = malloc(length * sizeof(int));
-	not_sorted = malloc(length * sizeof(int));
-	if (!array || !not_sorted)
-	{
-		array = NULL;
-		not_sorted = NULL;
-	}
-	i = -1;
-	while (++i < length)
-	{
-		array[i] = *(int *)(*a)->content;
-		*a = (*a)->next;
-	}
-	ft_memcpy(not_sorted, array, length * sizeof(int));
-	sort_array(array, length, a);
-	copy_simple_stack(a, not_sorted, array, length);
+	if (is_sorted(aux_stack, length))
+		return (0);
+	simplify_stack(a, length);
+	if (length <= 5)
+		sort_small_stack(a, b, length);
+	else
+		sort_big_stack(a, b, length);
 	return (0);
-}
-
-void	push_swap(t_list **a, t_list **b)
-{
-	int size;
-	int	bits;
-	int	max;
-	int n;
-	int i;
-	int j;
-
-	simplify_list(a);
-	size = ft_lstsize(*a);
-	max = size - 1;
-	bits = 0;
-	while ((max >> bits) != 0)
-		bits++;
-	i = 0;
-	while (i <= bits)
-	{
-		j = 0;
-		while(j < size)
-		{
-			n = *(int *)(*a)->content;
-			if (((n >> i)&1) == 1)
-				ft_rotate(a, b, 'a');
-			else
-				ft_push(a, b, 'b');
-			// print_stack(*a, *b);
-			j++;
-		}
-		while(*b)
-			ft_push(a, b, 'a');
-		// print_stack(*a, *b);
-		++i;
-	}
 }

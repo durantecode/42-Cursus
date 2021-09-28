@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 17:35:33 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 21:52:00 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/28 02:05:00 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 /* Exit function, clears the list and exits the program */
 
-void	ft_exit(t_list **a)
+void	ft_exit(t_list **a, t_list **b, t_list **aux_stack)
 {
 	ft_lstclear(a, free);
-	a = NULL;
+	ft_lstclear(b, free);
+	ft_lstclear(aux_stack, free);
 	// system("leaks push_swap");
 	exit(0);
 }
@@ -40,5 +41,8 @@ void	ft_error(int e, t_list **a)
 		ft_putstr_fd("Error\nValues must no exceed MAX_INT or MIN_INT\n", 1);
 	if (e == 4)
 		ft_putstr_fd("Error\nDuplicated arguments\n", 1);
-	ft_exit(a);
+	ft_lstclear(a, free);
+	// write(1, "Error\n", 6);
+	// system("leaks push_swap");
+	exit(0);
 }

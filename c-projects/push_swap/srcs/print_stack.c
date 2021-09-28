@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:22:50 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 23:46:59 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/27 18:06:44 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void	print_stack(t_list *a, t_list *b)
 			b = b->next;
 	}
 	write(1, "--- ---\n", 8);
-	write(1, " a   b \n\n", 9);
+	write(1, " A   B \n\n", 9);
 }
