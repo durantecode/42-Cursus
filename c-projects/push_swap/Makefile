@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 13:06:54 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/27 20:37:28 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/28 22:40:28 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIBFT = libft
 RM = rm -rf
 MAKE = make
 DEBUG = -g -fsanitize=address
+TOUCH = touch moves.tmp nums.tmp
 
 # COLORS #
 
@@ -28,16 +29,10 @@ GREEN = \033[0;32m
 YELLOW = \033[0;33m
 NO_COLOR = \033[0m
 
-# TESTS #
-
-1 = 2 1 3 6 5 8
-2 = 87 -487 781 -100 101 0 1
-3 = 123 23 45 73 78 1 79 90 56 789 654 342
-
 # SOURCES & OBJECTS #
 
 SRCS =  srcs/main.c srcs/push_swap.c srcs/push.c srcs/swap.c srcs/rotate.c srcs/rev_rotate.c \
-		srcs/sort_big.c srcs/sort_small.c srcs/error.c srcs/print_stack.c 
+		srcs/simplify_stack.c srcs/sort_big.c srcs/sort_small.c srcs/error.c srcs/print_stack.c 
 		
 OBJS = $(SRCS:.c=.o)
 
@@ -52,22 +47,31 @@ $(NAME): $(OBJS)
 		
 test: all
 		@echo "$(YELLOW) **** RUN TEST PUSH_SWAP **** $(NO_COLOR)"
-		@read -p "Select test number: " test; \
+		@read -p "Select test 100 or 500: " test; \
 		make test_$${test} \
-		
-test_1: all	
-		./push_swap $(1)
-test_2: all
-		./push_swap $(2)
-test_3: all	
-		./push_swap $(3)
-test_4: all
-		./push_swap $(4)
-test_5: all	
-		./push_swap $(5)
-test_6: all
-		./push_swap $(6)
 
+test_100: all 
+		$(TOUCH)
+		@seq -1000 1000 | sort -R | head -n 100 | tr '\n' ' ' > nums.tmp
+		@./push_swap $(shell cat nums.tmp) > moves.tmp
+		@echo "$(GREEN) \nMovements: $(NO_COLOR)";
+		@cat moves.tmp | wc -l | tr -d " ";
+		@echo "$(RED) \nChecker: $(NO_COLOR)";
+		@./push_swap $(shell cat nums.tmp) | ./checker $(shell cat nums.tmp)
+		@rm moves.tmp
+		@rm nums.tmp
+
+test_500: all
+		touch moves.tmp nums.tmp
+		@seq -1000 1000 | sort -R | head -n 500 | tr '\n' ' ' > nums.tmp
+		@./push_swap $(shell cat nums.tmp) > moves.tmp
+		@echo "$(GREEN) \nMovements: $(NO_COLOR)";
+		@cat moves.tmp | wc -l | tr -d " ";
+		@echo "$(RED) \nChecker: $(NO_COLOR)";
+		@./push_swap $(shell cat nums.tmp) | ./checker $(shell cat nums.tmp)
+		@rm moves.tmp
+		@rm nums.tmp
+			 
 normi:  
 		norminette -R CheckForbiddenSourceHeaders libft/*.c libft/*.h srcs/*.c includes/*.h 
 
@@ -83,4 +87,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean fclean test normi
+.PHONY: all re clean fclean test test_100 test_500 normi

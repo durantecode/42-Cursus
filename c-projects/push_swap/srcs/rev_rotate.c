@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 19:11:49 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 21:20:25 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:55:16 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_list	*ft_lstprev(t_list *src)
 }
 
 /*  Rotates the list passed as argument,
-shifts down all elements of stack a by 1. 
+shifts down all elements of stack by 1. 
 The last element becomes the first one. */
 
 int	rev_rotate(t_list **src)
