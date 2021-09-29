@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 19:11:49 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 12:55:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:24:09 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,38 @@
 /* Iterates the list passed till the previous to last
 value and returns it */
 
-t_list	*ft_lstprev(t_list *src)
+t_list	*ft_lstprev(t_list *stack)
 {
 	int	size;
 	int	i;
 
 	i = 1;
-	size = ft_lstsize(src);
-	if (src == NULL)
+	size = ft_lstsize(stack);
+	if (stack == NULL)
 		return (NULL);
 	while (i < size - 1)
 	{
-		src = src->next;
+		stack = stack->next;
 		i++;
 	}
-	return (src);
+	return (stack);
 }
 
 /*  Rotates the list passed as argument,
 shifts down all elements of stack by 1. 
 The last element becomes the first one. */
 
-int	rev_rotate(t_list **src)
+int	rev_rotate(t_list **stack)
 {
 	t_list	*prev;
 	t_list	*first;
 
-	if (*src == NULL || ft_lstsize(*src) < 2)
+	if (*stack == NULL || ft_lstsize(*stack) < 2)
 		return (0);
-	first = *src;
-	prev = ft_lstprev(*src);
-	*src = ft_lstlast(*src);
-	(*src)->next = first;
+	first = *stack;
+	prev = ft_lstprev(*stack);
+	*stack = ft_lstlast(*stack);
+	(*stack)->next = first;
 	prev->next = NULL;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 10:20:45 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 21:23:54 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:33:53 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /* Deletes the head node from the list passed */
 
-void	delete_node(t_list **src)
+void	delete_node(t_list **stack)
 {
 	t_list	*aux;
 
-	aux = *src;
-	*src = (*src)->next;
+	aux = *stack;
+	*stack = (*stack)->next;
 	free(aux->content);
 	free(aux);
 }
@@ -27,12 +27,12 @@ void	delete_node(t_list **src)
 /* If there's no list, creates it and adds the first value
 if it already exists, adds it to the top */
 
-void	push(t_list **src, int n)
+void	push(t_list **stack, int n)
 {
-	if (!src)
-		*src = ft_new_stack((void *) &n, sizeof(int));
+	if (!stack)
+		*stack = ft_new_stack((void *) &n, sizeof(int));
 	else
-		ft_lstadd_front(src, ft_new_stack((void *) &n, sizeof(int)));
+		ft_lstadd_front(stack, ft_new_stack((void *) &n, sizeof(int)));
 }
 
 /* Executes push_a or push_b depending on the parameter

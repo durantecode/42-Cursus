@@ -6,11 +6,13 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 13:31:36 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 20:48:26 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 22:54:05 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/* Create the stack with the content passed as parameter */
 
 t_list	*ft_new_stack(void *content, size_t size)
 {
@@ -32,6 +34,9 @@ t_list	*ft_new_stack(void *content, size_t size)
 	return (stack);
 }
 
+/* Initialice the stack A and then keeps adding numbers
+using the function lst_add_back */
+
 void	init_stack(t_list **a, long n)
 {
 	t_list	*aux;
@@ -45,6 +50,8 @@ void	init_stack(t_list **a, long n)
 	}
 	ft_lstadd_back(a, ft_new_stack((void *) &n, sizeof(int)));
 }
+
+/* Checks if the values passed as argument are correct */
 
 int	ft_check_num(t_list **a, char *argv)
 {
@@ -64,6 +71,10 @@ int	ft_check_num(t_list **a, char *argv)
 		ft_error(a);
 	return (n);
 }
+
+/* Checks if the numbers passed as parameter are in a single argument
+then calls check_num and if it's correct initializes the stack adding
+numbers on each round */
 
 void	get_numbers(char *argv, t_list **a)
 {
@@ -99,4 +110,5 @@ int	main(int argc, char **argv)
 	}
 	push_swap(&a, &b);
 	ft_exit(&a, &b);
+	return (0);
 }

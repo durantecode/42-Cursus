@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 17:04:34 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 21:18:33 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:24:40 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 shifts up all elements of stack a by 1. 
 The first element becomes the last one. */
 
-int	rotate(t_list **src)
+int	rotate(t_list **stack)
 {
 	t_list	*first;
 
-	if (*src == NULL || ft_lstsize(*src) < 2)
+	if (*stack == NULL || ft_lstsize(*stack) < 2)
 		return (0);
-	first = *src;
-	*src = first->next;
-	ft_lstlast(*src)->next = first;
+	first = *stack;
+	*stack = first->next;
+	ft_lstlast(*stack)->next = first;
 	first->next = NULL;
 	return (1);
 }

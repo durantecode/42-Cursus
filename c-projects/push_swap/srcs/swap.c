@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 10:24:04 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/22 21:25:47 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:34:42 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /* Swaps the first 2 elements at the top of stack 
 passed as parameter */
 
-int	swap(t_list **src)
+int	swap(t_list **stack)
 {
 	void	*aux;
 
-	if (*src == NULL || ft_lstsize(*src) < 2)
+	if (*stack == NULL || ft_lstsize(*stack) < 2)
 		return (0);
-	aux = (*src)->content;
-	(*src)->content = (*src)->next->content;
-	(*src)->next->content = aux;
+	aux = (*stack)->content;
+	(*stack)->content = (*stack)->next->content;
+	(*stack)->next->content = aux;
 	return (1);
 }
 

@@ -6,11 +6,13 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 21:57:04 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 20:22:46 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 19:05:26 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/* Checks if the stack passed as parameter is sorted */
 
 int	is_sorted(t_list **a, int length)
 {
@@ -31,6 +33,10 @@ int	is_sorted(t_list **a, int length)
 	}
 	return (1);
 }
+
+/* Starts the push_swap, first it checks if the numbers are
+already sorted, then simplifies the stack and calls small or big
+depending on the size of the stack */
 
 int	push_swap(t_list **a, t_list **b)
 {

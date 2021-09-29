@@ -6,11 +6,13 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 17:23:14 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 17:23:31 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:59:03 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/* Sorts the array list passed as parameter */
 
 int	*sort_array(int *array, int length)
 {
@@ -35,6 +37,8 @@ int	*sort_array(int *array, int length)
 	}
 	return (array);
 }
+
+/* Rewrites stack A with the values "simplified" as we iterate the array */
 
 t_list	**rewrite_stack(t_list **a, int *not_sorted, int *array, int length)
 {
@@ -62,6 +66,11 @@ t_list	**rewrite_stack(t_list **a, int *not_sorted, int *array, int length)
 	free(not_sorted);
 	return (a);
 }
+
+/* Function used to simplify the stack with more "usable" numbers
+Iterates the list and passes all the values into an int array, then
+we copy this array and sort it. This way we end with a sorted array
+and an array with the original "position" of the numbers */
 
 void	simplify_stack(t_list **a, t_list **b, int length)
 {

@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 13:06:54 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/28 22:40:28 by ldurante         ###   ########.fr        #
+#    Updated: 2021/09/30 01:17:39 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ HEADER = includes
 LIBFT = libft
 RM = rm -rf
 MAKE = make
-DEBUG = -g -fsanitize=address
-TOUCH = touch moves.tmp nums.tmp
+DEBUG = -g3 -fsanitize=address
 
 # COLORS #
 
@@ -44,39 +43,32 @@ $(NAME): $(OBJS)
 		 $(MAKE) all -C $(LIBFT)
 		 $(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
 	 	 @echo "$(GREEN) **** PUSH_SWAP COMPILED **** $(NO_COLOR)"
-		
-test: all
-		@echo "$(YELLOW) **** RUN TEST PUSH_SWAP **** $(NO_COLOR)"
-		@read -p "Select test 100 or 500: " test; \
-		make test_$${test} \
 
-test_100: all 
-		$(TOUCH)
-		@seq -1000 1000 | sort -R | head -n 100 | tr '\n' ' ' > nums.tmp
+# Generates "n" random integers between -10000 and 10000 and copies them into nums.tmp #
+
+nums: all 
+		@touch moves.tmp nums.tmp
+		@echo "$(YELLOW) **** Generate random numbers **** $(NO_COLOR)"
+		@read -p "How many numbers: " n; \
+		seq -10000 10000 | sort -R | head -n $${n} | tr '\n' ' ' > nums.tmp
+
+push:
 		@./push_swap $(shell cat nums.tmp) > moves.tmp
-		@echo "$(GREEN) \nMovements: $(NO_COLOR)";
+		@cat moves.tmp
+		@echo "$(GREEN) \nMOVEMENTS: $(NO_COLOR)";
 		@cat moves.tmp | wc -l | tr -d " ";
-		@echo "$(RED) \nChecker: $(NO_COLOR)";
-		@./push_swap $(shell cat nums.tmp) | ./checker $(shell cat nums.tmp)
+		@echo "$(RED) \nCHECKER: $(NO_COLOR)";
+		@./push_swap $(shell cat nums.tmp) | ./checker $(shell cat nums.tmp);
 		@rm moves.tmp
 		@rm nums.tmp
-
-test_500: all
-		touch moves.tmp nums.tmp
-		@seq -1000 1000 | sort -R | head -n 500 | tr '\n' ' ' > nums.tmp
-		@./push_swap $(shell cat nums.tmp) > moves.tmp
-		@echo "$(GREEN) \nMovements: $(NO_COLOR)";
-		@cat moves.tmp | wc -l | tr -d " ";
-		@echo "$(RED) \nChecker: $(NO_COLOR)";
-		@./push_swap $(shell cat nums.tmp) | ./checker $(shell cat nums.tmp)
-		@rm moves.tmp
-		@rm nums.tmp
-			 
+	 
 normi:  
 		norminette -R CheckForbiddenSourceHeaders libft/*.c libft/*.h srcs/*.c includes/*.h 
 
 clean:
 		 $(RM) $(OBJS)
+		 $(RM) moves.tmp
+		 $(RM) nums.tmp
 		 $(MAKE) clean -C $(LIBFT)
 		 @echo "$(RED) **** CLEAN DONE **** $(NO_COLOR)"
 
@@ -87,4 +79,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean fclean test test_100 test_500 normi
+.PHONY: all re clean fclean nums push normi

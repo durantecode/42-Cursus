@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 13:33:13 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 20:23:06 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 22:59:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-# include <unistd.h>
 # include <stdio.h>
-# include <sys/types.h>
-# include <fcntl.h>
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648

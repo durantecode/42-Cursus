@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 17:35:33 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 16:23:10 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/29 19:08:33 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	ft_exit(t_list **a, t_list **b)
 	exit(0);
 }
 
-/* Error management function, gets a value in e when called
-and prints the error. */
+/* Prints error and quit the program */
 
 void	ft_error(t_list **a)
 {

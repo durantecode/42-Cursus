@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 02:29:25 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/28 01:54:53 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/30 01:19:28 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	sort_four(t_list **a, t_list **b, int length)
 {
 	while (*(int *)(*a)->content != 3)
 		ft_rotate(a, b, 'a');
-	if (*(int *)(*a)->content == 3)
-		ft_push(a, b, 'b');
+	ft_push(a, b, 'b');
 	sort_three(a, b);
 	ft_push(a, b, 'a');
 	ft_rotate(a, b, 'a');
@@ -72,6 +71,9 @@ void	sort_five(t_list **a, t_list **b, int length)
 	ft_rotate(a, b, 'a');
 	ft_rotate(a, b, 'a');
 }
+
+/* Sorts small stacks from 2 - 5 elements, calls the required
+function depending on the size of the stack */
 
 void	sort_small_stack(t_list **a, t_list **b, int length)
 {
