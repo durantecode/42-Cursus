@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 02:29:25 by ldurante          #+#    #+#             */
-/*   Updated: 2021/09/30 01:19:28 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:57:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ function depending on the size of the stack */
 void	sort_small_stack(t_list **a, t_list **b, int length)
 {
 	if (length == 2)
-	{
-		if (*(int *)(*a)->content > *(int *)(*a)->next->content)
-			ft_swap(a, b, 'a');
-	}
+		ft_swap(a, b, 'a');
 	else if (length == 3)
 		sort_three(a, b);
 	else if (length == 4)
