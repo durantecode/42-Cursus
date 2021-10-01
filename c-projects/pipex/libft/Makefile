@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 16:59:01 by ldurante          #+#    #+#              #
-#    Updated: 2021/07/14 01:23:03 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/01 02:31:32 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,43 +18,47 @@ HEADER = libft.h
 CC = gcc
 RM = rm -f
 AR = ar rcs
+PRINTF = ft_printf
+
+# COLORS #
+
 RED = \033[0;31m
 GREEN = \033[0;32m
+MAGENTA = \033[0;35m
 NO_COLOR = \033[0m
 
-# MANDATORY FUNCTIONS #
+# SOURCES & OBJECTS #
 
-SRCS_M = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c ft_memcmp.c \
+SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c ft_memcmp.c \
 		 ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strnstr.c ft_strncmp.c \
 		 ft_atoi.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c \
 		 ft_tolower.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c \
 		 ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_split.c \
-
-# BONUS FUNCTIONS #
-
-SRCS_B = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+		 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 		 ft_lstclear.c ft_lstiter.c ft_lstmap.c \
+		 get_next_line.c \
 
-OBJS_M = $(SRCS_M:.c=.o)
-OBJS_B = $(SRCS_B:.c=.o)
+OBJS = $(SRCS:.c=.o)
+OBJS_PF = ft_printf/*.o
 
-$(NAME):	$(SRCS_M)
-			$(CC) $(FLAGS) -I $(HEADER) -c $(SRCS_M)
-			$(AR) $(NAME) $(OBJS_M)
-			@echo "$(GREEN) **** LIBFT COMPILED **** $(NO_COLOR)"
+# RULES #
 
-bonus: 		$(NAME)
-			$(CC) $(FLAGS) -I $(HEADER) -c $(SRCS_B)
-			$(AR) $(NAME) $(OBJS_B)
-			@echo "$(GREEN) **** BONUS DONE **** $(NO_COLOR)"
+$(NAME): $(SRCS)
+		 @echo "$(MAGENTA) **** Compiling Libft... **** $(NO_COLOR)"
+		 @make -s all -C $(PRINTF)
+		 @$(CC) $(FLAGS) -I $(HEADER) -c $(SRCS)
+		 @$(AR) $(NAME) $(OBJS) $(OBJS_PF)
+		 @echo "$(GREEN) ✔️ $(NO_COLOR)"
 
 all: $(NAME)
-	 
+ 
 clean:
-	$(RM) $(OBJS_M) $(OBJS_B)
+		@make clean -C $(PRINTF)
+		@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+		@$(RM) ft_printf/ft_printf.a
+		@$(RM) $(NAME)
 
 re: fclean all
 

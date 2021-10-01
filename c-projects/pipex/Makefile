@@ -6,24 +6,28 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/13 22:07:55 by ldurante          #+#    #+#              #
-#    Updated: 2021/07/14 01:43:22 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/01 02:33:08 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLE DECLARATIONS #
 
-NAME = pipex.a
+NAME = pipex
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 HEADER = includes
 LIBFT = libft
 RM = rm -f
-AR = ar rcs
 MAKE = make
+
+# COLORS #
 
 RED = \033[0;31m
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
+GREY = \033[2;37m
+MAGENTA = \033[0;35m
+CURSIVE = \033[3m
 NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
@@ -37,26 +41,28 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 	
 $(NAME): $(OBJS) 
-		 $(MAKE) all -C $(LIBFT)
-		 cp libft/libft.a $(NAME)
-		 $(AR) $(NAME) $(OBJS)
-		 $(CC) $(FLAGS) -I $(HEADER) $(NAME) -o pipex
-	 	 @echo "$(GREEN) **** PIPEX COMPILED **** $(NO_COLOR)"
+		 @$(MAKE) -s all -C $(LIBFT)
+	 	 @echo "$(GREY) **** Compiling Pipex... **** $(NO_COLOR)"
+		 @$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
+		 @echo "$(GREEN) ✔️ $(NO_COLOR)"
 		
 test: 	all
-		@echo "$(YELLOW) **** RUN TEST PIPEX **** $(NO_COLOR)"
-		./pipex
+		@echo "$(YELLOW) **** Running test Pipex **** $(NO_COLOR)"
+		@./pipex
+
+normi:  
+		norminette -R CheckForbiddenSourceHeaders libft/*.c libft/*.h libft/ft_printf/*.c \
+		libft/ft_printf/*.h srcs/*.c includes/*.h
 
 clean:
-		 $(RM) $(OBJS)
-		 $(MAKE) clean -C $(LIBFT)
-		 @echo "$(RED) **** CLEAN DONE **** $(NO_COLOR)"
+		 @$(RM) $(OBJS)
+		 @$(MAKE) clean -C $(LIBFT)
+		 @echo "$(RED) **** Objects files removed **** $(NO_COLOR)"
 
 fclean: clean
-		 $(RM) $(LIBFT)/$(LIBFT).a
-		 $(RM) $(NAME)
-		 $(RM) pipex
-		 @echo "$(RED) **** FCLEAN DONE **** $(NO_COLOR)"
+		 @$(RM) $(LIBFT)/$(LIBFT).a
+		 @$(RM) $(NAME)
+		 @echo "$(RED) **** Fclean done **** $(NO_COLOR)"
 
 re: fclean all
 

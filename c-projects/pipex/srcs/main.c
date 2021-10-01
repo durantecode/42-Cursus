@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/07/14 17:16:36 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/01 02:15:56 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 				close(fd[0]);
 
 				/* Send "string" through the output side of pipe */
-				write(fd[1], string, (strlen(string)+1));
+				write(fd[1], str, (strlen(str)+1));
 				exit(0);
 		}
 		else
@@ -47,6 +47,6 @@ int main(int argc, char **argv)
 				nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
 				printf("Received string: %s", readbuffer);
 		}
-		
+		ft_printf("O");
 		return(0);
 }
