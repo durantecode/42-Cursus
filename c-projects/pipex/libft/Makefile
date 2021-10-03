@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 16:59:01 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/01 02:31:32 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/03 16:01:23 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ clean:
 		@$(RM) $(OBJS)
 
 fclean: clean
-		@$(RM) ft_printf/ft_printf.a
 		@$(RM) $(NAME)
 
 re: fclean all
