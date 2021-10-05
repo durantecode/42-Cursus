@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/01 02:15:56 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:29:34 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int main(int argc, char **argv)
 				nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
 				printf("Received string: %s", readbuffer);
 		}
-		ft_printf("O");
 		return(0);
 }

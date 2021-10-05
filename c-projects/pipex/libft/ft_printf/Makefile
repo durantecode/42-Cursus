@@ -6,15 +6,9 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 13:00:07 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/01 02:21:18 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/05 18:30:14 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# VARIABLE DECLARATIONS #
-
-NAME = ft_printf.a
-FLAGS = -Wall -Werror -Wextra
-RM = rm -f
 
 # SOURCES & OBJECTS #
 
@@ -35,13 +29,9 @@ OBJS = $(SRCS:.c=.o)
 
 # RULES #
 
-all: $(NAME)
-
-$(NAME): $(OBJS) 
+all: $(OBJS) 
 				 
 clean:
-		 @$(RM) $(OBJS)
+	 @rm -f $(OBJS)
 
-re: clean all
-
-.PHONY: all re clean
+.PHONY: all clean
