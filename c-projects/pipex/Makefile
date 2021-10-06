@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/13 22:07:55 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/01 02:33:08 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/06 10:48:30 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(NAME): $(OBJS)
 		 @$(MAKE) -s all -C $(LIBFT)
 	 	 @echo "$(GREY) **** Compiling Pipex... **** $(NO_COLOR)"
 		 @$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
-		 @echo "$(GREEN) ✔️ $(NO_COLOR)"
+		 @echo "$(GREEN) ✔ $(NO_COLOR)"
 		
 test: 	all
 		@echo "$(YELLOW) **** Running test Pipex **** $(NO_COLOR)"

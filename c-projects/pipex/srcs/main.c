@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/05 18:29:34 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/06 18:45:11 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,42 @@
 
 int main(int argc, char **argv)
 {
-		int     fd[2], nbytes;
+		int     fd[2];
+		int		fd2;
 		pid_t   childpid;
-		char	*str;
-		char    readbuffer[80];
+		char    buff[80];
+		int status;
 
 		pipe(fd);
-		fd[0] = open("file1", O_RDONLY);
-		nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
+		childpid = fork();
 		
-		if((childpid = fork()) == -1)
+		if (childpid == 0)
 		{
-				perror("fork");
-				exit(1);
-		}
-
-		if(childpid == 0)
-		{
-				/* Child process closes up input side of pipe */
-				close(fd[0]);
-
-				/* Send "string" through the output side of pipe */
-				write(fd[1], str, (strlen(str)+1));
-				exit(0);
+			close(fd[READ_END]);
+			fd2 = open("file1", O_RDONLY);
+			dup2(fd2, STDIN_FILENO);
+			close(fd2);
+			dup2(fd[WRITE_END], STDOUT_FILENO);
+			execlp("/usr/bin/grep", "grep", "5", NULL);
+			close(fd[WRITE_END]);
 		}
 		else
 		{
-				/* Parent process closes up output side of pipe */
-				close(fd[1]);
-
-				/* Read in a string from the pipe */
-				nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
-				printf("Received string: %s", readbuffer);
+			close(fd[WRITE_END]);
+			childpid = fork();
+			if (childpid == 0)
+			{
+				fd2 = open("file2", O_WRONLY);
+				dup2(fd[READ_END], STDIN_FILENO);
+          		close(fd[READ_END]);
+				
+				dup2(fd2, STDOUT_FILENO);
+				execlp("/usr/bin/wc", "wc", "-w", NULL);
+			}
+			else
+				close(fd[READ_END]); 
 		}
+		// wait(&status);   
+   		// wait(&status);   
 		return(0);
 }

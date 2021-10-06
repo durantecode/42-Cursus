@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:11:25 by ldurante          #+#    #+#             */
-/*   Updated: 2021/07/14 11:30:36 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/06 15:27:58 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdio.h>
 # include <sys/types.h>
 # include <fcntl.h>
+
+#define READ_END    0    /* Pipe end Read */
+#define WRITE_END   1    /* Pipe end Write */
 
 int		main(int argc, char **argv);
 

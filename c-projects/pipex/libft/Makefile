@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 16:59:01 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/05 01:49:11 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/06 10:49:10 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(NAME): $(SRCS)
 		 @make -s all -C $(PRINTF)
 		 @$(CC) $(FLAGS) -I $(HEADER) -c $(SRCS)
 		 @$(AR) $(NAME) $(OBJS) $(OBJS_PF)
-		 @echo "$(GREEN) ✔️ $(NO_COLOR)"
+		 @echo "$(GREEN) ✔ $(NO_COLOR)"
 
 all: $(NAME)
  
