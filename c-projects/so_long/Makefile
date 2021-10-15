@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 00:05:22 by ldurante          #+#    #+#              #
-#    Updated: 2021/09/14 16:26:19 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/15 11:43:19 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 	
 $(NAME): $(OBJS)
-		 $(MAKE) all -C $(LIBFT)
+		 $(MAKE) -s all -C $(LIBFT)
 		 $(CC) $(FLAGS) $(OBJS) libft/libft.a $(MLX_LINK) -o $(NAME)
 	 	 @echo "$(GREEN) **** SO_LONG COMPILED **** $(NO_COLOR)"
 		
