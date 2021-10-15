@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/15 12:22:28 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/15 16:59:49 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_exit(t_pgm *pgm, char *message, char *result)
 	ft_putendl_fd(result, 2);
 	if (pgm->split_path)
 		free_matrix(pgm->split_path);
-	if (pgm->cmd)
-		free_matrix(pgm->cmd);
+	close(STDOUT_FILENO);
+	close(STDIN_FILENO);
 	exit (0);
 }
 
@@ -44,7 +44,7 @@ void	get_path(t_pgm *pgm, char **env)
 
 	i = 0;
 	path_ok = 0;
-	while (env[i] != '\0')
+	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
 		{
@@ -65,22 +65,16 @@ void	get_path(t_pgm *pgm, char **env)
 	}
 }
 
-void	leaks(void)
-{
-	system("leaks pipex");
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_pgm	pgm;
 
-	// atexit(leaks);
 	if (argc != 5)
 		ft_exit(&pgm, "usage: ./pipex infile cmd1 cmd2 outfile", "");
 	get_path(&pgm, env);
 	pipex(&pgm, argv, env);
 	close(pgm.fd_infile);
 	close(pgm.fd_outfile);
-	// while(1);
+	exit (0);
 	return (0);
 }

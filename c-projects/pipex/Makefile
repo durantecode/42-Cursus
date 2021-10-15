@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/13 22:07:55 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/15 12:30:51 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/15 16:59:17 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,10 @@ OBJS_UTILS = $(SRCS_UTILS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_UTILS)
-	 	 @echo "$(GREY) **** Compiling Pipex... **** $(NO_COLOR)"
+		 @echo "$(MAGENTA) **** Creating Objects... **** $(NO_COLOR)"
+	 	 @echo "$(GREEN) ✔ $(NO_COLOR)"
 	 	 @$(CC) $(FLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME)
+		 @echo "$(GREY) **** Compiling Pipex... **** $(NO_COLOR)"
 	 	 @echo "$(GREEN) ✔ $(NO_COLOR)"
 		
 test:   all
@@ -52,8 +54,7 @@ test:   all
 		./pipex file1 "ls -l" "wc -l" file2
 
 normi:  
-		norminette -R CheckForbiddenSourceHeaders libft/*.c libft/*.h libft/ft_printf/*.c \
-		libft/ft_printf/*.h srcs/*.c includes/*.h
+		norminette -R CheckForbiddenSourceHeaders srcs/*.c srcs_utils/*.c includes/*.h
 
 clean:
 		@clear
@@ -66,4 +67,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean fclean test
+.PHONY: all re clean fclean print test
+
+.SILENT: $(OBJS) $(OBJS_UTILS)
