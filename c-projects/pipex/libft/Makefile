@@ -6,19 +6,15 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 16:59:01 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/06 10:49:10 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/13 01:46:21 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLE DECLARATIONS #
 
 NAME = libft.a
-FLAGS = -Wall -Werror -Wextra
-HEADER = libft.h
-CC = gcc
 RM = rm -f
 AR = ar rcs
-PRINTF = ft_printf
 
 # COLORS #
 
@@ -38,23 +34,22 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 		 ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 		 get_next_line.c \
 
+SRCS_PF = ft_printf/ft_printf.c ft_printf/check_format.c ft_printf/check_flags.c ft_printf/type_c.c \
+		  ft_printf/type_s.c ft_printf/type_p.c ft_printf/type_diu.c ft_printf/type_x.c ft_printf/width_no_precision.c \
+		  ft_printf/width_precision.c ft_printf/base_hex_functions.c ft_printf/ft_uitoa.c \
+
 OBJS = $(SRCS:.c=.o)
-OBJS_PF = ft_printf/*.o
+OBJS_PF = $(SRCS_PF:.c=.o)
 
 # RULES #
 
-$(NAME): $(SRCS)
+all: $(OBJS) $(OBJS_PF)
 		 @echo "$(MAGENTA) **** Compiling Libft... **** $(NO_COLOR)"
-		 @make -s all -C $(PRINTF)
-		 @$(CC) $(FLAGS) -I $(HEADER) -c $(SRCS)
 		 @$(AR) $(NAME) $(OBJS) $(OBJS_PF)
 		 @echo "$(GREEN) ✔ $(NO_COLOR)"
 
-all: $(NAME)
- 
 clean:
-		@make clean -C $(PRINTF)
-		@$(RM) $(OBJS)
+		@$(RM) $(OBJS) $(OBJS_PF)
 
 fclean: clean
 		@$(RM) $(NAME)

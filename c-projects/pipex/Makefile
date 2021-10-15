@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/13 22:07:55 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/06 10:48:30 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/15 02:39:33 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ HEADER = includes
 LIBFT = libft
 RM = rm -f
 MAKE = make
+DEBUG = -g3 -fsanitize=address
 
 # COLORS #
 
@@ -32,37 +33,39 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c srcs/pipex.c
 
 OBJS = $(SRCS:.c=.o)
 
 # RULES #
 
 all: $(NAME)
-	
-$(NAME): $(OBJS) 
-		 @$(MAKE) -s all -C $(LIBFT)
+
+$(NAME): $(OBJS)
+		 @clear
+	 	 @$(MAKE) -s all -C $(LIBFT)
 	 	 @echo "$(GREY) **** Compiling Pipex... **** $(NO_COLOR)"
-		 @$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
-		 @echo "$(GREEN) ✔ $(NO_COLOR)"
+	 	 @$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
+	 	 @echo "$(GREEN) ✔ $(NO_COLOR)"
 		
-test: 	all
+test:   all
 		@echo "$(YELLOW) **** Running test Pipex **** $(NO_COLOR)"
-		@./pipex
+		./pipex file1 "ls -l" "wc -l" file2
 
 normi:  
 		norminette -R CheckForbiddenSourceHeaders libft/*.c libft/*.h libft/ft_printf/*.c \
 		libft/ft_printf/*.h srcs/*.c includes/*.h
 
 clean:
-		 @$(RM) $(OBJS)
-		 @$(MAKE) clean -C $(LIBFT)
-		 @echo "$(RED) **** Objects files removed **** $(NO_COLOR)"
+		@clear
+		@$(RM) $(OBJS)
+		@$(MAKE) clean -C $(LIBFT)
+		@echo "$(RED) **** Objects files removed **** $(NO_COLOR)"
 
 fclean: clean
-		 @$(RM) $(LIBFT)/$(LIBFT).a
-		 @$(RM) $(NAME)
-		 @echo "$(RED) **** Fclean done **** $(NO_COLOR)"
+		@$(RM) $(LIBFT)/$(LIBFT).a
+		@$(RM) $(NAME)
+		@echo "$(RED) **** Fclean done **** $(NO_COLOR)"
 
 re: fclean all
 
