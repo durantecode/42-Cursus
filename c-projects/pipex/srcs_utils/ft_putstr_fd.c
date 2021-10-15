@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 09:49:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/08 10:00:25 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/12 19:34:32 by ldurante          #+#    #+#             */
+/*   Updated: 2021/10/15 11:50:23 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/* Outputs the string ’s’ to the given file
+descriptor. */
 
-int	ft_tolower(int c)
+#include "../includes/pipex.h"
+
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	else
-		return (c);
+	if (s != NULL)
+		write(fd, s, ft_strlen(s));
 }

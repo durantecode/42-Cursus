@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 17:59:53 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/06 19:31:30 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/12 19:37:39 by ldurante          #+#    #+#             */
+/*   Updated: 2021/10/15 11:50:10 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/* Outputs the string ’s’ to the given file
+descriptor, followed by a newline. */
 
-void	*ft_memset(void *b, int c, size_t len)
+#include "../includes/pipex.h"
+
+void	ft_putendl_fd(char *s, int fd)
 {
-	unsigned char	*ptr;
-
-	ptr = b;
-	while (len-- > 0)
-		*ptr++ = c;
-	return (b);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/13 12:50:46 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/13 18:17:17 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/12 16:49:31 by ldurante          #+#    #+#             */
+/*   Updated: 2021/10/15 11:51:26 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Applies the function ’f’ to each character of the
-** string ’s’ to create a new string (with malloc(3))
-** resulting from successive applications of ’f’.
-*/
+/* Allocates (with malloc(3)) and returns a new
+string, which is the result of the concatenation
+of ’s1’ and ’s2’. */
 
-#include "libft.h"
+#include "../includes/pipex.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
 	char	*str;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (!s)
+	j = 0;
+	if (!s1 || !s2)
 		return (NULL);
-	str = (char *) malloc(ft_strlen(s) + 1);
+	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
 		return (NULL);
-	while (s[i] != '\0')
+	while (s1[i] != '\0')
 	{
-		str[i] = f(i, s[i]);
+		str[i] = s1[i];
 		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
 	}
 	str[i] = '\0';
 	return (str);

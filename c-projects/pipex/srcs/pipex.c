@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:29 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/15 02:40:05 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/15 12:18:51 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	child(t_pgm *pgm, char **argv, char **env)
 	if ((execve(pgm->cmd_path, pgm->cmd, env)) == -1)
 	{
 		free(pgm->cmd_path);
-		free_matrix(pgm->cmd);
 		ft_exit(pgm, "command not found: ", pgm->cmd[0]);
 	}
 }
@@ -68,7 +67,6 @@ void	parent(t_pgm *pgm, char **argv, char **env, int pid)
 		if ((execve(pgm->cmd_path, pgm->cmd, env)) == -1)
 		{
 			free(pgm->cmd_path);
-			free_matrix(pgm->cmd);
 			ft_exit(pgm, "command not found: ", pgm->cmd[0]);
 		}
 	}

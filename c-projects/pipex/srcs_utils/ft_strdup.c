@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 19:34:32 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/13 17:30:53 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/09 10:51:09 by ldurante          #+#    #+#             */
+/*   Updated: 2021/10/15 11:57:58 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Outputs the string ’s’ to the given file
-descriptor. */
+#include "../includes/pipex.h"
 
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strdup(const char *s1)
 {
-	if (s != NULL)
-		write(fd, s, ft_strlen(s));
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	ptr = (char *)malloc(ft_strlen(s1) + 1);
+	if (!ptr)
+		return (NULL);
+	else
+	{
+		while (s1[i] != '\0')
+		{
+			ptr[i] = s1[i];
+			i++;
+		}
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

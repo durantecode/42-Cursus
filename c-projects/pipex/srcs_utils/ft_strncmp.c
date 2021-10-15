@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 11:24:01 by ldurante          #+#    #+#             */
-/*   Updated: 2021/04/22 17:21:05 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/07 15:32:43 by ldurante          #+#    #+#             */
+/*   Updated: 2021/10/15 11:51:39 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/pipex.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		x;
-	int		len;
+	unsigned char	*a;
+	unsigned char	*b;
 
-	x = 0;
-	len = ft_strlen(s);
-	while (len >= 0)
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (n != 0)
 	{
-		if (s[len] == (char)c)
-			return ((char *)s + len);
-		len--;
+		if (*a != *b)
+			return (*a - *b);
+		if (*a == 0)
+			return (0);
+		a++;
+		b++;
+		n--;
 	}
-	return (NULL);
+	return (0);
 }

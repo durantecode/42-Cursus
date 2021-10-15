@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/15 02:09:44 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/15 12:22:28 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ void	free_matrix(char **matrix)
 
 void	ft_exit(t_pgm *pgm, char *message, char *result)
 {
-	if (pgm->split_path)
-		free_matrix(pgm->split_path);
 	ft_putstr_fd("pipex: ", 2);
 	ft_putstr_fd(message, 2);
 	ft_putendl_fd(result, 2);
+	if (pgm->split_path)
+		free_matrix(pgm->split_path);
+	if (pgm->cmd)
+		free_matrix(pgm->cmd);
 	exit (0);
 }
 

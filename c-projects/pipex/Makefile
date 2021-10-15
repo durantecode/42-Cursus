@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/13 22:07:55 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/15 02:39:33 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/15 12:30:51 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@
 NAME = pipex
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
-HEADER = includes
-LIBFT = libft
 RM = rm -f
 MAKE = make
 DEBUG = -g3 -fsanitize=address
@@ -34,18 +32,19 @@ NO_COLOR = \033[0m
 # SOURCES & OBJECTS #
 
 SRCS = srcs/main.c srcs/pipex.c
+SRCS_UTILS = srcs_utils/ft_putchar_fd.c srcs_utils/ft_putendl_fd.c srcs_utils/ft_putstr_fd.c srcs_utils/ft_split.c \
+			 srcs_utils/ft_strjoin.c srcs_utils/ft_strncmp.c srcs_utils/ft_strlen.c srcs_utils/ft_strdup.c
 
 OBJS = $(SRCS:.c=.o)
+OBJS_UTILS = $(SRCS_UTILS:.c=.o)
 
 # RULES #
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		 @clear
-	 	 @$(MAKE) -s all -C $(LIBFT)
+$(NAME): $(OBJS) $(OBJS_UTILS)
 	 	 @echo "$(GREY) **** Compiling Pipex... **** $(NO_COLOR)"
-	 	 @$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
+	 	 @$(CC) $(FLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME)
 	 	 @echo "$(GREEN) ✔ $(NO_COLOR)"
 		
 test:   all
@@ -58,12 +57,10 @@ normi:
 
 clean:
 		@clear
-		@$(RM) $(OBJS)
-		@$(MAKE) clean -C $(LIBFT)
+		@$(RM) $(OBJS) $(OBJS_UTILS)
 		@echo "$(RED) **** Objects files removed **** $(NO_COLOR)"
 
 fclean: clean
-		@$(RM) $(LIBFT)/$(LIBFT).a
 		@$(RM) $(NAME)
 		@echo "$(RED) **** Fclean done **** $(NO_COLOR)"
 
