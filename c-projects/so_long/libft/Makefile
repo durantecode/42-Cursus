@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 16:59:01 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/13 01:46:21 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/18 20:24:01 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 
 NAME = libft.a
 RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 
 # COLORS #
