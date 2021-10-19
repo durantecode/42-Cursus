@@ -18,9 +18,11 @@ Started cursus: **05/04/2021**
 |      |[ft_printf](https://github.com/durantecode/42-Cursus/tree/master/c-projects/ft_printf)   			|    C     | ![ldurante's ft_printf Score](https://badge42.herokuapp.com/api/project/ldurante/ft_printf) |
 |      |[Born2beRoot](https://github.com/durantecode/42-Cursus/tree/master/other-projects/Born2beRoot)   			|    n/a     | ![ldurante's B2bR Score](https://badge42.herokuapp.com/api/project/ldurante/Born2beroot) |
 |  02  |[Exam-Rank-02](https://github.com/durantecode/42-Cursus/tree/master/exams/exam-rank-02)   			|    C    | ![ldurante's exam-rank-02's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2002) |
-|      |[so_long](https://github.com/durantecode/42-Cursus/tree/master/c-projects/so_long)   			|    C    | ![ldurante's pipex's Score](https://badge42.herokuapp.com/api/project/ldurante/so_long) |
+|      |[so_long](https://github.com/durantecode/42-Cursus/tree/master/c-projects/so_long)   			|    C    | ![ldurante's so_long's Score](https://badge42.herokuapp.com/api/project/ldurante/so_long) |
 |      |[pipex](https://github.com/durantecode/42-Cursus/tree/master/c-projects/pipex)   			|    C    | ![ldurante's pipex's Score](https://badge42.herokuapp.com/api/project/ldurante/pipex) |
-|      |[push_swap](https://github.com/durantecode/42-Cursus/tree/master/c-projects/push_swap)   			|    C    | ![ldurante's pipex's Score](https://badge42.herokuapp.com/api/project/ldurante/push_swap) |
+|      |[push_swap](https://github.com/durantecode/42-Cursus/tree/master/c-projects/push_swap)   			|    C    | ![ldurante's push_swap Score](https://badge42.herokuapp.com/api/project/ldurante/push_swap) |
+|  03  |[Exam-Rank-03](https://github.com/durantecode/42-Cursus/tree/master/exams/exam-rank-03)   			|    C    | ![ldurante's exam-rank-03's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%30Rank%3003) |
+|      |[philosophers](https://github.com/durantecode/42-Cursus/tree/master/c-projects/philosophers)   			|    C    | ![ldurante's philo Score](https://badge42.herokuapp.com/api/project/ldurante/philosophers) |
 
 
 ## 🗣️ About 42
