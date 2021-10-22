@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/22 15:21:24 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/08 10:46:30 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/08 11:37:36 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "libft.h"
 
-long long	timestamp(void)
+char	*ft_strchr(const char *s, int c)
 {
-	struct timeval	t;
+	int		x;
+	int		len;
 
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
-}
-
-int	main(int argc, char **argv)
-{
-	long long i;
-	long long n;
-
-	int p = i + 200;
-	i = 0;
-	printf("start seconds: %lld\n", i);
-	while(i < 1000)
-	{	
-		n = timestamp();
-		printf("miliseconds: %d\n", p);
-		i++;
+	x = 0;
+	len = ft_strlen(s);
+	while (x < len + 1)
+	{
+		if (s[x] == (char)c)
+			return ((char *)s + x);
+		x++;
 	}
-	return (0);
+	return (NULL);
 }

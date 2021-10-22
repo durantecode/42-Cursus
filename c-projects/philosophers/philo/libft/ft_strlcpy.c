@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/22 15:21:24 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/07 11:47:57 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/08 20:30:41 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "libft.h"
 
-long long	timestamp(void)
+size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
-	struct timeval	t;
+	size_t	i;
 
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
-}
-
-int	main(int argc, char **argv)
-{
-	long long i;
-	long long n;
-
-	int p = i + 200;
 	i = 0;
-	printf("start seconds: %lld\n", i);
-	while(i < 1000)
-	{	
-		n = timestamp();
-		printf("miliseconds: %d\n", p);
+	if (!src || !dest)
+		return (0);
+	if (dstsize == 0)
+	{
+		while (src[i])
+			i++;
+		return (i);
+	}
+	while (i < dstsize - 1 && src[i] != '\0')
+	{
+		dest[i] = src[i];
 		i++;
 	}
-	return (0);
+	if (i < dstsize)
+		dest[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }

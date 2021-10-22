@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/22 15:21:24 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/08 09:31:39 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/08 10:00:44 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "libft.h"
 
-long long	timestamp(void)
+int	ft_isascii(int c)
 {
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
-}
-
-int	main(int argc, char **argv)
-{
-	long long i;
-	long long n;
-
-	int p = i + 200;
-	i = 0;
-	printf("start seconds: %lld\n", i);
-	while(i < 1000)
-	{	
-		n = timestamp();
-		printf("miliseconds: %d\n", p);
-		i++;
-	}
-	return (0);
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }

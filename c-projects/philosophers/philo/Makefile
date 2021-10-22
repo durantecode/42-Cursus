@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:11:44 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/18 20:14:07 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/22 11:46:31 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+#CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 MAKE = make
 DEBUG = -g3 -fsanitize=address
@@ -44,27 +44,27 @@ OBJS_UTILS = $(SRCS_UTILS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_UTILS)
-		 @echo "$(MAGENTA) **** Creating Objects... **** $(NO_COLOR)"
-	 	 @echo "$(GREEN) ✔ $(NO_COLOR)"
-	 	 @$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME)
-		 @echo "$(GREY) **** Compiling Philo... **** $(NO_COLOR)"
-	 	 @echo "$(GREEN) ✔ $(NO_COLOR)"
-		
-test:   all
-		@echo "$(YELLOW) **** Running test Philo **** $(NO_COLOR)"
-		./philo
+	@$(MAKE) -s all -C libft
+	@$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) libft/libft.a -pthread -o $(NAME)
+	@echo "$(GREY) Philo compiled $(GREEN) ✔✔✔ $(NO_COLOR)"
+
+test: all
+	@echo "$(YELLOW) **** Running test Philo **** $(NO_COLOR)"
+	./philo
 
 normi:  
-		norminette -R CheckForbiddenSourceHeaders srcs/*.c srcs_utils/*.c includes/*.h
+	norminette -R CheckForbiddenSourceHeaders srcs/*.c srcs_utils/*.c includes/*.h
 
 clean:
-		@clear
-		@$(RM) $(OBJS) $(OBJS_UTILS)
-		@echo "$(RED) **** Objects files removed **** $(NO_COLOR)"
+	@clear
+	@$(RM) $(OBJS) $(OBJS_UTILS)
+	@$(MAKE) clean -C libft
+	@echo "$(RED) **** Object files removed **** $(NO_COLOR)"
 
 fclean: clean
-		@$(RM) $(NAME)
-		@echo "$(RED) **** Fclean done **** $(NO_COLOR)"
+	@$(RM) $(NAME)
+	@$(RM) libft/libft.a
+	@echo "$(RED) **** Fclean done **** $(NO_COLOR)"
 
 re: fclean all
 

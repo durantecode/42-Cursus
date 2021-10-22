@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/22 15:21:24 by ldurante         ###   ########.fr       */
+/*   Created: 2021/04/14 21:50:53 by ldurante          #+#    #+#             */
+/*   Updated: 2021/04/22 13:37:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+/* Returns the last element of the list */
 
-long long	timestamp(void)
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
-}
-
-int	main(int argc, char **argv)
-{
-	long long i;
-	long long n;
-
-	int p = i + 200;
-	i = 0;
-	printf("start seconds: %lld\n", i);
-	while(i < 1000)
-	{	
-		n = timestamp();
-		printf("miliseconds: %d\n", p);
-		i++;
-	}
-	return (0);
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
