@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 19:10:26 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/21 22:38:30 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/10/25 20:33:33 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 typedef struct s_philo
 {
 	int n_philo;
-	int n_forks;
+	int forks;
 	int to_die;
 	int	to_eat;
 	int to_sleep;
+	int	meals;
 	
 }	t_philo;
 
