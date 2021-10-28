@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:11:44 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/22 11:46:31 by ldurante         ###   ########.fr        #
+#    Updated: 2021/10/26 23:47:32 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = philo
 CC = gcc
-#CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 MAKE = make
 DEBUG = -g3 -fsanitize=address
@@ -45,14 +45,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_UTILS)
 	@$(MAKE) -s all -C libft
-	@$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) libft/libft.a -pthread -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) libft/libft.a -lpthread -o $(NAME)
 	@echo "$(GREY) Philo compiled $(GREEN) ✔✔✔ $(NO_COLOR)"
 
 test: all
 	@echo "$(YELLOW) **** Running test Philo **** $(NO_COLOR)"
-	./philo
+	./philo 5 400 200 200 5
 
-normi:  
+normi:
 	norminette -R CheckForbiddenSourceHeaders srcs/*.c srcs_utils/*.c includes/*.h
 
 clean:
