@@ -6,7 +6,7 @@
 #    By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:11:44 by ldurante          #+#    #+#              #
-#    Updated: 2021/10/26 23:47:32 by ldurante         ###   ########.fr        #
+#    Updated: 2021/11/03 14:19:45 by ldurante         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ NO_COLOR = \033[0m
 
 # SOURCES & OBJECTS #
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c srcs/threads.c
 
 # SRCS_UTILS = srcs_utils/ft_putchar_fd.c srcs_utils/ft_putendl_fd.c srcs_utils/ft_putstr_fd.c srcs_utils/ft_split.c \
 			 srcs_utils/ft_strjoin.c srcs_utils/ft_strncmp.c srcs_utils/ft_strlen.c srcs_utils/ft_strdup.c

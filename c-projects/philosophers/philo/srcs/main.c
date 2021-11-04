@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/28 22:11:38 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/11/04 23:28:38 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,57 +26,28 @@ void	ft_error(char *str)
 	exit (0);
 }
 
-int		parse_arg(t_philo *p, int argc, char **argv)
+int		parse_arg(t_sim *sim, int argc, char **argv)
 {
-	p->n_philo = ft_atoi(argv[1]);
-	p->n_forks = ft_atoi(argv[1]);
-	p->to_die = (long long)ft_atoi(argv[2]);
-	p->to_eat = (long long)ft_atoi(argv[3]);
-	p->to_sleep = (long long)ft_atoi(argv[4]);
-	if (argc == 6)
-		p->n_meals = ft_atoi(argv[5]);
-	return (0);
-}
-
-void	*routine(void *arg_p)
-{
-	t_philo	*p;
-	int i = 0;
-
-	p = (t_philo *) arg_p;
-	// printf("Total Meals: %d\n", p->n_meals);
-	while(i < 100000)
-	{
-		pthread_mutex_lock(&mutex);
-		// p->n_meals++;
-		x++;
-		pthread_mutex_unlock(&mutex);
-		i++;
-	}
-	return (0);
-}
-
-void	create_threads(t_philo *p)
-{
-	pthread_t	philo[p->n_philo];
 	int i;
-	
-	i = 1;
-	pthread_mutex_init(&mutex, NULL);
-	while (i <= p->n_philo)
+
+	sim->n_philo = ft_atoi(argv[1]);
+	sim->to_die = (long long)ft_atoi(argv[2]);
+	sim->to_eat = (long long)ft_atoi(argv[3]);
+	sim->to_sleep = (long long)ft_atoi(argv[4]);
+	sim->n_meals = 0;
+	if (argc == 6)
+		sim->n_meals = ft_atoi(argv[5]);
+	sim->start_time = timestamp();
+	sim->philo_thread = malloc(sizeof(pthread_t) * sim->n_philo);
+	sim->forks = malloc(sizeof(pthread_mutex_t) * sim->n_philo);
+	i = 0;
+	while (i < sim->n_philo)
 	{
-		pthread_create(philo + i, NULL, &routine, &p);
-		printf("Thread Philo %d has started\n", i);
+		if (pthread_mutex_init(&sim->forks[i], NULL))
+			return (1);
 		i++;
 	}
-	i = 1;
-	while (i <= p->n_philo)
-	{
-		pthread_join(philo[p->n_philo], NULL);
-		printf("Thread Philo %d has ended execution\n", i);
-		i++;
-	}
-	pthread_mutex_destroy(&mutex);
+	return (0);
 }
 
 void	check_arg(int argc, char **argv)
@@ -85,7 +56,8 @@ void	check_arg(int argc, char **argv)
 	int j;
 
 	if (argc < 5 || argc > 6)
-		ft_error("philo: usage: n_philo to_die to_eat to_sleep meals");
+		ft_error("philo: usage: [n_philo] [time_to_die] \
+				[time_to_eat] [time_to_sleep] [meals]");
 	i = 1;
 	while (argv[i] != '\0')
 	{
@@ -102,13 +74,23 @@ void	check_arg(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_philo p;
+	t_philo *philo;
+	t_sim	sim;
+	int		i;
 
+	// p.start_time = timestamp();
+	philo = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
+		// return (1);
 	check_arg(argc, argv);
-	parse_arg(&p, argc, argv);
-	create_threads(&p);
-	printf("Total Meals: %d\n", p.n_meals);
-	printf("Total X: %d\n", x);
-	p.start_time = timestamp();
+	parse_arg(&sim, argc, argv);
+	create_threads(philo, &sim);
+	i = 0;
+	while (i < sim.n_philo)
+	{
+		pthread_mutex_destroy(&sim.forks[i]);
+		i++;
+	}
+	// p.end_time = timestamp();
+	// printf("TIME: %lldms\n", p.end_time - p.start_time);
 	return (0);
 }
