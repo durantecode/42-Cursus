@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 18:46:22 by ldurante          #+#    #+#             */
-/*   Updated: 2021/11/04 23:49:16 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/11/06 02:28:30 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,27 @@
 
 void	take_forks(t_philo *philo)
 {
-	// printf("PID: %d\n", p->id);
-	// p->l_fork = (p->id + 1) % p->n_philo;
-	// pthread_mutex_lock(&p[p->id].right_fork);
-	printf("Philo %d has taken a fork\n", philo->id);
-	// pthread_mutex_lock(&p[p->id].left_fork);
-	printf("Philo %d has taken a fork\n", philo->id);
+	pthread_mutex_lock(&philo->sim_state->forks[philo->left_fork]);
+	printf("Philo %d has taken fork n: %d\n", philo->id, philo->left_fork);
+	pthread_mutex_lock(&philo->sim_state->forks[philo->right_fork]);
+	printf("Philo %d has taken fork n: %d\n", philo->id, philo->right_fork);
+	printf("Philo %d is eating\n", philo->id);
+	usleep(200);
+	pthread_mutex_unlock(&philo->sim_state->forks[philo->left_fork]);
+	// printf("Philo %d has dropped fork n: %d\n", philo->id, philo->left_fork);
+	pthread_mutex_unlock(&philo->sim_state->forks[philo->right_fork]);
+	// printf("Philo %d has dropped fork n: %d\n", philo->id, philo->right_fork);
+	usleep(200);
+	// usleep(philo->sim_state->to_sleep * 1000);
 }
 
-void	leave_forks(t_philo *philo)
+void	eat_and_leave_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->sim_state->forks[philo->right_fork]);
-	pthread_mutex_unlock(&philo->sim_state->forks[philo->left_fork]);
+	// pthread_mutex_lock(philo[philo->id].eat);
+	philo->meals_eaten++;
+	// printf("Philo %d is eating\n", philo->id);
+	// usleep(philo->sim_state->to_eat * 1);
+	// pthread_mutex_unlock(philo[philo->id].eat);
 }
 
 void	*routine(void *arg_p)
@@ -33,26 +42,18 @@ void	*routine(void *arg_p)
 	t_philo	*philo;
 
 	philo = (t_philo *) arg_p;
-	int i = 0;
 	while (1)
 	{
-		pthread_mutex_lock(&philo->sim_state->forks[philo->right_fork]);
-		printf("Philo %d has taken a fork\n", philo->id);
-		pthread_mutex_lock(&philo->sim_state->forks[philo->left_fork]);
-		printf("Philo %d has taken a fork\n", philo->id);
-		// pthread_mutex_unlock(&p->fork);
-		// take_forks(p);
-		// leave_forks(philo);
-		// if (p->id == 4)
-		// 	break;
-		i++;
+		take_forks(philo);
+		// printf("Philo %d is eating\n", philo->id);
+		// usleep(philo->sim_state->to_eat * 1000);
+		// eat_and_leave_forks(philo);
 	}
 	return (0);
 }
 
 void	create_threads(t_philo *philo, t_sim *sim)
 {
-	// pthread_t	philo_id;
 	int i;
 
 	i = 0;
@@ -62,6 +63,8 @@ void	create_threads(t_philo *philo, t_sim *sim)
 		philo[i].left_fork = i;
 		philo[i].right_fork = (i + 1) % sim->n_philo;
 		philo[i].sim_state = sim;
+		philo[i].eat = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init(philo[i].eat, NULL);
 		i++;
 	}
 	i = 0;
@@ -70,20 +73,7 @@ void	create_threads(t_philo *philo, t_sim *sim)
 		if ((pthread_create(&sim->philo_thread[i], NULL, &routine, &philo[i])) != 0)
 			ft_error("philo: failed to create threads");
 		pthread_detach(sim->philo_thread[i]);
-		// pthread_mutex_init(&p[i].left_fork, NULL);
-		// pthread_mutex_init(&p[i].right_fork, NULL);
+		usleep(50);
 		i++;
 	}
-	// i = 0;
-	// while (i < p->n_philo)
-	// {
-	// 	if ((pthread_join(philo_id, NULL)) != 0)
-	// 		ft_error("philo: failed to create threads");
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < p[0].n_philo)
-	// 	pthread_mutex_destroy(&p[i++].fork);
-	// pthread_mutex_init(&p->left_fork, NULL);
-	// pthread_mutex_init(&p->right_fork, NULL);
 }

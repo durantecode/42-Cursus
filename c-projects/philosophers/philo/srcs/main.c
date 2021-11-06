@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/11/04 23:28:38 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/11/06 02:25:06 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	main(int argc, char **argv)
 	while (i < sim.n_philo)
 	{
 		pthread_mutex_destroy(&sim.forks[i]);
+		pthread_mutex_destroy(philo[i].eat);
 		i++;
 	}
 	// p.end_time = timestamp();
