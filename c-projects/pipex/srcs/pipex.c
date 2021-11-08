@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:29 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/15 19:36:32 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:51:04 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ void	child(t_pgm *pgm, char **argv, char **env)
 
 void	parent(t_pgm *pgm, char **argv, char **env, int pid)
 {
-	pgm->fd_outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0666);
-	if (pgm->fd_outfile == -1)
-		ft_exit(pgm, "premission denied: ", argv[4]);
 	if (pid == 0)
 	{
 		dup2(pgm->pipe_fd[R_END], STDIN_FILENO);
