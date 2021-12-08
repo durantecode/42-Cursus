@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 22:22:21 by ldurante          #+#    #+#             */
-/*   Updated: 2021/10/15 16:59:49 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:48:13 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int	main(int argc, char **argv, char **env)
 	if (argc != 5)
 		ft_exit(&pgm, "usage: ./pipex infile cmd1 cmd2 outfile", "");
 	get_path(&pgm, env);
+	pgm.fd_outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	if (pgm.fd_outfile == -1)
+		ft_exit(&pgm, "premission denied: ", argv[4]);
 	pipex(&pgm, argv, env);
 	close(pgm.fd_infile);
 	close(pgm.fd_outfile);
