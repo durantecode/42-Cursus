@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exam03.c                                           :+:      :+:    :+:   */
+/*   mini_paint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 00:56:37 by ldurante          #+#    #+#             */
-/*   Updated: 2021/11/26 01:23:52 by ldurante         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:58:35 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ typedef struct draw
 
 int		err_msg(FILE *fd, int err)
 {
-	if (err == 2 && (err = 1))
+	if (err == 2)
+	{
+		err = 1;
 		write(1, "Error: Operation file corrupted\n", 32);
+	}
 	else if (err == 1)
 		write(1, "Error: argument \n", 16);
 	else
@@ -51,7 +54,7 @@ int		err_msg(FILE *fd, int err)
 
 int		main(int ac, char **av)
 {
-	draw	el;
+	draw	draw;
 	FILE	*fd;
 	float	sqr;
 	int		res;
@@ -73,22 +76,22 @@ int		main(int ac, char **av)
 				}
 				while (1)
 				{
-					res = fscanf(fd, "\n%c %f %f %f %c", &el.t, &el.x, &el.y, &el.r, &el.c);
+					res = fscanf(fd, "\n%c %f %f %f %c",  draw.t,  draw.x,  draw.y,  draw.r,  draw.c);
 					if (res == -1)
 						return (err_msg(fd, 0));
-					else if (res != 5 || el.r <= 0 || (el.t != 'c' && el.t != 'C'))
+					else if (res != 5 || draw.r <= 0 ||  draw.t != 'c' && draw.t != 'C')
 						break ;
 					for (int line = 0; line < H; line++)
 					{
 						for (int col = 0; col < W; col++)
 						{
-							sqr = sqrtf((col - el.x) * (col -el.x) + (line - el.y) * (line - el.y));
-							if (sqr <= el.r)
+							sqr = sqrtf((col - draw.x) * (col - draw.x) + (line - draw.y) * (line - draw.y));
+							if (sqr <= draw.r)
 							{
-								if (el.t == 'c' && sqr + 1 > el.r)
-									TAB[line][col] = el.c;
-								else if (el.t == 'C')
-									TAB[line][col] = el.c;
+								if  (draw.t == 'c' && sqr + 1 > draw.r)
+									TAB[line][col] = draw.c;
+								else if  (draw.t == 'C')
+									TAB[line][col] = draw.c;
 							}
 						}
 					}
