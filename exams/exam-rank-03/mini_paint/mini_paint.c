@@ -79,7 +79,7 @@ int		main(int ac, char **av)
 					res = fscanf(fd, "\n%c %f %f %f %c",  draw.t,  draw.x,  draw.y,  draw.r,  draw.c);
 					if (res == -1)
 						return (err_msg(fd, 0));
-					else if (res != 5 || draw.r <= 0 ||  draw.t != 'c' && draw.t != 'C')
+					else if (res != 5 || draw.r <= 0 ||  (draw.t != 'c' && draw.t != 'C'))
 						break ;
 					for (int line = 0; line < H; line++)
 					{
