@@ -22,7 +22,7 @@ Started cursus: **05/04/2021**
 |      |[pipex](https://github.com/durantecode/42-Cursus/tree/master/c-projects/pipex)   			|    C    | ![ldurante's pipex's Score](https://badge42.herokuapp.com/api/project/ldurante/pipex) |
 |      |[push_swap](https://github.com/durantecode/42-Cursus/tree/master/c-projects/push_swap)   			|    C    | ![ldurante's push_swap Score](https://badge42.herokuapp.com/api/project/ldurante/push_swap) |
 |  03  |[Exam-Rank-03](https://github.com/durantecode/42-Cursus/tree/master/exams/exam-rank-03)   			|    C    | ![ldurante's exam-rank-03's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2003) |
-|      |[minishell](https://github.com/durantecode/42-Cursus/tree/master/c-projects/minishell)   			|    C    | ![ldurante's minishell Score](https://badge42.herokuapp.com/api/project/ldurante/push_swap) |
+|      |[minishell](https://github.com/durantecode/42-Cursus/tree/master/c-projects/minishell)   			|    C    | ![ldurante's minishell Score](https://badge42.herokuapp.com/api/project/ldurante/minishell) |
 |      |[philosophers](https://github.com/durantecode/42-Cursus/tree/master/c-projects/philosophers)   			|    C    | ![ldurante's philo Score](https://badge42.herokuapp.com/api/project/ldurante/Philosophers) |
 
 
