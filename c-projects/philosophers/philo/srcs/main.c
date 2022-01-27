@@ -6,7 +6,7 @@
 /*   By: ldurante <ldurante@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 19:15:30 by ldurante          #+#    #+#             */
-/*   Updated: 2021/11/06 02:25:06 by ldurante         ###   ########.fr       */
+/*   Updated: 2022/01/25 00:07:28 by ldurante         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	check_arg(int argc, char **argv)
 	int j;
 
 	if (argc < 5 || argc > 6)
-		ft_error("philo: usage: [n_philo] [time_to_die] \
-				[time_to_eat] [time_to_sleep] [meals]");
+		ft_error("philo: usage: [n_philo] [time_to_die] [time_to_eat] [time_to_sleep] [meals]");
 	i = 1;
 	while (argv[i] != '\0')
 	{
