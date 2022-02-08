@@ -24,6 +24,8 @@ Started cursus: **05/04/2021**
 |  03  |[Exam-Rank-03](https://github.com/durantecode/42-exams/tree/master/exam-rank-03)   			|    C    | ![ldurante's exam-rank-03's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2003) |
 |      |[minishell](https://github.com/durantecode/minishell)   			|    C    | ![ldurante's minishell Score](https://badge42.herokuapp.com/api/project/ldurante/minishell) |
 |      |[philosophers](https://github.com/durantecode/philosophers)   			|    C    | ![ldurante's philo Score](https://badge42.herokuapp.com/api/project/ldurante/Philosophers) |
+|  04  |[Exam-Rank-04](https://github.com/durantecode/42-exams/tree/master/exam-rank-04)   			|    C    | ![ldurante's exam-rank-04's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2004) |
+|      |[Cub3D](https://github.com/durantecode/cub3d)   			|    C    | ![ldurante's cub3d's Score](https://badge42.herokuapp.com/api/project/ldurante/cub3d) |
 
 
 ## 🗣️ About 42
