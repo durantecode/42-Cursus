@@ -26,8 +26,11 @@ Started cursus: **05/04/2021**
 |      |[philosophers](https://github.com/durantecode/philosophers)   			|    C    | ![ldurante's philo Score](https://badge42.herokuapp.com/api/project/ldurante/Philosophers) |
 |  04  |[Exam-Rank-04](https://github.com/durantecode/42-exams/tree/master/exam-rank-04)   			|    C    | ![ldurante's exam-rank-04's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2004) |
 |      |[Cub3D](https://github.com/durantecode/cub3d)   			|    C    | ![ldurante's cub3d's Score](https://badge42.herokuapp.com/api/project/ldurante/cub3d) |
+|      |[CPP-Module](https://github.com/durantecode/CPP-Modules)   			|    C++    | ![ldurante's cpp's Score](https://badge42.herokuapp.com/api/project/ldurante/CPP) |
 
 
+
+https://github.com/durantecode/CPP-Modules
 ## 🗣️ About 42
 
 	42 is a global education initiative that offers a new way of learning technology:
