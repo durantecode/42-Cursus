@@ -15,16 +15,16 @@ Started cursus: **05/04/2021**
 |  00  |[libft](https://github.com/durantecode/libft)|    C     | ![ldurante's libft Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2148623) |
 |  01  |netwhat     			|   n/a    | ![ldurante's netwhat Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2161526) |
 |      |[get_next_line](https://github.com/durantecode/get_next_line)			|    C     | ![ldurante's get_next_line Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2161526) |
-|      |[ft_printf](https://github.com/durantecode/ft_printf)   			|    C     | ![ldurante's ft_printf Score](https://badge42.herokuapp.com/api/project/ldurante/ft_printf) |
-|      |[Born2beRoot](https://github.com/durantecode/Born2beRoot)   			|    n/a     | ![ldurante's B2bR Score](https://badge42.herokuapp.com/api/project/ldurante/Born2beroot) |
-|  02  |[Exam-Rank-02](https://github.com/durantecode/42-exams/tree/master/exam-rank-02)   			|    C    | ![ldurante's exam-rank-02's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2002) |
-|      |[so_long](https://github.com/durantecode/so_long)   			|    C    | ![ldurante's so_long's Score](https://badge42.herokuapp.com/api/project/ldurante/so_long) |
-|      |[pipex](https://github.com/durantecode/pipex)   			|    C    | ![ldurante's pipex's Score](https://badge42.herokuapp.com/api/project/ldurante/pipex) |
-|      |[push_swap](https://github.com/durantecode/push_swap)   			|    C    | ![ldurante's push_swap Score](https://badge42.herokuapp.com/api/project/ldurante/push_swap) |
-|  03  |[Exam-Rank-03](https://github.com/durantecode/42-exams/tree/master/exam-rank-03)   			|    C    | ![ldurante's exam-rank-03's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2003) |
-|      |[minishell](https://github.com/durantecode/minishell)   			|    C    | ![ldurante's minishell Score](https://badge42.herokuapp.com/api/project/ldurante/minishell) |
-|      |[philosophers](https://github.com/durantecode/philosophers)   			|    C    | ![ldurante's philo Score](https://badge42.herokuapp.com/api/project/ldurante/Philosophers) |
-|  04  |[Exam-Rank-04](https://github.com/durantecode/42-exams/tree/master/exam-rank-04)   			|    C    | ![ldurante's exam-rank-04's Score](https://badge42.herokuapp.com/api/project/ldurante/Exam%20Rank%2004) |
+|      |[ft_printf](https://github.com/durantecode/ft_printf)   			|    C     | ![ldurante's ft_printf Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2168592) |
+|      |[Born2beRoot](https://github.com/durantecode/Born2beRoot)   			|    n/a     | ![ldurante's B2bR Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2221350) |
+|  02  |[Exam-Rank-02](https://github.com/durantecode/42-exams/tree/master/exam-rank-02)   			|    C    | ![ldurante's exam-rank-02's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2234649) |
+|      |[so_long](https://github.com/durantecode/so_long)   			|    C    | ![ldurante's so_long's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2317313) |
+|      |[pipex](https://github.com/durantecode/pipex)   			|    C    | ![ldurante's pipex's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2246826) |
+|      |[push_swap](https://github.com/durantecode/push_swap)   			|    C    | ![ldurante's push_swap Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2336345) |
+|  03  |[Exam-Rank-03](https://github.com/durantecode/42-exams/tree/master/exam-rank-03)   			|    C    | ![ldurante's exam-rank-03's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2389206) |
+|      |[minishell](https://github.com/durantecode/minishell)   			|    C    | ![ldurante's minishell Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2389061) |
+|      |[philosophers](https://github.com/durantecode/philosophers)   			|    C    | ![ldurante's philo Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2379942) |
+|  04  |[Exam-Rank-04](https://github.com/durantecode/42-exams/tree/master/exam-rank-04)   			|    C    | ![ldurante's exam-rank-04's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2487855) |
 |      |[Cub3D](https://github.com/durantecode/cub3d)   			|    C    | ![ldurante's cub3d's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2488186) |
 |      |[CPP-Module](https://github.com/durantecode/CPP-Modules)   			|    C++    | ![ldurante's cpp's Score](https://badge42.herokuapp.com/api/project/ldurante/CPP) |
 
