@@ -30,7 +30,6 @@ Started cursus: **05/04/2021**
 
 
 
-https://github.com/durantecode/CPP-Modules
 ## 🗣️ About 42
 
 	42 is a global education initiative that offers a new way of learning technology:
