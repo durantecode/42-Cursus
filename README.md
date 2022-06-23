@@ -27,6 +27,7 @@ Started cursus: **05/04/2021**
 |  04  |[Exam-Rank-04](https://github.com/durantecode/42-exams/tree/master/exam-rank-04)   			|    C    | ![ldurante's exam-rank-04's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2487855) |
 |      |[Cub3D](https://github.com/durantecode/cub3d)   			|    C    | ![ldurante's cub3d's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2488186) |
 |      |[CPP-Module](https://github.com/durantecode/CPP-Modules)   			|    C++    | ![ldurante's 42 CPP Module 07 Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2628358)
+|      |[ft_containers](https://github.com/durantecode/ft_containers)   			|    C++    | WIP |
 
 
 
