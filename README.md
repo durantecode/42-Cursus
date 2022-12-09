@@ -30,7 +30,9 @@ Started cursus: **05/04/2021**
 |  05  |[Exam-Rank-05](https://github.com/durantecode/42-exams/tree/master/exam-rank-05)   			|    C++   | ![ldurante's exam-rank-05's Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2781443)
 |      |[ft_containers](https://github.com/durantecode/ft_containers)   			|    C++    | ![ldurante's ft_containers Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2635046)
 |      |[inception](https://github.com/durantecode/inception)   			|    C++/Docker    | ![ldurante's inception Score](https://badge42.vercel.app/api/v2/cl39ut85e003009l2dts6pog9/project/2801444)
-|      |[ft_irc](https://github.com/durantecode/ft_irc)   			|    C++    | WIP
+|      |[ft_irc](https://github.com/durantecode/ft_irc)   			|    C++    | Not there yet
+|  06  |[Exam-Rank-06](https://github.com/durantecode/42-exams/tree/master/exam-rank-06)   			|    C++   | Not there yet
+|      |[ft_transcendence](https://github.com/durantecode/ft_transcendence)   			|    C++    | Not there yet
 
 
 
